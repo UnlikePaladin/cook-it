@@ -2,7 +2,6 @@ package toast.cook_it.block.appliances.microwave;
 
 
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
@@ -11,7 +10,6 @@ import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import toast.cook_it.CookIt;
 import toast.cook_it.block.CookingBlockEntity;
 import toast.cook_it.block.ImplementedInventory;
 import toast.cook_it.recipes.MicrowaveRecipe;
@@ -49,7 +47,8 @@ public class MicrowaveEntity extends CookingBlockEntity implements ImplementedIn
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        if (world.isClient()) return;
+
+        if (world.isClient()) { return; }
         if (this.hasRecipe()) {
             if (progress == 0 || world.getTime() % MICROWAVE_SOUND_INTERVAL == 0) {
                 playMicrowaveSound(world, pos, state, true);
@@ -71,7 +70,6 @@ public class MicrowaveEntity extends CookingBlockEntity implements ImplementedIn
                 //Kaboom stuff
                 float explosionPower = recipe.get().value().getExplosionPower();
                 if (explosionPower > 0) {
-                    CookIt.LOGGER.info("explosion!");
                     if (this.world != null) {
                         this.world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), explosionPower, World.ExplosionSourceType.BLOCK);
                     }
@@ -113,7 +111,7 @@ public class MicrowaveEntity extends CookingBlockEntity implements ImplementedIn
         for (int i = 0; i < this.size(); i++) {
             inv.setStack(i, this.getStack(i));
         }
-        return getWorld().getRecipeManager().getFirstMatch(MicrowaveRecipe.Type.INSTANCE, inv, getWorld());
+        return Objects.requireNonNull(getWorld()).getRecipeManager().getFirstMatch(MicrowaveRecipe.Type.INSTANCE, inv, getWorld());
     }
 
     private void playMicrowaveSound(World world, BlockPos pos, BlockState state, boolean on) {
@@ -121,7 +119,6 @@ public class MicrowaveEntity extends CookingBlockEntity implements ImplementedIn
             world.playSound(null, pos, CookItSounds.MICROWAVE_SOUND_EVENT, SoundCategory.BLOCKS, 0.3f, 1.0f);
             world.setBlockState(pos, state.with(Microwave.ON, true));
         } else {
-            MinecraftClient.getInstance().getSoundManager().stopSounds(CookItSounds.MICROWAVE_SOUND, SoundCategory.BLOCKS);
             world.setBlockState(pos, state.with(ON, false));
             if (state.get(OPEN)) return;
             world.playSound(null, pos, CookItSounds.MICROWAVE_BEEP_EVENT, SoundCategory.BLOCKS, 1.0f, 1.0f);
