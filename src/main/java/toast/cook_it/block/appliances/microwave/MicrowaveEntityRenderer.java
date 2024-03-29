@@ -39,7 +39,6 @@ public class MicrowaveEntityRenderer implements BlockEntityRenderer<MicrowaveEnt
                 x2 = 2.125f;
                 y2 = 1.0f;
                 z2 = 1.75f;
-                dir = 0;
             }
             case SOUTH -> {
                 x = 0.9375f;
@@ -93,9 +92,7 @@ public class MicrowaveEntityRenderer implements BlockEntityRenderer<MicrowaveEnt
             // Rotate the item
             if (blockEntity.progress > 0) {
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((blockEntity.getWorld().getTime() + tickDelta) * 4));
-
             }
-
             client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
             matrices.pop();
         }

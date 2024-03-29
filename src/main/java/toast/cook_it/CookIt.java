@@ -30,6 +30,7 @@ public class CookIt implements ModInitializer {
         CookItRecipes.registerRecipes();
         CookItSounds.registerSounds();
         CookItBlockEntities.registerEntities();
+
         Registry.register(Registries.ITEM_GROUP, new Identifier(CookIt.MOD_ID, "items"), CookItItems.COOK_IT_GROUP);
     }
 }

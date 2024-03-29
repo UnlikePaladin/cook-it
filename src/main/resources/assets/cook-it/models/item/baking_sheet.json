@@ -1,3 +1,68 @@
 {
-  "parent": "cook-it:block/baking_sheet"
+  "parent": "minecraft:builtin/entity",
+  "credit": "Made by ToastTextures using Blockbench",
+  "texture_size": [32, 32],
+  "textures": {
+    "baking_sheet": "cook-it:block/baking_sheet",
+    "particle": "#baking_sheet"
+  },
+  "elements": [
+    {
+      "from": [3, 0.05, 1],
+      "to": [13, 2.05, 15],
+      "faces": {
+        "north": {"uv": [0, 13, 10, 14], "texture": "#baking_sheet"},
+        "east": {"uv": [0, 14, 14, 15], "texture": "#baking_sheet"},
+        "south": {"uv": [10, 0, 0, 1], "texture": "#baking_sheet"},
+        "west": {"uv": [9, 0, 10, 14], "rotation": 90, "texture": "#baking_sheet"},
+        "down": {"uv": [10, 0, 0, 14], "texture": "#baking_sheet"}
+      }
+    },
+    {
+      "from": [3, 2.05, 1],
+      "to": [13, 0.05, 15],
+      "faces": {
+        "north": {"uv": [0, 13, 10, 14], "texture": "#baking_sheet"},
+        "east": {"uv": [0, 14, 14, 15], "texture": "#baking_sheet"},
+        "south": {"uv": [10, 0, 0, 1], "texture": "#baking_sheet"},
+        "west": {"uv": [9, 0, 10, 14], "rotation": 90, "texture": "#baking_sheet"},
+        "up": {"uv": [10, 14, 0, 0], "texture": "#baking_sheet"},
+        "down": {"uv": [10, 0, 0, 14], "texture": "#baking_sheet"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [-112.5, 0, 180],
+      "translation": [0, 3.5, 5.75]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [-112.5, 0, -180],
+      "translation": [0, 3.5, 5.75]
+    },
+    "firstperson_righthand": {
+      "rotation": [-180, 62.5, -180],
+      "translation": [0, 9, 0]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 117.5, 0],
+      "translation": [0, 9, 0]
+    },
+    "ground": {
+      "translation": [0, 5, 0]
+    },
+    "gui": {
+      "rotation": [30, 225, 0],
+      "translation": [0, 5.75, 0]
+    }
+  },
+  "groups": [
+    {
+      "name": "BakingSheet",
+      "origin": [0, 0, 0],
+      "color": 0,
+      "children": [0, 1]
+    }
+  ]
+
 }

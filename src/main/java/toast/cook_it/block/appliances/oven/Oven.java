@@ -41,9 +41,9 @@ public class Oven extends TranslucentBlock implements BlockEntityProvider {
         boolean open = state.get(OPEN);
         OvenEntity blockEntity = (OvenEntity) world.getBlockEntity(pos);
 
-        ItemStack heldItem = player.getStackInHand(hand);
+        ItemStack heldItem = player.getStackInHand(hand).copyWithCount(1);
 
-        if (world.isClient) {
+        if (world.isClient || blockEntity == null) {
             return ActionResult.SUCCESS;
         } else {
             if (!open && heldItem.isEmpty()) {
@@ -51,18 +51,28 @@ public class Oven extends TranslucentBlock implements BlockEntityProvider {
                 world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.BLOCKS);
                 return ActionResult.PASS;
             }
-            if (!heldItem.isEmpty()) {
-                world.setBlockState(pos, state.with(OPEN, false));
-                blockEntity.setStack(0, new ItemStack(heldItem.getItem(), 1));
-                heldItem.decrement(1);
-
-                world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS);
-            } else if (!blockEntity.getStack(0).isEmpty()){
-
-                player.getInventory().insertStack(blockEntity.getStack(0));
+            if (!player.getStackInHand(hand).isEmpty()) {
+                // Check what is the first open slot and put an item from the player's hand there
+                for (int i = 0; i < blockEntity.getItems().size(); i++) {
+                    // Put the stack the player is holding into the inventory
+                    if (blockEntity.getStack(i).isEmpty()) {
+                        blockEntity.setStack(i, heldItem);
+                        player.getStackInHand(hand).decrement(1);
+                        break;
+                    }
+                }
             } else {
-                world.setBlockState(pos, state.with(OPEN, false));
-
+                // If the player is not holding anything, give them the items in the block entity one by one
+                for (int i = blockEntity.getItems().size() - 1; i >= 0; i--) {
+                    // Find the first slot that has an item and give it to the player
+                    if (!blockEntity.getStack(i).isEmpty()) {
+                        // Give the player the stack in the inventory
+                        player.getInventory().offerOrDrop(blockEntity.getStack(i));
+                        // Remove the stack from the inventory
+                        blockEntity.setStack(i, ItemStack.EMPTY);
+                        break;
+                    }
+                }
             }
         }
 
