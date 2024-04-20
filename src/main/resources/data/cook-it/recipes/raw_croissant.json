@@ -1,6 +1,5 @@
 {
-  "comment": "This is literally a crime against humanity but it's just a test recipe :sob:",
-  "type": "cook-it:microwaving",
+  "type": "cook-it:baking",
   "ingredients": [
     {
       "item": "cook-it:raw_croissant"
