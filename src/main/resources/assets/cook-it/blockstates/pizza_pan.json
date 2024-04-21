@@ -1,0 +1,14 @@
+{
+  "comment": "Ok so like I literally did not want to add another block entity :skull: might regret this later",
+  "variants": {
+    "cooked=true,has_pizza=true": {
+      "model": "cook-it:block/pizza_pan"
+    },
+    "cooked=false,has_pizza=true": {
+      "model": "cook-it:block/pizza_pan_uncooked"
+    },
+    "has_pizza=false": {
+      "model": "cook-it:block/pizza_pan_empty"
+    }
+  }
+}

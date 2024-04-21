@@ -8,7 +8,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
@@ -70,8 +69,6 @@ public class Plate extends Block implements BlockEntityProvider {
                         world.setBlockState(pos, state.with(PLATES_AMOUNT, plateAmount + 1));
                     }
                     return ActionResult.SUCCESS;
-                } else if (heldItem.getItem() == Items.EGG) {
-                    world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 3, World.ExplosionSourceType.BLOCK);
                 } else if (blockEntity.getStack(0).isEmpty() && plateAmount == 1) {
                     blockEntity.setStack(0, new ItemStack(heldItem.getItem()));
                     heldItem.decrement(1);

@@ -1,0 +1,6 @@
+{
+  "parent": "cook-it:block/pizza/pizza_unsplit",
+  "textures": {
+    "pizza": "cook-it:block/uncooked_pizza"
+  }
+}

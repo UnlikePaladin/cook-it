@@ -17,9 +17,11 @@ import toast.cook_it.block.appliances.microwave.Microwave;
 import toast.cook_it.block.appliances.oven.Oven;
 import toast.cook_it.block.containers.Bowl;
 import toast.cook_it.block.containers.CuttingBoard;
+import toast.cook_it.block.containers.PizzaPan;
 import toast.cook_it.block.containers.baking_sheet.BakingSheet;
 import toast.cook_it.block.containers.muffin_tin.MuffinTin;
 import toast.cook_it.block.containers.plate.Plate;
+import toast.cook_it.block.food_blocks.pizza.Pizza;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,12 @@ public class CookItBlocks {
     public static final Block CUTTING_BOARD = registerBlock("cutting_board", new CuttingBoard(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS)));
     public static final Block TOASTER = registerBlock("toaster", new Toaster(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)));
     public static final Block BAKING_SHEET = registerBlock("baking_sheet", new BakingSheet(FabricBlockSettings.create()));
+    public static final Block PIZZA_PAN = registerBlock("pizza_pan", new PizzaPan(FabricBlockSettings.create()));
     public static final Block BENCH = registerBlock("bench", new Bench(FabricBlockSettings.create()));
     public static final Block OVEN = registerBlock("oven", new Oven(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
+
+    public static final Block PIZZA = registerBlock("pizza", new Pizza(FabricBlockSettings.create()));
+    public static final Block UNCOOKED_PIZZA = registerBlock("uncooked_pizza", new Pizza(FabricBlockSettings.create()));
 
     public static final Block MICROWAVE = registerBlock("microwave", new Microwave(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
     public static final Block MUFFIN_TIN = registerBlock("muffin_tin", new MuffinTin(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));;

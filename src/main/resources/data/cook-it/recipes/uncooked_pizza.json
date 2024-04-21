@@ -1,0 +1,12 @@
+{
+  "type": "cook-it:baking",
+  "ingredients": [
+    {
+      "item": "cook-it:uncooked_pizza"
+    }
+  ],
+  "output": {
+    "item": "cook-it:pizza"
+  },
+  "time": 250
+}

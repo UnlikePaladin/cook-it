@@ -33,6 +33,8 @@
   "block.cook-it.oven": "Oven",
   "block.cook-it.microwave": "Microwave",
   "block.cook-it.pizza": "Pizza",
+  "block.cook-it.uncooked_pizza": "Uncooked Pizza",
+  "block.cook-it.pizza_pan": "Pizza Pan",
 
 
   "block.cook-it.red_plate": "Red Plate",

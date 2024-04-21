@@ -1,0 +1,8 @@
+{
+  "parent": "cook-it:block/pizza_pan",
+  "textures": {
+    "pizza": "cook-it:block/uncooked_pizza"
+  }
+
+}
+
