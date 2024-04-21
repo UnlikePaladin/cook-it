@@ -1,12 +1,9 @@
 package toast.cook_it.block.appliances.oven;
 
-import com.mojang.serialization.MapCodec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.TranslucentBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -23,9 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import toast.cook_it.registries.CookItBlockEntities;
 
-public class Oven extends BlockWithEntity implements BlockEntityProvider {
+public class Oven extends TranslucentBlock implements BlockEntityProvider {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
     public static final BooleanProperty ON = BooleanProperty.of("on");
     public static final Property<Direction> FACING = Properties.HORIZONTAL_FACING;
@@ -34,16 +30,6 @@ public class Oven extends BlockWithEntity implements BlockEntityProvider {
         super(settings);
         setDefaultState(getDefaultState().with(OPEN, false).with(ON, false).with(FACING, Direction.NORTH));
     }
-
-    @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return null;
-    }
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL /*that does something*/ ;
-    }
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(OPEN).add(ON).add(FACING);
@@ -100,9 +86,5 @@ public class Oven extends BlockWithEntity implements BlockEntityProvider {
     @Override
     public OvenEntity createBlockEntity(BlockPos pos, BlockState state) { return new OvenEntity(pos, state); }
 
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return validateTicker(type, CookItBlockEntities.OVEN_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world, pos, state));
-    }
+
 }
