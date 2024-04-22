@@ -102,6 +102,7 @@ public class MicrowaveEntity extends CookingBlockEntity implements ImplementedIn
 
     private boolean hasRecipe() {
         Optional<RecipeEntry<MicrowaveRecipe>> recipe = getCurrentRecipe();
+
         return recipe.isPresent();
     }
 

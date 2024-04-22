@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:brown_concrete"
+    }
+  },
+  "result": {
+    "item": "cook-it:brown_large_plate",
+    "count": 4
+  }
+}
+

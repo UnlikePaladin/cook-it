@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W W",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:yellow_concrete"
+    }
+  },
+  "result": {
+    "item": "cook-it:yellow_bowl",
+    "count": 4
+  }
+}
+

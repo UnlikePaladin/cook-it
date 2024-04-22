@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W W",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:purple_concrete"
+    }
+  },
+  "result": {
+    "item": "cook-it:purple_bowl",
+    "count": 4
+  }
+}
+
