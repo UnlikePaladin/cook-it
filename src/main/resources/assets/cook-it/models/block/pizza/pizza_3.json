@@ -2,7 +2,8 @@
 	"credit": "Made by ToastTextures using Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"pizza": "cook-it:block/pizza"
+		"pizza": "cook-it:block/pizza",
+		"particle": "#pizza"
 	},
 	"elements": [
 		{
@@ -11,9 +12,9 @@
 			"faces": {
 				"north": {"uv": [7, 10, 10, 11], "texture": "#pizza"},
 				"south": {"uv": [10.5, 7, 13.5, 8], "texture": "#pizza"},
-				"west": {"uv": [13.5, 9, 14, 10], "texture": "#pizza"},
+				"west": {"uv": [10.5, 7, 11, 8], "texture": "#pizza"},
 				"up": {"uv": [3.5, 0.5, 0.5, 0], "texture": "#pizza"},
-				"down": {"uv": [13.5, 0, 10.5, 0.5], "texture": "#pizza"}
+				"down": {"uv": [13.5, 0, 10.5, 0.5], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -22,7 +23,7 @@
 			"faces": {
 				"west": {"uv": [10, 9.5, 13, 10], "texture": "#pizza"},
 				"up": {"uv": [3.5, 3.5, 0.5, 0.5], "texture": "#pizza"},
-				"down": {"uv": [10.5, 0.5, 7.5, 3.5], "texture": "#pizza"}
+				"down": {"uv": [10.5, 0.5, 7.5, 3.5], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -34,7 +35,7 @@
 				"south": {"uv": [13.5, 7, 14, 8], "texture": "#pizza"},
 				"west": {"uv": [3.5, 11, 7, 12], "texture": "#pizza"},
 				"up": {"uv": [0.5, 7, 0, 0], "texture": "#pizza"},
-				"down": {"uv": [14, 0, 13.5, 3.5], "texture": "#pizza"}
+				"down": {"uv": [14, 0, 13.5, 3.5], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -43,7 +44,7 @@
 			"faces": {
 				"south": {"uv": [10, 10, 13, 10.5], "texture": "#pizza"},
 				"up": {"uv": [6.5, 6.5, 0.5, 3.5], "texture": "#pizza"},
-				"down": {"uv": [10.5, 0.5, 7.5, 6.5], "texture": "#pizza"}
+				"down": {"uv": [13.5, 3.5, 7.5, 6.5], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -52,9 +53,8 @@
 			"faces": {
 				"north": {"uv": [0.5, 7, 6.5, 8], "texture": "#pizza"},
 				"south": {"uv": [0.5, 9, 3.5, 10], "texture": "#pizza"},
-				"west": {"uv": [0, 9, 0.5, 10], "texture": "#pizza"},
 				"up": {"uv": [6.5, 7, 0.5, 6.5], "texture": "#pizza"},
-				"down": {"uv": [13.5, 6.5, 10.5, 7], "texture": "#pizza"}
+				"down": {"uv": [13.5, 6.5, 10.5, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -66,7 +66,7 @@
 				"south": {"uv": [13.5, 11, 14, 12], "texture": "#pizza"},
 				"west": {"uv": [0, 8, 3.5, 9], "texture": "#pizza"},
 				"up": {"uv": [7, 7, 6.5, 3.5], "texture": "#pizza"},
-				"down": {"uv": [7.5, 3.5, 7, 7], "texture": "#pizza"}
+				"down": {"uv": [7.5, 3.5, 7, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		}
 	],

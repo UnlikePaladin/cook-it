@@ -4,7 +4,6 @@
 	"textures": {
 		"plate": "cook-it:block/large_plate",
 		"particle": "#plate"
-
 	},
 	"elements": [
 		{

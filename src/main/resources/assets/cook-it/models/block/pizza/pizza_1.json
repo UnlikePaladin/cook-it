@@ -3,7 +3,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"pizza": "cook-it:block/pizza",
-		"particle": "cook-it:block/pizza"
+		"particle": "#pizza"
 	},
 	"elements": [
 		{
@@ -13,7 +13,7 @@
 				"east": {"uv": [10, 10.5, 13, 11], "texture": "#pizza"},
 				"south": {"uv": [10, 11, 13, 11.5], "texture": "#pizza"},
 				"up": {"uv": [6.5, 6.5, 3.5, 3.5], "texture": "#pizza"},
-				"down": {"uv": [13.5, 3.5, 10.5, 6.5], "texture": "#pizza"}
+				"down": {"uv": [13.5, 3.5, 10.5, 6.5], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -25,7 +25,7 @@
 				"south": {"uv": [13.5, 11, 14, 12], "texture": "#pizza"},
 				"west": {"uv": [0, 8, 3.5, 9], "texture": "#pizza"},
 				"up": {"uv": [7, 7, 6.5, 3.5], "texture": "#pizza"},
-				"down": {"uv": [7.5, 3.5, 7, 7], "texture": "#pizza"}
+				"down": {"uv": [7.5, 3.5, 7, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
@@ -36,7 +36,7 @@
 				"east": {"uv": [6.5, 9, 7, 10], "texture": "#pizza"},
 				"south": {"uv": [3.5, 9, 6.5, 10], "texture": "#pizza"},
 				"up": {"uv": [6.5, 7, 3.5, 6.5], "texture": "#pizza"},
-				"down": {"uv": [10.5, 6.5, 7.5, 7], "texture": "#pizza"}
+				"down": {"uv": [10.5, 6.5, 7.5, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		}
 	],

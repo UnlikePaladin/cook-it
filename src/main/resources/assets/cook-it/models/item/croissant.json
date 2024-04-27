@@ -2,7 +2,7 @@
 	"credit": "Made by ToastTextures using Blockbench",
 	"textures": {
 		"particle": "cook-it:item/croissant",
-		"croissant": "cook-it:item/croissant"
+		"croissant": "#croissant"
 	},
 	"elements": [
 		{
@@ -32,9 +32,9 @@
 			}
 		},
 		{
-			"from": [4.34201, 0.5, 8.47626],
-			"to": [6.34201, 1.5, 9.47626],
-			"rotation": {"angle": -22.5, "axis": "y", "origin": [8.5, 1, 8]},
+			"from": [4, 0.5, 8.5],
+			"to": [6, 1.5, 9.5],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8.5, 1, 8.5]},
 			"faces": {
 				"north": {"uv": [2, 9, 0, 10], "texture": "#croissant"},
 				"east": {"uv": [3, 9, 2, 10], "texture": "#croissant"},
@@ -45,16 +45,16 @@
 			}
 		},
 		{
-			"from": [9.73411, 0.5, 8.09358],
-			"to": [11.73411, 1.5, 9.09358],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.5, 1, 8]},
+			"from": [10, 0.5, 8.5],
+			"to": [12, 1.5, 9.5],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [7.5, 1, 8.5]},
 			"faces": {
-				"north": {"uv": [12, 1, 10, 2], "texture": "#croissant"},
-				"east": {"uv": [11, 8, 10, 9], "texture": "#croissant"},
-				"south": {"uv": [12, 0, 10, 1], "texture": "#croissant"},
-				"west": {"uv": [11, 9, 10, 10], "texture": "#croissant"},
-				"up": {"uv": [8, 10, 6, 11], "texture": "#croissant"},
-				"down": {"uv": [10, 11, 8, 10], "texture": "#croissant"}
+				"north": {"uv": [0, 9, 2, 10], "texture": "#croissant"},
+				"east": {"uv": [2, 10, 3, 11], "texture": "#croissant"},
+				"south": {"uv": [8, 8, 10, 9], "texture": "#croissant"},
+				"west": {"uv": [2, 9, 3, 10], "texture": "#croissant"},
+				"up": {"uv": [8, 9, 10, 10], "texture": "#croissant"},
+				"down": {"uv": [0, 11, 2, 10], "texture": "#croissant"}
 			}
 		}
 	],
@@ -96,7 +96,7 @@
 	},
 	"groups": [
 		{
-			"name": "Croissant",
+			"name": "croissant",
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [0, 1, 2, 3]

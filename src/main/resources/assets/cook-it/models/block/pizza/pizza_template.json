@@ -2,7 +2,8 @@
 	"credit": "Made by ToastTextures using Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"pizza": "cook-it:block/pizza"
+		"pizza": "cook-it:block/pizza",
+		"particle": "#pizza"
 	},
 	"elements": [
 		{

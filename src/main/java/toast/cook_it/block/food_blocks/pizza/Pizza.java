@@ -17,7 +17,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import toast.cook_it.CookIt;
 import toast.cook_it.registries.CookItBlocks;
 import toast.cook_it.registries.CookItItems;
 
@@ -70,14 +69,12 @@ public class Pizza extends Block {
         } else {
 
             if (world.getBlockState(pos).getBlock() == CookItBlocks.PIZZA && heldItem.isEmpty()) {
-                CookIt.LOGGER.info(String.valueOf(world.getBlockState(pos)));
+
+                player.getInventory().offerOrDrop(new ItemStack(CookItItems.PIZZA_SLICE));
+                world.playSound(null, pos, SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.BLOCKS);
                 if (pizzaAmount > 1) {
-                    player.getInventory().offerOrDrop(new ItemStack(CookItItems.PIZZA_SLICE));
-                    world.playSound(null, pos, SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.BLOCKS);
                     world.setBlockState(pos, state.with(PIZZA_AMOUNT, pizzaAmount - 1));
                 } else {
-                    player.getInventory().offerOrDrop(new ItemStack(CookItItems.PIZZA_SLICE));
-                    world.playSound(null, pos, SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.BLOCKS);
                     world.breakBlock(pos, false);
                 }
             }
