@@ -16,11 +16,9 @@ import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class CookingBlockEntity extends BlockEntity implements ImplementedInventory {
     protected DefaultedList<ItemStack> items;
-
 
 
     public CookingBlockEntity(BlockEntityType<?> blockEntity, BlockPos pos, BlockState state, int invSize) {
@@ -32,6 +30,8 @@ public abstract class CookingBlockEntity extends BlockEntity implements Implemen
     public DefaultedList<ItemStack> getItems() {
         return this.items;
     }
+
+    public void setItems(DefaultedList<ItemStack> items) { this.items = items;}
 
     @Override
     public void readNbt(NbtCompound nbt) {
@@ -59,15 +59,22 @@ public abstract class CookingBlockEntity extends BlockEntity implements Implemen
         return createNbt();
     }
 
-    public List<ItemStack> getContainerItems(ItemStack container) {
+    public boolean isContainer(ItemStack item) {
+        NbtList nbtList = item.getOrCreateSubNbt("BlockEntityTag").getList("Items", NbtElement.COMPOUND_TYPE);
 
-        List<ItemStack> itemStackList = new ArrayList<>();
+        return !nbtList.isEmpty();
+    }
+
+    public ArrayList<ItemStack> getContainerItems(ItemStack container) {
+
+        ArrayList<ItemStack> itemStackList = new ArrayList<>();
         NbtCompound nbt = container.getSubNbt("BlockEntityTag");
         if (nbt != null && nbt.contains("Items")) {
             NbtList itemsTag = nbt.getList("Items", NbtElement.COMPOUND_TYPE);
             for (int j = 0; j < itemsTag.size(); j++) {
                 NbtCompound itemTag = itemsTag.getCompound(j);
                 ItemStack itemStack = ItemStack.fromNbt(itemTag);
+
                 itemStackList.add(itemStack);
             }
         }

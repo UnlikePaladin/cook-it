@@ -1,8 +1,8 @@
 {
 	"credit": "Made by ToastTextures using Blockbench",
 	"textures": {
-		"particle": "cook-it:item/croissant",
-		"croissant": "#croissant"
+		"croissant": "cook-it:item/croissant",
+		"particle": "#croissant"
 	},
 	"elements": [
 		{

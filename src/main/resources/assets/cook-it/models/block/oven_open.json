@@ -38,7 +38,7 @@
 			"to": [16, 16, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
 			"faces": {
-				"north": {"uv": [7, 4.5, 15, 12], "texture": "#oven_accessories", "cullface": "north"},
+				"north": {"uv": [7, 4, 15, 12], "texture": "#oven_accessories", "cullface": "north"},
 				"east": {"uv": [16, 0, 0, 16], "texture": "#oven_side", "cullface": "east"},
 				"south": {"uv": [0, 0, 16, 16], "texture": "#oven_side", "cullface": "south"},
 				"west": {"uv": [0, 0, 16, 16], "texture": "#oven_side", "cullface": "west"},

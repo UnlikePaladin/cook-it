@@ -1,17 +1,123 @@
 package toast.cook_it.block.appliances.oven;
 
-
 import net.minecraft.block.BlockState;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import toast.cook_it.block.CookingBlockEntity;
 import toast.cook_it.block.ImplementedInventory;
+import toast.cook_it.recipes.OvenRecipe;
 import toast.cook_it.registries.CookItBlockEntities;
+
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
+
+import static toast.cook_it.block.appliances.oven.Oven.DONE;
 
 public class OvenEntity extends CookingBlockEntity implements ImplementedInventory {
 
+    private int[] progress;
+    private boolean done;
 
     public OvenEntity(BlockPos pos, BlockState state) {
-        super(CookItBlockEntities.OVEN_ENTITY,pos, state, 2);
+        super(CookItBlockEntities.OVEN_ENTITY, pos, state, 2);
+        this.progress = new int[2];
+        this.done = false;
     }
 
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        items.clear();
+        super.readNbt(nbt);
+
+        Inventories.readNbt(nbt, items);
+
+        this.progress = nbt.getIntArray("oven.progress");
+    }
+
+    @Override
+    public void writeNbt(NbtCompound nbt) {
+        Inventories.writeNbt(nbt, this.items);
+        nbt.putIntArray("oven.progress", progress);
+        super.writeNbt(nbt);
+    }
+
+    public void tick(World world, BlockPos pos, BlockState state) {
+        if (world.isClient()) {
+            return;
+        }
+
+
+        for (int i = 0; i < this.size(); i++) {
+            ItemStack item = this.getStack(i);
+
+            Optional<RecipeEntry<OvenRecipe>> recipe = getCurrentRecipe(item);
+            if (recipe.isPresent()) {
+                if (recipe.get().value().getMaxProgress() >= this.progress[i]) {
+                    this.progress[i]++;
+                    this.done = false;
+                } else {
+                    craftRecipe(i);
+                    world.setBlockState(pos, state.with(DONE, true));
+                    this.done = true;
+
+                    this.progress[i] = 0;
+                }
+            }
+        }
+        world.setBlockState(pos, state.with(DONE, !this.getItems().isEmpty() && this.done));
+    }
+
+    private void craftRecipe(int index) {
+        ItemStack item = this.getStack(index);
+        if (this.isContainer(item)) {
+            ArrayList<ItemStack> containerItems = this.getContainerItems(item);
+            NbtList nbtList = new NbtList();
+
+            for (int i = 0; i < containerItems.size(); i++) {
+                NbtCompound nbtCompound = new NbtCompound(); // Create a new compound for each iteration
+                nbtCompound.putByte("Slot", (byte) i);
+
+                Optional<RecipeEntry<OvenRecipe>> recipe = getCurrentRecipe(containerItems.get(i));
+                if (recipe.isPresent()) {
+                    if (!containerItems.get(i).isEmpty() && recipe.get().value().getMaxProgress() <= this.progress[index]) {
+                        recipe.get().value().getResult(null).writeNbt(nbtCompound);
+                    }
+                } else {
+                    containerItems.get(i).writeNbt(nbtCompound);
+                }
+                nbtList.add(nbtCompound);
+            }
+            item.getOrCreateSubNbt("BlockEntityTag").put("Items", nbtList);
+        } else {
+            Optional<RecipeEntry<OvenRecipe>> recipe = getCurrentRecipe(item);
+            this.removeStack(index, 1);
+            this.setStack(index, recipe.get().value().getResult(null));
+        }
+    }
+
+    private Optional<RecipeEntry<OvenRecipe>> getCurrentRecipe(ItemStack itemStack) {
+        ArrayList<ItemStack> items = new ArrayList<>();
+
+        ArrayList<ItemStack> containerItems = this.getContainerItems(itemStack);
+
+        if (!containerItems.isEmpty()) {
+            items.addAll(containerItems);
+        } else {
+            items.add(itemStack);
+        }
+
+        SimpleInventory inv = new SimpleInventory(items.size());
+
+        for (int i = 0; i < items.size(); i++) {
+            inv.setStack(i, items.get(i));
+        }
+        return Objects.requireNonNull(getWorld()).getRecipeManager().getFirstMatch(OvenRecipe.Type.INSTANCE, inv, getWorld());
+    }
 }

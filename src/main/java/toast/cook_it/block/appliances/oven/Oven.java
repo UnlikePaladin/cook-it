@@ -1,9 +1,10 @@
 package toast.cook_it.block.appliances.oven;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.TranslucentBlock;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -20,57 +21,80 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import toast.cook_it.registries.CookItBlockEntities;
 
-public class Oven extends TranslucentBlock implements BlockEntityProvider {
+public class Oven extends BlockWithEntity implements BlockEntityProvider {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
-    public static final BooleanProperty ON = BooleanProperty.of("on");
+    public static final BooleanProperty DONE = BooleanProperty.of("done");
+
     public static final Property<Direction> FACING = Properties.HORIZONTAL_FACING;
 
     public Oven(Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(OPEN, false).with(ON, false).with(FACING, Direction.NORTH));
+        setDefaultState(getDefaultState().with(OPEN, false).with(DONE, false).with(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return null;
     }
     @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL /*that does something*/ ;
+    }
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(OPEN).add(ON).add(FACING);
+        builder.add(OPEN).add(DONE).add(FACING);
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
-        boolean open = state.get(OPEN);
         OvenEntity blockEntity = (OvenEntity) world.getBlockEntity(pos);
-
-        ItemStack heldItem = player.getStackInHand(hand).copyWithCount(1);
 
         if (world.isClient || blockEntity == null) {
             return ActionResult.SUCCESS;
         } else {
-            if (!open && heldItem.isEmpty()) {
-                world.setBlockState(pos, state.with(OPEN, true));
-                world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.BLOCKS);
-                return ActionResult.PASS;
-            }
-            if (!player.getStackInHand(hand).isEmpty()) {
-                // Check what is the first open slot and put an item from the player's hand there
-                for (int i = 0; i < blockEntity.getItems().size(); i++) {
-                    // Put the stack the player is holding into the inventory
-                    if (blockEntity.getStack(i).isEmpty()) {
-                        blockEntity.setStack(i, heldItem);
-                        player.getStackInHand(hand).decrement(1);
-                        break;
-                    }
+            boolean open = state.get(OPEN);
+
+            if (!open) {
+                // Open the oven if it's closed and the player is not holding anything
+                if (player.getStackInHand(hand).isEmpty()) {
+                    world.setBlockState(pos, state.with(OPEN, true));
+                    world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.BLOCKS);
                 }
             } else {
-                // If the player is not holding anything, give them the items in the block entity one by one
-                for (int i = blockEntity.getItems().size() - 1; i >= 0; i--) {
-                    // Find the first slot that has an item and give it to the player
-                    if (!blockEntity.getStack(i).isEmpty()) {
-                        // Give the player the stack in the inventory
-                        player.getInventory().offerOrDrop(blockEntity.getStack(i));
-                        // Remove the stack from the inventory
-                        blockEntity.setStack(i, ItemStack.EMPTY);
-                        break;
+                ItemStack heldItem = player.getStackInHand(hand).copyWithCount(1);
+
+                if (heldItem.isEmpty()) {
+                    // If the oven is open and the player is not holding anything, take items out of the oven
+                    // Close the oven if it's not marked as "done"
+                    if (!state.get(DONE)) {
+                        world.setBlockState(pos, state.with(OPEN, false));
+                        world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS);
+                        return ActionResult.SUCCESS;
+                    }
+                    for (int i = blockEntity.getItems().size() - 1; i >= 0; i--) {
+                        if (!blockEntity.getStack(i).isEmpty()) {
+                            // Give the player the stack from the inventory
+                            player.getInventory().offerOrDrop(blockEntity.getStack(i));
+                            // Remove the stack from the inventory
+                            blockEntity.setStack(i, ItemStack.EMPTY);
+                            break;
+                        } else {
+                            world.setBlockState(pos, state.with(OPEN, false));
+                            world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS);
+                        }
+                    }
+                } else {
+                    // If the oven is open and the player is holding something and try to put the held item into the oven
+                    for (int i = 0; i < blockEntity.getItems().size(); i++) {
+                        if (blockEntity.getStack(i).isEmpty()) {
+                            blockEntity.setStack(i, heldItem.copyWithCount(1));
+                            player.getStackInHand(hand).decrement(1);
+                            break;
+                        }
                     }
                 }
             }
@@ -86,5 +110,9 @@ public class Oven extends TranslucentBlock implements BlockEntityProvider {
     @Override
     public OvenEntity createBlockEntity(BlockPos pos, BlockState state) { return new OvenEntity(pos, state); }
 
-
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return validateTicker(type, CookItBlockEntities.OVEN_ENTITY,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world, pos, state));
+    }
 }
