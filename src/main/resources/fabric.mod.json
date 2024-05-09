@@ -27,6 +27,7 @@
 			}
 		]
 	},
+	"accessWidener" : "cook-it.accesswidener",
 	"mixins": [
 		"cook-it.mixins.json"
 	],

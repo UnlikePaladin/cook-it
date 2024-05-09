@@ -1,0 +1,8 @@
+{
+  "parent": "cook-it:block/fryer",
+  "textures": {
+    "fryer": "cook-it:block/fryer_on"
+  }
+
+}
+

@@ -2,8 +2,8 @@
 	"credit": "Made by ToastTextures using Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"fryer": "cook-it:block/fryer",
-		"particle": "#fryer"
+		"particle": "cook-it:block/fryer",
+		"fryer": "cook-it:block/fryer"
 	},
 	"elements": [
 		{
@@ -15,17 +15,17 @@
 				"south": {"uv": [10, 0, 15, 3], "texture": "#fryer"},
 				"west": {"uv": [4, 7, 11, 10], "texture": "#fryer"},
 				"up": {"uv": [5, 7, 0, 0], "texture": "#fryer"},
-				"down": {"uv": [10, 0, 5, 7], "texture": "#fryer"}
+				"down": {"uv": [10, 0, 5, 7], "texture": "#fryer", "cullface": "down"}
 			}
 		},
 		{
 			"from": [12, 6, 13],
-			"to": [4, 0, 2],
+			"to": [4, 1, 2],
 			"faces": {
-				"north": {"uv": [4, 13, 8, 16], "texture": "#fryer"},
-				"east": {"uv": [4, 10, 9.5, 13], "texture": "#fryer"},
-				"south": {"uv": [0, 12.5, 4, 15.5], "texture": "#fryer"},
-				"west": {"uv": [4, 10, 9.5, 13], "texture": "#fryer"},
+				"north": {"uv": [0, 12.5, 4, 15], "texture": "#fryer"},
+				"east": {"uv": [4, 10, 9.5, 12.5], "texture": "#fryer"},
+				"south": {"uv": [0, 12.5, 4, 15], "texture": "#fryer"},
+				"west": {"uv": [4, 10, 9.5, 12.5], "texture": "#fryer"},
 				"up": {"uv": [4, 12.5, 0, 7], "texture": "#fryer"}
 			}
 		},
@@ -53,16 +53,15 @@
 			}
 		},
 		{
-			"from": [3, 5.5, 13],
-			"to": [12.98, 8.48, 14.98],
+			"from": [3.01, 5.51, 13.01],
+			"to": [12.99, 8.49, 14.99],
 			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 6, 14]},
 			"faces": {
 				"north": {"uv": [10, 5.5, 15, 7], "texture": "#fryer"},
 				"east": {"uv": [15, 1, 16, 2.5], "texture": "#fryer"},
 				"south": {"uv": [10, 3, 15, 4.5], "texture": "#fryer"},
 				"west": {"uv": [15, 2.5, 16, 4], "texture": "#fryer"},
-				"up": {"uv": [15, 5.5, 10, 4.5], "texture": "#fryer"},
-				"down": {"uv": [16, 7, 11, 8], "texture": "#fryer"}
+				"up": {"uv": [15, 5.5, 10, 4.5], "texture": "#fryer"}
 			}
 		},
 		{
@@ -78,6 +77,39 @@
 			}
 		}
 	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 135, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 135, 0],
+			"translation": [0, 4, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 135, 0],
+			"translation": [0, 4, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
 	"groups": [
 		{
 			"name": "Fryer",

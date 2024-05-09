@@ -9,12 +9,16 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import toast.cook_it.CookIt;
+import toast.cook_it.block.appliances.fryer.FryerEntity;
+import toast.cook_it.block.appliances.fryer.FryerEntityRenderer;
 import toast.cook_it.block.appliances.microwave.MicrowaveEntity;
 import toast.cook_it.block.appliances.microwave.MicrowaveEntityRenderer;
 import toast.cook_it.block.appliances.oven.OvenEntity;
 import toast.cook_it.block.appliances.oven.OvenEntityRenderer;
 import toast.cook_it.block.containers.baking_sheet.BakingSheetEntity;
 import toast.cook_it.block.containers.baking_sheet.BakingSheetEntityRenderer;
+import toast.cook_it.block.containers.cutting_board.CuttingBoardEntity;
+import toast.cook_it.block.containers.cutting_board.CuttingBoardEntityRenderer;
 import toast.cook_it.block.containers.muffin_tin.MuffinTinEntity;
 import toast.cook_it.block.containers.muffin_tin.MuffinTinEntityRenderer;
 import toast.cook_it.block.containers.plate.PlateEntity;
@@ -27,6 +31,8 @@ public class CookItBlockEntities {
     public static BlockEntityType<MicrowaveEntity> MICROWAVE_ENTITY;
     public static BlockEntityType<OvenEntity> OVEN_ENTITY;
     public static BlockEntityType<PlateEntity> PLATE_ENTITY;
+    public static BlockEntityType<FryerEntity> FRYER_ENTITY;
+    public static BlockEntityType<CuttingBoardEntity> CUTTING_BOARD_ENTITY;
 
     public static void registerEntities() {
         BAKING_SHEET_ENTITY = registerBlockEntities("baking_sheet", BakingSheetEntity::new, new Block[]{CookItBlocks.BAKING_SHEET});
@@ -34,6 +40,8 @@ public class CookItBlockEntities {
         MICROWAVE_ENTITY = registerBlockEntities("microwave", MicrowaveEntity::new, new Block[]{CookItBlocks.MICROWAVE});
         OVEN_ENTITY = registerBlockEntities("oven", OvenEntity::new, new Block[]{CookItBlocks.OVEN});
         PLATE_ENTITY = registerBlockEntities("plate", PlateEntity::new, CookItBlocks.PLATES.toArray(Block[]::new));
+        FRYER_ENTITY = registerBlockEntities("fryer", FryerEntity::new, new Block[]{CookItBlocks.FRYER});
+        CUTTING_BOARD_ENTITY = registerBlockEntities("cutting_board", CuttingBoardEntity::new, new Block[]{CookItBlocks.CUTTING_BOARD});
 
     }
 
@@ -43,6 +51,8 @@ public class CookItBlockEntities {
         BlockEntityRendererFactories.register(MICROWAVE_ENTITY, MicrowaveEntityRenderer::new);
         BlockEntityRendererFactories.register(OVEN_ENTITY, OvenEntityRenderer::new);
         BlockEntityRendererFactories.register(PLATE_ENTITY, PlateEntityRenderer::new);
+        BlockEntityRendererFactories.register(FRYER_ENTITY, FryerEntityRenderer::new);
+        BlockEntityRendererFactories.register(CUTTING_BOARD_ENTITY, CuttingBoardEntityRenderer::new);
 
     }
 

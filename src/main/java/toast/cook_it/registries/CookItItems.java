@@ -19,7 +19,7 @@ import static toast.cook_it.registries.CookItBlocks.BLOCKS;
 
 public class CookItItems {
     public static final List<Item> ITEMS = new ArrayList<>();
-    //public static final Item CHEF_SHIRT = registerItem("chef_shirt", new ArmorItem(CHEF_OUTFIT, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
+
 
 
     // -- Utensils --
@@ -29,6 +29,11 @@ public class CookItItems {
     public static final Item SPATULA = registerItem("spatula", new Item(new FabricItemSettings()));
     public static final Item WHISK = registerItem("whisk", new Item(new FabricItemSettings()));
 
+    public static final Item FRYER_BASKET = registerItem("fryer_basket", new Item(new FabricItemSettings()));
+
+    // -- Ingredients --
+    public static final Item DOUGH = registerItem("dough", new Item(new FabricItemSettings()));
+    public static final Item DOUGH_ROLLED = registerItem("dough_rolled", new Item(new FabricItemSettings()));
 
     // -- Food --
     public static final Item TOAST = registerItem("toast", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
@@ -65,7 +70,6 @@ public class CookItItems {
         return Registry.register(Registries.ITEM, new Identifier(CookIt.MOD_ID, name), item);
     }
     public static void registerItems() {
-
     }
      public static final ItemGroup COOK_IT_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(CHEF_HAT))

@@ -4,10 +4,10 @@
 	"textures": {
 		"oven_inside": "cook-it:block/oven_inside",
 		"oven_front": "cook-it:block/oven_front",
-		"particle": "cook-it:block/oven_side",
 		"oven_side": "cook-it:block/oven_side",
 		"oven_top": "cook-it:block/oven_top",
-		"oven_accessories": "cook-it:block/oven_accessories"
+		"oven_accessories": "cook-it:block/oven_accessories",
+		"particle": "#oven_side"
 	},
 	"elements": [
 		{
@@ -59,14 +59,14 @@
 			}
 		},
 		{
-			"from": [15, 16, 16],
+			"from": [15, 16, 15],
 			"to": [1, 2, 0],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-7, 0, 0]},
 			"faces": {
 				"north": {"uv": [1, 16, 15, 0], "texture": "#oven_inside"},
-				"east": {"uv": [0, 16, 16, 0], "texture": "#oven_inside"},
+				"east": {"uv": [0, 16, 15, 0], "texture": "#oven_inside"},
 				"south": {"uv": [0, 0, 0, 0], "texture": "#oven_inside"},
-				"west": {"uv": [0, 14.5, 16, 1], "texture": "#oven_inside"},
+				"west": {"uv": [1, 14.5, 16, 1], "texture": "#oven_inside"},
 				"up": {"uv": [1, 1, 15, 16], "texture": "#oven_inside"},
 				"down": {"uv": [1, 0, 15, 16], "texture": "#oven_inside"}
 			}

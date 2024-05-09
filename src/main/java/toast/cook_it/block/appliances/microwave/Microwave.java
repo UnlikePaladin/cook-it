@@ -74,7 +74,7 @@ public class Microwave extends BlockWithEntity implements BlockEntityProvider {
 
         ItemStack heldItem = player.getStackInHand(hand);
 
-        if (world.isClient) {
+        if (world.isClient || blockEntity == null) {
             return ActionResult.SUCCESS;
         } else {
             if (!open && heldItem.isEmpty()) {

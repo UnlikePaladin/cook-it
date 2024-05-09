@@ -1,0 +1,10 @@
+{
+  "type": "cook-it:cutting_board",
+  "input": {
+    "item": "cook-it:dough"
+  },
+  "output": {
+    "item": "cook-it:dough_rolled"
+  },
+  "recipeType": "rolling"
+}

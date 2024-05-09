@@ -2,8 +2,8 @@
 	"credit": "Made by ToastTextures using Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"microwave": "cook-it:block/microwave",
-		"particle": "#microwave"
+		"particle": "cook-it:block/microwave",
+		"microwave": "cook-it:block/microwave"
 	},
 	"elements": [
 		{
@@ -33,14 +33,14 @@
 		},
 		{
 			"from": [15, 7, 13],
-			"to": [1, 1, 4],
+			"to": [1, 1, 3],
 			"rotation": {"angle": 0, "axis": "y", "origin": [13, 0, 9]},
 			"faces": {
 				"north": {"uv": [7, 4.5, 14, 7.5], "rotation": 180, "texture": "#microwave"},
-				"east": {"uv": [0.5, 10.5, 5, 13.5], "texture": "#microwave"},
-				"west": {"uv": [0.5, 10.5, 5, 13.5], "rotation": 180, "texture": "#microwave"},
-				"up": {"uv": [7, 5, 0, 9.5], "rotation": 180, "texture": "#microwave"},
-				"down": {"uv": [7, 5, 0, 9.5], "texture": "#microwave"}
+				"east": {"uv": [0, 13.5, 5, 10.5], "texture": "#microwave"},
+				"west": {"uv": [12, 8.5, 7, 11.5], "rotation": 180, "texture": "#microwave"},
+				"up": {"uv": [7, 10, 0, 5], "rotation": 180, "texture": "#microwave"},
+				"down": {"uv": [0, 10, 7, 5], "texture": "#microwave"}
 			}
 		},
 		{

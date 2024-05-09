@@ -87,7 +87,7 @@ public class OvenRecipe implements Recipe<SimpleInventory> {
     public static class Serializer implements RecipeSerializer<OvenRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final Codec<OvenRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
-                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(OvenRecipe::getIngredients),
+                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC).fieldOf("ingredients").forGetter(OvenRecipe::getIngredients),
                 ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
 
                 Codec.INT.fieldOf("time").forGetter(OvenRecipe::getMaxProgress),
@@ -95,9 +95,9 @@ public class OvenRecipe implements Recipe<SimpleInventory> {
                 Codec.STRING.optionalFieldOf("event", "none:none").forGetter(OvenRecipe::getEvent)
         ).apply(in, OvenRecipe::new));
 
-        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max) {
+        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate) {
             return Codecs.validate(Codecs.validate(
-                    delegate.listOf(), list -> list.size() > max ? DataResult.error(() -> "Recipe has too many ingredients!") : DataResult.success(list)),
+                    delegate.listOf(), list -> list.size() > 9 ? DataResult.error(() -> "Recipe has too many ingredients!") : DataResult.success(list)),
                     list -> list.isEmpty() ? DataResult.error(() -> "Recipe has no ingredients!") : DataResult.success(list));
         }
 
