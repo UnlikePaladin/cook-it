@@ -52,11 +52,6 @@ public class FireExtinguisherItem extends Item {
             }
         }
 
-        // Update the model's appearance based on damage
-        int extinguisherFuel = context.getStack().getDamage() / 100;
-        context.getStack().getOrCreateNbt().putInt("extinguisher_fuel", extinguisherFuel);
-
-
         // Damage the item
         context.getStack().damage(1, user, playerEntity -> user.sendToolBreakStatus(user.getActiveHand()));
 

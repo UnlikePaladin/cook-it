@@ -62,15 +62,12 @@ public class FryerEntityRenderer implements BlockEntityRenderer<FryerEntity> {
             }
         }
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90 * dir));
-
+        matrices.translate(x, y, z);
         if (!itemList.isEmpty()) {
             ItemStack item = itemList.get(0);
-            matrices.push();
-            matrices.translate(x, y-0.0625f, z);
             client.getItemRenderer().renderItem(item, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);
-            matrices.pop();
         }
-        matrices.translate(x, y, z);
+
         client.getItemRenderer().renderItem(fryerBasket, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);
     }
 }

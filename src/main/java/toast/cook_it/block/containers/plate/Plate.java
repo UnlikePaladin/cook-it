@@ -19,6 +19,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import toast.cook_it.registries.CookItItems;
 
 public class Plate extends Block implements BlockEntityProvider {
 
@@ -69,6 +70,8 @@ public class Plate extends Block implements BlockEntityProvider {
                         world.setBlockState(pos, state.with(PLATES_AMOUNT, plateAmount + 1));
                     }
                     return ActionResult.SUCCESS;
+                } else if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
+                    return ActionResult.FAIL;
                 } else if (blockEntity.getStack(0).isEmpty() && plateAmount == 1) {
                     blockEntity.setStack(0, new ItemStack(heldItem.getItem()));
                     heldItem.decrement(1);

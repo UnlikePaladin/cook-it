@@ -1,14 +1,14 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"fries": "cook-it:item/french_fries_cooked",
-		"particle": "#fries"
+		"particle": "cook-it:item/french_fries_cooked",
+		"fries": "cook-it:item/french_fries_cooked"
 	},
 	"elements": [
 		{
-			"from": [10, 2, 4],
-			"to": [11, 3, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [6, 2, 7]},
+			"from": [10, 0, 4],
+			"to": [11, 1, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 0, 7]},
 			"faces": {
 				"north": {"uv": [7, 1, 8, 2], "texture": "#fries"},
 				"east": {"uv": [0, 0, 7, 1], "texture": "#fries"},
@@ -19,9 +19,9 @@
 			}
 		},
 		{
-			"from": [3.5, 3, 4],
-			"to": [10.5, 4, 5],
-			"rotation": {"angle": -45, "axis": "y", "origin": [6.5, 2, 7]},
+			"from": [3.5, 1, 4],
+			"to": [10.5, 2, 5],
+			"rotation": {"angle": -45, "axis": "y", "origin": [6.5, 0, 7]},
 			"faces": {
 				"north": {"uv": [0, 0, 7, 1], "texture": "#fries"},
 				"east": {"uv": [7, 0, 8, 1], "texture": "#fries"},
@@ -32,9 +32,9 @@
 			}
 		},
 		{
-			"from": [8.5, 4, 5],
-			"to": [9.5, 5, 12],
-			"rotation": {"angle": -22.5, "axis": "y", "origin": [11.5, 3, 9]},
+			"from": [8.5, 2, 5],
+			"to": [9.5, 3, 12],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [11.5, 1, 9]},
 			"faces": {
 				"north": {"uv": [7, 0, 8, 1], "texture": "#fries"},
 				"east": {"uv": [0, 0, 7, 1], "rotation": 180, "texture": "#fries"},
@@ -45,9 +45,9 @@
 			}
 		},
 		{
-			"from": [5, 2, 4],
-			"to": [6, 3, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [6, 2, 7]},
+			"from": [5, 0, 4],
+			"to": [6, 1, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 0, 7]},
 			"faces": {
 				"north": {"uv": [7, 1, 8, 2], "texture": "#fries"},
 				"east": {"uv": [0, 0, 7, 1], "texture": "#fries"},
@@ -58,9 +58,9 @@
 			}
 		},
 		{
-			"from": [7.5, 2, 3],
-			"to": [8.5, 3, 10],
-			"rotation": {"angle": -22.5, "axis": "y", "origin": [6, 2, 7]},
+			"from": [7.5, 0, 3],
+			"to": [8.5, 1, 10],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [6, 0, 7]},
 			"faces": {
 				"north": {"uv": [8, 0, 9, 1], "texture": "#fries"},
 				"east": {"uv": [0, 1, 7, 2], "texture": "#fries"},
@@ -71,9 +71,9 @@
 			}
 		},
 		{
-			"from": [6.5, 3, 5],
-			"to": [7.5, 4, 12],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [5.5, 1, 7]},
+			"from": [6.5, 1, 5],
+			"to": [7.5, 2, 12],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [5.5, -1, 7]},
 			"faces": {
 				"north": {"uv": [8, 0, 9, 1], "texture": "#fries"},
 				"east": {"uv": [0, 1, 7, 2], "texture": "#fries"},
@@ -87,21 +87,23 @@
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [90, 0, 0],
-			"translation": [0, 4, 2],
+			"translation": [0, 2, 5],
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [90, 0, 0],
-			"translation": [0, 4, 2],
+			"translation": [0, 2, 5],
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"firstperson_righthand": {
-			"translation": [-3, 5, 0],
-			"scale": [0.75, 0.75, 0.75]
+			"rotation": [0, 45, 0],
+			"translation": [1, 5, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"firstperson_lefthand": {
-			"translation": [-3, 5, 0],
-			"scale": [0.75, 0.75, 0.75]
+			"rotation": [0, 45, 0],
+			"translation": [1, 5, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"ground": {
 			"translation": [0, 2, 0],
@@ -112,9 +114,8 @@
 			"scale": [0.625, 0.625, 0.625]
 		},
 		"head": {
-			"rotation": [15, 0, -180],
-			"translation": [0, -6.75, 0],
-			"scale": [2, 2, 2]
+			"rotation": [-42.5, 0, -180],
+			"translation": [0, -11, -2.5]
 		},
 		"fixed": {
 			"scale": [0.5, 0.5, 0.5]

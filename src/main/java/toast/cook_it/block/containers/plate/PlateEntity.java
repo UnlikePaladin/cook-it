@@ -12,6 +12,7 @@ public class PlateEntity extends CookingBlockEntity implements ImplementedInvent
     public PlateEntity(BlockPos pos, BlockState state) {
         this(CookItBlockEntities.PLATE_ENTITY, pos, state);
     }
+
     public PlateEntity(BlockEntityType<? extends PlateEntity> blockEntity, BlockPos pos, BlockState state) {
         super(blockEntity, pos, state, 1);
 

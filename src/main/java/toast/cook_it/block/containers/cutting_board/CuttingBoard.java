@@ -42,11 +42,15 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         CuttingBoardEntity blockEntity = (CuttingBoardEntity) world.getBlockEntity(pos);
-        if (blockEntity == null) { return ActionResult.FAIL; }
+        if (blockEntity == null) {
+            return ActionResult.FAIL;
+        }
 
         ItemStack heldItem = player.getStackInHand(hand);
         if (blockEntity.isEmpty()) {
-            if (!heldItem.isEmpty()) {
+            if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
+                return ActionResult.FAIL;
+            } else if (!heldItem.isEmpty()) {
                 blockEntity.setStack(0, heldItem.split(1));
             } else {
                 return ActionResult.FAIL;
@@ -56,14 +60,14 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
                 blockEntity.cutItem(player, heldItem);
             } else if (heldItem.getItem() == CookItItems.ROLLING_PIN) {
                 blockEntity.rollItem();
+            } else if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
+                return ActionResult.FAIL;
             }
         } else {
             player.getInventory().insertStack(blockEntity.getStack(0));
         }
         return ActionResult.SUCCESS;
     }
-
-
 
 
     @Override

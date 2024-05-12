@@ -1,21 +1,34 @@
 package toast.cook_it.item;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import toast.cook_it.CookIt;
+import toast.cook_it.CookItClient;
+import toast.cook_it.block.CookingBlockEntity;
+import toast.cook_it.block.containers.cutting_board.CuttingBoardEntity;
+import toast.cook_it.block.containers.plate.Plate;
+import toast.cook_it.block.containers.plate.PlateEntity;
 
 import java.util.List;
+
+import static toast.cook_it.block.containers.plate.Plate.PLATES_AMOUNT;
 
 public class FryerBasket extends Item {
     public FryerBasket(Settings settings) {
@@ -39,6 +52,30 @@ public class FryerBasket extends Item {
             }
         }
         return true;
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        ItemStack basket = context.getStack();
+        CookIt.LOGGER.debug(String.valueOf(context.getStack()));
+        BlockPos hitPos = context.getBlockPos();
+        BlockEntity block = context.getWorld().getBlockEntity(hitPos);
+        if (block instanceof PlateEntity && context.getWorld().getBlockState(hitPos).get(PLATES_AMOUNT) == 1 || block instanceof CuttingBoardEntity) {
+            updateBlockItem((CookingBlockEntity) block, basket);
+        }
+
+        return ActionResult.SUCCESS;
+    }
+
+    private void updateBlockItem(CookingBlockEntity block, ItemStack basket) {
+        ItemStack blockItem = block.getStack(0);
+        if (!blockItem.isEmpty() && getItem(basket).isEmpty()) {
+            this.setItem(basket, blockItem);
+            block.setStack(0, ItemStack.EMPTY);
+        } else if (!this.getItem(basket).isEmpty() && blockItem.isEmpty()) {
+            block.setStack(0, this.getItem(basket));
+            this.setItem(basket, ItemStack.EMPTY);
+        }
     }
 
     public void setItem(ItemStack input, ItemStack item) {
