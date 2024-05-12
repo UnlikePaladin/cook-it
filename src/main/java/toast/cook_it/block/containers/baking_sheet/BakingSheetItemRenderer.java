@@ -1,6 +1,7 @@
 package toast.cook_it.block.containers.baking_sheet;
 
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -11,15 +12,22 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
+import toast.cook_it.CookIt;
 import toast.cook_it.registries.CookItBlocks;
 
 public class BakingSheetItemRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
     @Override
     public void render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         // Renders the block first
-        MinecraftClient.getInstance().getBlockRenderManager().renderBlock(CookItBlocks.BAKING_SHEET.getDefaultState(), BlockPos.ORIGIN, MinecraftClient.getInstance().world, matrices, vertexConsumers.getBuffer(RenderLayer.getCutout()), true, MinecraftClient.getInstance().world.random);
+        BlockPos pos;
 
-        // Gets the NBT data of the item and checks if it is storing any other items
+
+        if (MinecraftClient.getInstance().player != null) { pos = MinecraftClient.getInstance().player.getBlockPos(); } else {
+            pos = stack.getHolder().getBlockPos(); }
+
+            MinecraftClient.getInstance().getBlockRenderManager().renderBlock(CookItBlocks.BAKING_SHEET.getDefaultState(), pos, MinecraftClient.getInstance().world, matrices, vertexConsumers.getBuffer(RenderLayer.getCutout()), true, MinecraftClient.getInstance().world.random);
+
+            // Gets the NBT data of the item and checks if it is storing any other items
         NbtCompound nbt = stack.getSubNbt("BlockEntityTag");
         if (nbt == null || !nbt.contains("Items")) return;
 

@@ -3,12 +3,19 @@
   "item.cook-it.rolling_pin": "Rolling Pin",
   "item.cook-it.knife": "Kitchen Knife",
   "item.cook-it.butcher_knife": "Butcher Knife",
+  "item.cook-it.spatula": "Spatula",
+  "item.cook-it.whisk": "Whisk",
+  "item.cook-it.fryer_basket": "Fryer Basket",
   "item.cook-it.fire_extinguisher": "Fire Extinguisher",
 
   "item.cook-it.pizza_slice": "Pizza Slice",
   "item.cook-it.toast": "Toast",
   "item.cook-it.raw_croissant": "Raw Croissant",
   "item.cook-it.croissant": "Croissant",
+  "item.cook-it.uncooked_french_fries": "French Fries",
+  "item.cook-it.french_fries": "French Fries",
+  "item.cook-it.dough": "Dough",
+  "item.cook-it.dough_rolled": "Rolled Dough",
 
   "item.cook-it.plain_donut": "Donut",
   "item.cook-it.chocolate_glazed_donut": "Chocolate Glazed Donut",
@@ -29,12 +36,14 @@
   "block.cook-it.cutting_board": "Cutting Board",
   "block.cook-it.muffin_tin": "Muffin Tin",
   "block.cook-it.baking_sheet": "Baking Sheet",
+  "block.cook-it.fryer": "Fryer",
   "block.cook-it.toaster": "Toaster",
   "block.cook-it.oven": "Oven",
   "block.cook-it.microwave": "Microwave",
   "block.cook-it.pizza": "Pizza",
   "block.cook-it.uncooked_pizza": "Uncooked Pizza",
   "block.cook-it.pizza_pan": "Pizza Pan",
+
 
 
   "block.cook-it.red_plate": "Red Plate",

@@ -5,6 +5,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import toast.cook_it.CookIt;
 import toast.cook_it.recipes.CuttingBoardRecipe;
+import toast.cook_it.recipes.FryerRecipe;
 import toast.cook_it.recipes.MicrowaveRecipe;
 import toast.cook_it.recipes.OvenRecipe;
 
@@ -28,6 +29,12 @@ public class CookItRecipes {
 
        Registry.register(Registries.RECIPE_TYPE, new Identifier(CookIt.MOD_ID, "cutting_board"),
                CuttingBoardRecipe.Type.INSTANCE);
+
+       Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(CookIt.MOD_ID, "frying"),
+               FryerRecipe.Serializer.INSTANCE);
+
+       Registry.register(Registries.RECIPE_TYPE, new Identifier(CookIt.MOD_ID, "frying"),
+               FryerRecipe.Type.INSTANCE);
 
     }
 }

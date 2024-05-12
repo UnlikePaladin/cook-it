@@ -11,6 +11,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import toast.cook_it.CookIt;
 import toast.cook_it.item.FireExtinguisherItem;
+import toast.cook_it.item.Fries;
+import toast.cook_it.item.FryerBasket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,28 +22,26 @@ import static toast.cook_it.registries.CookItBlocks.BLOCKS;
 public class CookItItems {
     public static final List<Item> ITEMS = new ArrayList<>();
 
-
-
     // -- Utensils --
     public static final Item ROLLING_PIN = registerItem("rolling_pin", new Item(new FabricItemSettings()));
     public static final Item KITCHEN_KNIFE = registerItem("knife", new SwordItem(ToolMaterials.IRON, 1, -2, new FabricItemSettings()));
     public static final Item BUTCHER_KNIFE = registerItem("butcher_knife", new SwordItem(ToolMaterials.IRON, 1, -1, new FabricItemSettings()));
     public static final Item SPATULA = registerItem("spatula", new Item(new FabricItemSettings()));
     public static final Item WHISK = registerItem("whisk", new Item(new FabricItemSettings()));
-
-    public static final Item FRYER_BASKET = registerItem("fryer_basket", new Item(new FabricItemSettings()));
+    public static final Item FRYER_BASKET = registerItem("fryer_basket", new FryerBasket(new FabricItemSettings().maxCount(1)));
 
     // -- Ingredients --
     public static final Item DOUGH = registerItem("dough", new Item(new FabricItemSettings()));
     public static final Item DOUGH_ROLLED = registerItem("dough_rolled", new Item(new FabricItemSettings()));
+    public static final Item UNCOOKED_FRENCH_FRIES = registerItem("uncooked_french_fries", new Fries(new FabricItemSettings()));
 
     // -- Food --
     public static final Item TOAST = registerItem("toast", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item RAW_CROISSANT = registerItem("raw_croissant", new Item(new FabricItemSettings()));
     public static final Item CROISSANT = registerItem("croissant", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item PIZZA_SLICE = registerItem("pizza_slice", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).build())));
-
-    private static final Item DONUT = registerItem("plain_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
+    public static final Item FRENCH_FRIES = registerItem("french_fries", new Fries(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
+    public static final Item DONUT = registerItem("plain_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT = registerItem("chocolate_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT_FROSTED = registerItem("chocolate_glazed_donut_frosted", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
     public static final Item PINK_GLAZED_DONUT = registerItem("pink_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));

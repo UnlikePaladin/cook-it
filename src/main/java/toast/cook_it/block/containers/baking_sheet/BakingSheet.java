@@ -83,7 +83,7 @@ public class BakingSheet extends Block implements BlockEntityProvider {
         NbtList itemsTag = nbt.getList("Items", NbtElement.COMPOUND_TYPE);
 
         if (!itemsTag.isEmpty()) {
-            tooltip.add((Text.literal("Items:").formatted(Formatting.GRAY)));
+            tooltip.add(Text.literal("Items:").formatted(Formatting.GRAY));
         }
 
         for (int i = 0; i < itemsTag.size(); i++) {
@@ -91,7 +91,7 @@ public class BakingSheet extends Block implements BlockEntityProvider {
             ItemStack itemStack = ItemStack.fromNbt(itemTag);
             if (!itemStack.isEmpty()) {
                 String itemName = itemStack.getName().getString();
-                tooltip.add((Text.literal(itemName).formatted(Formatting.BLUE)));
+                tooltip.add(Text.literal(itemName).formatted(Formatting.BLUE));
             }
         }
     }

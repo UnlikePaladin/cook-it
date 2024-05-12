@@ -1,6 +1,5 @@
 package toast.cook_it.item;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
 // The code you're about to see will scare you. Run while you still can!
 public class FireExtinguisherItem extends Item {
 
-    public FireExtinguisherItem(FabricItemSettings settings) {
+    public FireExtinguisherItem(Settings settings) {
         super(settings);
     }
 
