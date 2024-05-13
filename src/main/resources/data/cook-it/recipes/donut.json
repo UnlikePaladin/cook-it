@@ -1,0 +1,12 @@
+{
+  "type": "cook-it:frying",
+  "ingredients": [
+    {
+      "item": "cook-it:raw_donut"
+    }
+  ],
+  "output": {
+    "item": "cook-it:plain_donut"
+  },
+  "time": 150
+}

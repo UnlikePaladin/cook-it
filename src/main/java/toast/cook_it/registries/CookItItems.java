@@ -28,6 +28,7 @@ public class CookItItems {
     public static final Item BUTCHER_KNIFE = registerItem("butcher_knife", new SwordItem(ToolMaterials.IRON, 1, -1, new FabricItemSettings()));
     public static final Item SPATULA = registerItem("spatula", new Item(new FabricItemSettings()));
     public static final Item WHISK = registerItem("whisk", new Item(new FabricItemSettings()));
+    public static final Item DONUT_CUTTER = registerItem("donut_cutter", new Item(new FabricItemSettings()));
     public static final Item FRYER_BASKET = registerItem("fryer_basket", new FryerBasket(new FabricItemSettings().maxCount(1)));
 
     // -- Ingredients --
@@ -41,6 +42,7 @@ public class CookItItems {
     public static final Item CROISSANT = registerItem("croissant", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item PIZZA_SLICE = registerItem("pizza_slice", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).build())));
     public static final Item FRENCH_FRIES = registerItem("french_fries", new Fries(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
+    public static final Item RAW_DONUT = registerItem("raw_donut", new Item(new FabricItemSettings()));
     public static final Item DONUT = registerItem("plain_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT = registerItem("chocolate_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT_FROSTED = registerItem("chocolate_glazed_donut_frosted", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
