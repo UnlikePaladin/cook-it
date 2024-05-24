@@ -33,7 +33,8 @@ public class CookItBlocks {
 
 
     public static final List<Block> BLOCKS = new ArrayList<>();
-    public static final List<Block> PLATES = new ArrayList<>();
+    public static final List<Plate> PLATES = new ArrayList<>();
+    public static final List<Bowl> BOWLS = new ArrayList<>();
 
     public static final Block CUTTING_BOARD = registerBlock("cutting_board", new CuttingBoard(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS)));
     public static final Block TOASTER = registerBlock("toaster", new Toaster(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)));
@@ -54,9 +55,10 @@ public class CookItBlocks {
         for (DyeColor color : DyeColor.values()) {
             Block PLATE = registerBlock(color + "_plate", new Plate(FabricBlockSettings.create()));
             Block LARGE_PLATE = registerBlock(color + "_large_plate", new Plate(FabricBlockSettings.create()));
-            registerBlock(color + "_bowl", new Bowl(FabricBlockSettings.create()));
-            CookItBlocks.PLATES.add(PLATE);
-            CookItBlocks.PLATES.add(LARGE_PLATE);
+            Block BOWL = registerBlock(color + "_bowl", new Bowl(FabricBlockSettings.create()));
+            CookItBlocks.PLATES.add((Plate) PLATE);
+            CookItBlocks.PLATES.add((Plate) LARGE_PLATE);
+            CookItBlocks.BOWLS.add((Bowl) BOWL);
         }
     }
 

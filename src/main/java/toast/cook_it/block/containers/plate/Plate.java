@@ -8,9 +8,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +31,8 @@ public class Plate extends Block implements BlockEntityProvider {
         super(settings);
         setDefaultState(getDefaultState().with(PLATES_AMOUNT, 1));
     }
+
+
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -79,6 +83,10 @@ public class Plate extends Block implements BlockEntityProvider {
             }
         }
         return ActionResult.PASS;
+    }
+
+    public static boolean isLargePlate(Plate plate) {
+        return Registries.BLOCK.getId(plate).getPath().contains("large_plate");
     }
 
     @Nullable

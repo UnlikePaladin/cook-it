@@ -1,7 +1,6 @@
 package toast.cook_it.recipes;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
@@ -11,22 +10,19 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.world.World;
-import toast.cook_it.block.containers.cutting_board.CuttingBoard;
-
-import java.util.List;
 
 public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     private final ItemStack output;
     private final Ingredient ingredient;
-    private final String recipeType;
+    private final int count;
+    private final ItemStack tool;
 
-    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, String recipeType) {
+    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, ItemStack tool) {
         this.output = itemStack;
         this.ingredient = ingredient;
-        this.recipeType = recipeType;
+        this.count = count;
+        this.tool = tool;
     }
 
     @Override
@@ -45,8 +41,11 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
         return output;
     }
 
-    public String getRecipeType() {
-        return recipeType;
+    public ItemStack getTool() {
+        return tool;
+    }
+    public int getOutputCount() {
+        return count;
     }
 
     @Override
@@ -78,7 +77,8 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
         public static final Codec<CuttingBoardRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("input").forGetter(r -> r.ingredient),
                 ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
-                Codec.STRING.fieldOf("recipeType").forGetter(CuttingBoardRecipe::getRecipeType)
+                Codec.INT.optionalFieldOf("count", 1).forGetter(r -> r.count),
+                ItemStack.RECIPE_RESULT_CODEC.fieldOf("tool").forGetter(r -> r.tool)
         ).apply(in, CuttingBoardRecipe::new));
 
         @Override
@@ -91,15 +91,17 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
 
             Ingredient ingredient = Ingredient.fromPacket(buf);
             ItemStack output = buf.readItemStack();
-            String recipeType = buf.readString();
-            return new CuttingBoardRecipe(ingredient, output, recipeType);
+            ItemStack tool = buf.readItemStack();
+            int count = buf.readInt();
+            return new CuttingBoardRecipe(ingredient, output, count, tool);
         }
 
         @Override
         public void write(PacketByteBuf buf, CuttingBoardRecipe recipe) {
             recipe.ingredient.write(buf);
             buf.writeItemStack(recipe.getResult(null));
-            buf.writeString(recipe.recipeType);
+            buf.readInt();
+            buf.writeItemStack(recipe.getTool());
         }
     }
 }

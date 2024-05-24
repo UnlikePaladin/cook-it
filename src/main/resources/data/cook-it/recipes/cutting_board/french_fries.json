@@ -6,5 +6,7 @@
   "output": {
     "item": "cook-it:uncooked_french_fries"
   },
-  "recipeType": "cutting"
+  "tool": {
+    "item": "cook-it:knife"
+  }
 }

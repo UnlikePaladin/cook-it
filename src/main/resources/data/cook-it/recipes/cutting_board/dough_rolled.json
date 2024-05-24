@@ -6,5 +6,7 @@
   "output": {
     "item": "cook-it:dough_rolled"
   },
-  "recipeType": "rolling"
+  "tool": {
+    "item": "cook-it:rolling_pin"
+  }
 }

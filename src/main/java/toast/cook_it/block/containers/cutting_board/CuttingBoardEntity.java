@@ -1,11 +1,12 @@
 package toast.cook_it.block.containers.cutting_board;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.util.math.BlockPos;
+import toast.cook_it.CookIt;
 import toast.cook_it.block.CookingBlockEntity;
 import toast.cook_it.block.ImplementedInventory;
 import toast.cook_it.recipes.CuttingBoardRecipe;
@@ -20,24 +21,17 @@ public class CuttingBoardEntity extends CookingBlockEntity implements Implemente
         super(CookItBlockEntities.CUTTING_BOARD_ENTITY, pos, state, 1);
     }
 
-    public void rollItem() {
+
+    public void processRecipe(Item tool) {
         Optional<RecipeEntry<CuttingBoardRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isPresent() && recipe.get().value().getRecipeType().equals("rolling")) {
-            ItemStack output = recipe.get().value().getResult(null).getItem().getDefaultStack();
+        if (recipe.isPresent() && tool.equals(recipe.get().value().getTool().getItem())) {
+            Item item = recipe.get().value().getResult(null).getItem();
+            ItemStack output = new ItemStack(item, recipe.get().value().getOutputCount());
+            CookIt.LOGGER.info(String.valueOf(output));
             this.setStack(0, output);
+            CookIt.LOGGER.error("Success!");
         }
     }
-
-
-    public void cutItem(PlayerEntity player, ItemStack item) {
-        Optional<RecipeEntry<CuttingBoardRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isPresent() && recipe.get().value().getRecipeType().equals("cutting")) {
-            ItemStack output = recipe.get().value().getResult(null).getItem().getDefaultStack();
-            item.damage(1, player, playerEntity -> player.sendToolBreakStatus(player.getActiveHand()));
-            this.setStack(0, output);
-        }
-    }
-
 
     private Optional<RecipeEntry<CuttingBoardRecipe>> getCurrentRecipe() {
         SimpleInventory inv = new SimpleInventory(this.size());

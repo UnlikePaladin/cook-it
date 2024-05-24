@@ -2,6 +2,7 @@ package toast.cook_it.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import toast.cook_it.CookIt;
 
 public class CookItDataGenerator implements DataGeneratorEntrypoint {
 
@@ -12,7 +13,11 @@ public class CookItDataGenerator implements DataGeneratorEntrypoint {
         // Adding a provider example:
         //
         // pack.addProvider(AdvancementsProvider::new);
+        pack.addProvider(CookItModelProvider::new);
         pack.addProvider(CookItLootTables::new);
+        pack.addProvider(CookItRecipeGenerator::new);
+        CookIt.LOGGER.info("Generating assets!");
+
     }
 
 }

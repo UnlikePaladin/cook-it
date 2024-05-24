@@ -22,10 +22,6 @@ fabricApi {
 	configureDataGeneration()
 }
 
-loom {
-	accessWidenerPath = file("src/main/resources/cook-it.accesswidener")
-}
-
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -43,7 +39,6 @@ dependencies {
 
 processResources {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
@@ -64,12 +59,41 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_17
 	targetCompatibility = JavaVersion.VERSION_17
 }
+loom {
+	accessWidenerPath = file("src/main/resources/cook-it.accesswidener")
+	// ... (Whatever exists here)
+
+	runs {
+		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
+		datagen {
+			inherit server
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=${modid}"
+
+			runDir "build/datagen"
+		}
+	}
+
+}
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
+}
 
 jar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }
+assemble.dependsOn(runDatagen)
 
 // configure the maven publication
 publishing {
@@ -85,31 +109,5 @@ publishing {
 		// Notice: This block does NOT have the same function as the block in the top level.
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
-	}
-}
-loom {
-
-	// ... (Whatever exists here)
-
-	runs {
-		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
-		datagen {
-			inherit server
-			name "Data Generation"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-			vmArg "-Dfabric-api.datagen.modid=${modid}"
-
-			runDir "build/datagen"
-		}
-	}
-}
-sourceSets {
-	main {
-		resources {
-			srcDirs += [
-					'src/main/generated'
-			]
-		}
 	}
 }

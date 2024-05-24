@@ -18,6 +18,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import toast.cook_it.CookIt;
 import toast.cook_it.registries.CookItItems;
 
 public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityProvider {
@@ -56,14 +57,13 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
                 return ActionResult.FAIL;
             }
         } else if (!heldItem.isEmpty()) {
-            if (heldItem.getItem() == CookItItems.KITCHEN_KNIFE || heldItem.getItem() == CookItItems.BUTCHER_KNIFE) {
-                blockEntity.cutItem(player, heldItem);
-            } else if (heldItem.getItem() == CookItItems.ROLLING_PIN) {
-                blockEntity.rollItem();
-            } else if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
+            if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
                 return ActionResult.FAIL;
+            } else {
+                blockEntity.processRecipe(heldItem.getItem());
             }
         } else {
+            CookIt.LOGGER.error("Returning item");
             player.getInventory().insertStack(blockEntity.getStack(0));
         }
         return ActionResult.SUCCESS;
