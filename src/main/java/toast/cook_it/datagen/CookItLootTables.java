@@ -9,12 +9,14 @@ import java.util.List;
 
 public class CookItLootTables extends FabricBlockLootTableProvider {
     List<Block> blocks = CookItBlocks.BLOCKS;
+
     public CookItLootTables(FabricDataOutput dataOutput) {
         super(dataOutput);
     }
 
     @Override
     public void generate() {
+        blocks.remove(CookItBlocks.BAKING_SHEET);
         for(Block block : blocks) {
             addDrop(block, drops(block));
         }

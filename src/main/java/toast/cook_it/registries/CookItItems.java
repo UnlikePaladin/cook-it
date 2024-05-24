@@ -24,11 +24,11 @@ public class CookItItems {
 
     // -- Utensils --
     public static final Item ROLLING_PIN = registerItem("rolling_pin", new Item(new FabricItemSettings()));
-    public static final Item KITCHEN_KNIFE = registerItem("knife", new SwordItem(ToolMaterials.IRON, 1, -2, new FabricItemSettings()));
+    public static final Item KITCHEN_KNIFE = registerItem("knife", new SwordItem(ToolMaterials.IRON, 1, -2, new FabricItemSettings().maxCount(1)));
     public static final Item BUTCHER_KNIFE = registerItem("butcher_knife", new SwordItem(ToolMaterials.IRON, 1, -1, new FabricItemSettings()));
-    public static final Item SPATULA = registerItem("spatula", new Item(new FabricItemSettings()));
-    public static final Item WHISK = registerItem("whisk", new Item(new FabricItemSettings()));
-    public static final Item DONUT_CUTTER = registerItem("donut_cutter", new Item(new FabricItemSettings()));
+    public static final Item SPATULA = registerItem("spatula", new Item(new FabricItemSettings().maxCount(1)));
+    public static final Item WHISK = registerItem("whisk", new Item(new FabricItemSettings().maxCount(1)));
+    public static final Item DONUT_CUTTER = registerItem("donut_cutter", new Item(new FabricItemSettings().maxCount(1)));
     public static final Item FRYER_BASKET = registerItem("fryer_basket", new FryerBasket(new FabricItemSettings().maxCount(1)));
 
     // -- Ingredients --

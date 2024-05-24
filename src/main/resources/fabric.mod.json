@@ -22,9 +22,7 @@
 			"toast.cook_it.datagen.CookItDataGenerator"
 		],
 		"client": [
-			{
-				"value": "toast.cook_it.CookItClient"
-			}
+			"toast.cook_it.CookItClient"
 		]
 	},
 	"accessWidener" : "cook-it.accesswidener",
