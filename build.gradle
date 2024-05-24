@@ -77,23 +77,20 @@ loom {
 	}
 
 }
-sourceSets {
-	main {
-		resources {
-			srcDirs += [
-					'src/main/generated'
-			]
-		}
-	}
-}
 
 jar {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
+	
+	dependsOn runDatagen
+	from("src/main/generated") {
+		exclude ".cache"
+	}
 }
-assemble.dependsOn(runDatagen)
+
+clean.delete("src/main/generated")
 
 // configure the maven publication
 publishing {
