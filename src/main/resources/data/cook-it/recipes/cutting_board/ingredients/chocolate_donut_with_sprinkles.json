@@ -1,0 +1,13 @@
+{
+  "type": "cook-it:cutting_board",
+  "input": {
+    "item": "cook-it:chocolate_glazed_donut"
+  },
+  "output": {
+    "item": "cook-it:chocolate_glazed_donut_with_sprinkles"
+  },
+  "tool": {
+    "item": "minecraft:red_dye"
+  },
+  "usesItem": true
+}

@@ -60,10 +60,9 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
             if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
                 return ActionResult.FAIL;
             } else {
-                blockEntity.processRecipe(heldItem.getItem());
+                blockEntity.processRecipe(heldItem);
             }
         } else {
-            CookIt.LOGGER.error("Returning item");
             player.getInventory().insertStack(blockEntity.getStack(0));
         }
         return ActionResult.SUCCESS;

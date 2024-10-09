@@ -16,6 +16,7 @@
     }
   ],
   "result": {
-    "item": "cook-it:dough"
+    "item": "cook-it:dough",
+    "count": 2
   }
 }

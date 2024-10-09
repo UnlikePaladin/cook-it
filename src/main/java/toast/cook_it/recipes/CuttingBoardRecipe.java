@@ -17,12 +17,14 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     private final Ingredient ingredient;
     private final int count;
     private final ItemStack tool;
+    private final boolean usesItem;
 
-    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, ItemStack tool) {
+    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, ItemStack tool, boolean usesItem) {
         this.output = itemStack;
         this.ingredient = ingredient;
         this.count = count;
         this.tool = tool;
+        this.usesItem = usesItem;
     }
 
     @Override
@@ -44,6 +46,9 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     public ItemStack getTool() {
         return tool;
     }
+
+    public boolean usesItem() { return usesItem; }
+
     public int getOutputCount() {
         return count;
     }
@@ -78,7 +83,8 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("input").forGetter(r -> r.ingredient),
                 ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
                 Codec.INT.optionalFieldOf("count", 1).forGetter(r -> r.count),
-                ItemStack.RECIPE_RESULT_CODEC.fieldOf("tool").forGetter(r -> r.tool)
+                ItemStack.RECIPE_RESULT_CODEC.fieldOf("tool").forGetter(r -> r.tool),
+                Codec.BOOL.optionalFieldOf("usesItem", false).forGetter(r -> r.usesItem)
         ).apply(in, CuttingBoardRecipe::new));
 
         @Override
@@ -93,7 +99,8 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
             ItemStack output = buf.readItemStack();
             ItemStack tool = buf.readItemStack();
             int count = buf.readInt();
-            return new CuttingBoardRecipe(ingredient, output, count, tool);
+            boolean usesItem = buf.readBoolean();
+            return new CuttingBoardRecipe(ingredient, output, count, tool, usesItem);
         }
 
         @Override
@@ -102,6 +109,7 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
             buf.writeItemStack(recipe.getResult(null));
             buf.readInt();
             buf.writeItemStack(recipe.getTool());
+            buf.writeBoolean(recipe.usesItem());
         }
     }
 }

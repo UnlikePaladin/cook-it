@@ -45,6 +45,8 @@ public class CookItItems {
     public static final Item RAW_DONUT = registerItem("raw_donut", new Item(new FabricItemSettings()));
     public static final Item DONUT = registerItem("plain_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT = registerItem("chocolate_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
+    public static final Item CHOCOLATE_GLAZED_DONUT_WITH_SPRINKLES = registerItem("chocolate_glazed_donut_with_sprinkles", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
+
     public static final Item CHOCOLATE_GLAZED_DONUT_FROSTED = registerItem("chocolate_glazed_donut_frosted", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
     public static final Item PINK_GLAZED_DONUT = registerItem("pink_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
     public static final Item VANILLA_GLAZED_DONUT = registerItem("vanilla_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));

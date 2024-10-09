@@ -70,8 +70,8 @@ public class FryerBasket extends Item {
     private void updateBlockItem(CookingBlockEntity block, ItemStack basket) {
         ItemStack blockItem = block.getStack(0);
         if (!blockItem.isEmpty() && getItem(basket).isEmpty()) {
-            this.setItem(basket, blockItem);
-            block.setStack(0, ItemStack.EMPTY);
+            this.setItem(basket, blockItem.copyWithCount(1));
+            block.removeStack(0, 1);
         } else if (!this.getItem(basket).isEmpty() && blockItem.isEmpty()) {
             block.setStack(0, this.getItem(basket));
             this.setItem(basket, ItemStack.EMPTY);

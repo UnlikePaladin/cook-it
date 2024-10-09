@@ -22,14 +22,14 @@ public class CuttingBoardEntity extends CookingBlockEntity implements Implemente
     }
 
 
-    public void processRecipe(Item tool) {
+    public void processRecipe(ItemStack tool) {
         Optional<RecipeEntry<CuttingBoardRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isPresent() && tool.equals(recipe.get().value().getTool().getItem())) {
+
+        if (recipe.isPresent() && tool.getItem().asItem().equals(recipe.get().value().getTool().getItem())) {
             Item item = recipe.get().value().getResult(null).getItem();
             ItemStack output = new ItemStack(item, recipe.get().value().getOutputCount());
-            CookIt.LOGGER.info(String.valueOf(output));
             this.setStack(0, output);
-            CookIt.LOGGER.error("Success!");
+            if (recipe.get().value().usesItem()) { tool.decrement(1); }
         }
     }
 
