@@ -7,7 +7,7 @@
     "item": "cook-it:chocolate_glazed_donut_with_sprinkles"
   },
   "tool": {
-    "item": "minecraft:red_dye"
+    "tag": "c:dyes"
   },
   "usesItem": true
 }

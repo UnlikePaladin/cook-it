@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "toast.cook_it.CookIt"
+          "com.toast.cookit.CookIt"
 		],
 		"fabric-datagen": [
-			"toast.cook_it.datagen.CookItDataGenerator"
+			"com.toast.cookit.datagen.CookItDataGenerator"
 		],
 		"client": [
-			"toast.cook_it.CookItClient"
+			"com.toast.cookit.CookItClient"
 		]
 	},
 	"accessWidener" : "cook-it.accesswidener",
