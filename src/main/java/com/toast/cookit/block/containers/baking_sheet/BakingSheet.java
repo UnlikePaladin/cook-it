@@ -1,5 +1,7 @@
 package com.toast.cookit.block.containers.baking_sheet;
 
+import com.toast.cookit.item.CookItFood;
+import com.toast.cookit.registries.CookItFoodTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -41,14 +43,14 @@ public class BakingSheet extends Block implements BlockEntityProvider {
             return ActionResult.SUCCESS;
         } else {
             BakingSheetEntity blockEntity = (BakingSheetEntity) world.getBlockEntity(blockPos);
-
-            if (!player.getStackInHand(hand).isEmpty()) {
+            ItemStack item = player.getStackInHand(hand);
+            if (!item.isEmpty()) {
                 // Check what is the first open slot and put an item from the player's hand there
                 for (int i = 0; i < blockEntity.getItems().size(); i++) {
-                    if (blockEntity.getStack(i).isEmpty()) {
+                    if (blockEntity.getStack(i).isEmpty() && item.getItem() instanceof CookItFood && ((CookItFood)item.getItem()).getFoodType().equals(CookItFoodTypes.BAKING)) {
                         // Put the stack the player is holding into the inventory
-                        blockEntity.setStack(i, new ItemStack(player.getStackInHand(hand).getItem(), 1));
-                        player.getStackInHand(hand).decrement(1);
+                        item.decrement(1);
+                        blockEntity.setStack(i, new ItemStack(item.getItem(), 1));
                         break;
                     }
                 }
@@ -60,7 +62,7 @@ public class BakingSheet extends Block implements BlockEntityProvider {
                         // Give the player the stack in the inventory
                         player.getInventory().offerOrDrop(blockEntity.getStack(i));
                         // Remove the stack from the inventory
-                        blockEntity.setStack(i, ItemStack.EMPTY);
+                        blockEntity.removeStack(i);
                         break;
                     }
                 }

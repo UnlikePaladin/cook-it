@@ -1,5 +1,6 @@
 package com.toast.cookit.registries;
 
+import com.toast.cookit.item.CookItFood;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.block.Block;
@@ -34,15 +35,15 @@ public class CookItItems {
     // -- Ingredients --
     public static final Item DOUGH = registerItem("dough", new Item(new FabricItemSettings()));
     public static final Item DOUGH_ROLLED = registerItem("dough_rolled", new Item(new FabricItemSettings()));
-    public static final Item UNCOOKED_FRENCH_FRIES = registerItem("uncooked_french_fries", new Fries(new FabricItemSettings()));
+    public static final Item UNCOOKED_FRENCH_FRIES = registerItem("uncooked_french_fries", new Fries(new FabricItemSettings(), CookItFoodTypes.FRYING));
 
     // -- Food --
-    public static final Item TOAST = registerItem("toast", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
-    public static final Item RAW_CROISSANT = registerItem("raw_croissant", new Item(new FabricItemSettings()));
-    public static final Item CROISSANT = registerItem("croissant", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
-    public static final Item PIZZA_SLICE = registerItem("pizza_slice", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).build())));
-    public static final Item FRENCH_FRIES = registerItem("french_fries", new Fries(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
-    public static final Item RAW_DONUT = registerItem("raw_donut", new Item(new FabricItemSettings()));
+    public static final Item TOAST = registerItem("toast", new CookItFood(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build()), CookItFoodTypes.DONE ));
+    public static final Item RAW_CROISSANT = registerItem("raw_croissant", new CookItFood(new FabricItemSettings(), CookItFoodTypes.BAKING));
+    public static final Item CROISSANT = registerItem("croissant", new CookItFood(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build()), CookItFoodTypes.DONE));
+    public static final Item PIZZA_SLICE = registerItem("pizza_slice", new CookItFood(new FabricItemSettings().food(new FoodComponent.Builder().hunger(5).build()), CookItFoodTypes.DONE));
+    public static final Item FRENCH_FRIES = registerItem("french_fries", new Fries(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build()), CookItFoodTypes.DONE));
+    public static final Item RAW_DONUT = registerItem("raw_donut", new CookItFood(new FabricItemSettings(), CookItFoodTypes.BAKING));
     public static final Item DONUT = registerItem("plain_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT = registerItem("chocolate_glazed_donut", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
     public static final Item CHOCOLATE_GLAZED_DONUT_WITH_SPRINKLES = registerItem("chocolate_glazed_donut_with_sprinkles", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
@@ -60,7 +61,6 @@ public class CookItItems {
 
     public static final Item CINNAMON_ROLL = registerItem("cinnamon_roll", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(3).build())));
     public static final Item CINNAMON_ROLL_GLAZED = registerItem("cinnamon_roll_glazed", new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(4).build())));
-
     // -- Miscellaneous --
     public static final Item FIRE_EXTINGUISHER = registerItem("fire_extinguisher", new FireExtinguisherItem(new FabricItemSettings().maxDamage(256)));
     public static final Item CHEF_HAT = registerItem("chef_hat", new Item(new FabricItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));

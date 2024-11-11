@@ -68,7 +68,8 @@ public class Toaster extends HorizontalFacingBlock {
         }
 
     }
-
+    
+    // I know this allows you to just put a piece of bread at the last second but like I don't care :cat_plushie:
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack heldItem = player.getStackInHand(hand);
@@ -76,8 +77,7 @@ public class Toaster extends HorizontalFacingBlock {
         // Check if the player is holding bread
         if (heldItem.getItem() == Items.BREAD) {
 
-
-            // Increment TOASTER_STATE only if it is less than 2 ( if there are not
+            // Increment TOASTER_STATE only if it is less than 2 ( if there's no toasted bread)
             if (toastState < 2) {
                 heldItem.decrement(1);
                 world.setBlockState(pos, state.with(TOASTER_STATE, toastState + 1));
@@ -95,12 +95,8 @@ public class Toaster extends HorizontalFacingBlock {
                     world.setBlockState(pos, state.with(TOASTER_STATE, 0));
                 }
             }
-
-
             return ActionResult.SUCCESS;
-
         }
-
         return ActionResult.PASS; // If not holding bread, do nothing
     }
 
@@ -111,9 +107,9 @@ public class Toaster extends HorizontalFacingBlock {
 
     private void scheduleTick(WorldAccess world, BlockPos pos) {
         if (!world.isClient() && !world.getBlockTickScheduler().isQueued(pos, this)) {
-            world.scheduleBlockTick(pos, this, 600);
-        }
 
+            world.scheduleBlockTick(pos, this, 200);
+        }
     }
 
     @Override
@@ -122,7 +118,7 @@ public class Toaster extends HorizontalFacingBlock {
         if (!world.isClient) {
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.MASTER, 1f, 1f);
         }
-        if (toastState == 1) { // 600 ticks = 30 seconds
+        if (toastState == 1) {
             world.setBlockState(pos, state.with(TOASTER_STATE, 3));
         } else if (toastState == 2) {
             world.setBlockState(pos, state.with(TOASTER_STATE, 4));

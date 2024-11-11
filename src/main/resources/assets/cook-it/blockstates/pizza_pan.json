@@ -1,14 +1,19 @@
 {
-  "comment": "Ok so like I literally did not want to add another block entity :skull: might regret this later",
+  "comment": [
+    "Ok so like I literally did not want to add another block entity :skull: might regret this later",
+    "Update: I definitely regret this"
+  ],
+
   "variants": {
-    "cooked=true,has_pizza=true": {
-      "model": "cook-it:block/pizza_pan"
+    "state=0": {
+      "model": "cook-it:block/pizza_pan_empty"
     },
-    "cooked=false,has_pizza=true": {
+    "state=1": {
       "model": "cook-it:block/pizza_pan_uncooked"
     },
-    "has_pizza=false": {
-      "model": "cook-it:block/pizza_pan_empty"
+    "state=2": {
+      "model": "cook-it:block/pizza_pan"
     }
+
   }
 }

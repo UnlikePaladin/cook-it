@@ -1,52 +1,15 @@
 {
 	"credit": "Made by ToastTextures using Blockbench",
-	"texture_size": [32, 32],
-	"textures": {
-		"pizza": "cook-it:block/pizza",
-		"particle": "#pizza"
-	},
-	"elements": [
-		{
-			"from": [5, 0, 5],
-			"to": [11, 1, 11],
-			"faces": {
-				"north": {"uv": [7, 10.5, 10, 11], "texture": "pizza"},
-				"east": {"uv": [10, 10.5, 13, 11], "texture": "pizza"},
-				"south": {"uv": [10, 9, 13, 9.5], "texture": "pizza"},
-				"west": {"uv": [7, 11, 10, 11.5], "texture": "pizza"},
-				"up": {"uv": [6.5, 6.5, 3.5, 3.5], "texture": "pizza"},
-				"down": {"uv": [13, 3, 10, 6], "texture": "pizza"}
-			}
-		},
-		{
-			"from": [4, 0, 4],
-			"to": [5, 2, 11],
-			"faces": {
-				"north": {"uv": [7, 7, 7.5, 8], "texture": "pizza"},
-				"east": {"uv": [4, 8.5, 7.5, 9.5], "texture": "pizza"},
-				"south": {"uv": [13.5, 11, 14, 12], "texture": "pizza"},
-				"west": {"uv": [7, 7, 10.5, 8], "texture": "pizza"},
-				"up": {"uv": [7, 7, 6.5, 3.5], "texture": "pizza"},
-				"down": {"uv": [14, 3.5, 13.5, 7], "texture": "pizza"}
-			}
-		},
-		{
-			"from": [5, 0, 4],
-			"to": [11, 2, 5],
-			"faces": {
-				"north": {"uv": [7, 9, 10, 10], "texture": "pizza"},
-				"east": {"uv": [3, 8.5, 3.5, 9.5], "texture": "pizza"},
-				"south": {"uv": [9.5, 7, 12.5, 8], "texture": "pizza"},
-				"west": {"uv": [12.5, 7, 13, 8], "texture": "pizza"},
-				"up": {"uv": [6.5, 7, 3.5, 6.5], "texture": "pizza"},
-				"down": {"uv": [13.5, 6.5, 10.5, 7], "texture": "pizza"}
-			}
-		}
-	],
+	"parent": "cook-it:block/pizza/pizza_1",
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [100, -60, 30],
-			"translation": [-0.75, 3.25, 4],
+			"rotation": [90, -60, 0],
+			"translation": [0, -0.5, 4],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [90, 30, 0],
+			"translation": [0, -0.5, 4],
 			"scale": [0.55, 0.55, 0.55]
 		},
 		"firstperson_righthand": {
@@ -63,18 +26,11 @@
 		},
 		"gui": {
 			"rotation": [30, 30, 0],
+			"translation": [3, 0, 0],
 			"scale": [0.625, 0.625, 0.625]
 		},
 		"fixed": {
 			"translation": [0, 3, 0]
 		}
-	},
-	"groups": [
-		{
-			"name": "4",
-			"origin": [0, 0, 0],
-			"color": 0,
-			"children": [0, 1, 2]
-		}
-	]
+	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
@@ -28,7 +29,7 @@ public class FryerEntityRenderer implements BlockEntityRenderer<FryerEntity> {
     public void render(FryerEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         final MinecraftClient client = MinecraftClient.getInstance();
         ItemStack fryerBasket = entity.getStack(0);
-        ArrayList<ItemStack> itemList = entity.getContainerItems(entity.getStack(0));
+        ItemStack item = !entity.getContainerItems(entity.getStack(0)).isEmpty() ? entity.getContainerItems(entity.getStack(0)).get(0) : ItemStack.EMPTY;
         Direction facing = entity.getCachedState().get(FACING);
         int dir = 0;
         float x = 0, y = 0, z = 0;
@@ -57,15 +58,19 @@ public class FryerEntityRenderer implements BlockEntityRenderer<FryerEntity> {
                 z = -0.4375f;
                 dir = 3;
             }
-            default -> {
-                CookIt.LOGGER.error("Fryer fried its braincells" + facing);
-            }
+            default -> CookIt.LOGGER.error("Fryer fried its braincells > {}", facing);
         }
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90 * dir));
         matrices.translate(x, y, z);
-        if (!itemList.isEmpty()) {
-            ItemStack item = itemList.get(0);
+        if (!item.isEmpty()) {
+
+            matrices.push();
+            matrices.scale(0.75f,0.75f,0.75f);
+            matrices.translate(0,-0.25,0);
+
             client.getItemRenderer().renderItem(item, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);
+
+            matrices.pop();
         }
 
         client.getItemRenderer().renderItem(fryerBasket, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);

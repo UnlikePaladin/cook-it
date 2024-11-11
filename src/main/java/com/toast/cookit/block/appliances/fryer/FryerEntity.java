@@ -1,6 +1,8 @@
 package com.toast.cookit.block.appliances.fryer;
 
 
+import com.toast.cookit.CookIt;
+import com.toast.cookit.CookItClient;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
@@ -8,7 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.toast.cookit.block.CookingBlockEntity;
@@ -20,6 +27,7 @@ import com.toast.cookit.registries.CookItBlockEntities;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 
 import static com.toast.cookit.block.appliances.fryer.Fryer.ON;
 
@@ -30,7 +38,7 @@ public class FryerEntity extends CookingBlockEntity implements ImplementedInvent
     private int maxProgress = 0;
 
     public FryerEntity(BlockPos pos, BlockState state) {
-        super(CookItBlockEntities.FRYER_ENTITY, pos, state, 2);
+        super(CookItBlockEntities.FRYER_ENTITY, pos, state, 1);
     }
 
     @Override
@@ -56,10 +64,21 @@ public class FryerEntity extends CookingBlockEntity implements ImplementedInvent
         }
 
         if (this.hasRecipe()) {
+            if (this.progress % 8 == 1)
+                world.playSound(null, this.pos, SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundCategory.BLOCKS, 0.5f, 8.0f);
+            if (this.progress % 30 == 1)
+                world.playSound(null, this.pos, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 0.5f, 1.0f);
+            if (this.items.get(0).isEmpty()) {
+                this.resetProgress();
+                world.setBlockState(pos, state.with(ON, false));
+                return;
+            }
             world.setBlockState(pos, state.with(ON, true));
+
 //            if (progress == 0 || world.getTime() % Fryer_SOUND_INTERVAL == 0) {
 //                //playFryerSound(world, pos, state, true);
 //            }
+            addParticles();
 
             this.updateMaxProgress();
             this.addProgress();
@@ -94,6 +113,21 @@ public class FryerEntity extends CookingBlockEntity implements ImplementedInvent
         }
 
     }
+
+    private void addParticles() {
+
+        for (int i = 0; i < 3; i++) {
+            Random random = new Random();
+            double particleX = Math.round(((double)this.pos.getX() + 0.5 + random.nextFloat(-0.1875f,0.1875f)) * 100d) / 100d;
+            double particleY = ((double)this.pos.getY() + 0.25);
+            double particleZ = Math.round(((double)this.pos.getZ() + 0.5 + random.nextFloat(-0.1875f,0.1875f)) * 100d) / 100d;
+            assert world != null;
+
+            ((ServerWorld) world).spawnParticles(CookIt.OIL_PARTICLE, particleX, particleY, particleZ, 2, 0f,0.0f,0.0f,0f);
+
+            }
+        }
+
 
 
     private void resetProgress() {

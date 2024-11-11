@@ -1,6 +1,8 @@
 package com.toast.cookit;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -19,6 +21,9 @@ public class CookIt implements ModInitializer {
         return new Identifier(MOD_ID, name);
     }
 
+    public static final DefaultParticleType OIL_PARTICLE = FabricParticleTypes.simple();
+
+
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -30,6 +35,7 @@ public class CookIt implements ModInitializer {
         CookItRecipes.registerRecipes();
         CookItSounds.registerSounds();
         CookItBlockEntities.registerEntities();
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "oil"), OIL_PARTICLE);
 
         Registry.register(Registries.ITEM_GROUP, new Identifier(CookIt.MOD_ID, "items"), CookItItems.COOK_IT_GROUP);
     }

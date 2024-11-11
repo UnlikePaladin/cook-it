@@ -1,6 +1,7 @@
 package com.toast.cookit.registries;
 
 import com.toast.cookit.block.containers.mixing_bowl.MixingBowl;
+import com.toast.cookit.block.food_blocks.pizza.CookedPizza;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -40,8 +41,8 @@ public class CookItBlocks {
     public static final Block OVEN = registerBlock("oven", new Oven(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
     public static final Block MICROWAVE = registerBlock("microwave", new Microwave(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 
-    // -- Food Blocks --
-    public static final Block PIZZA = registerBlock("pizza", new Pizza(FabricBlockSettings.create()));
+    // -- BakableFoodFood Blocks --
+    public static final Block PIZZA = registerBlock("pizza", new CookedPizza(FabricBlockSettings.create()));
     public static final Block UNCOOKED_PIZZA = registerBlock("uncooked_pizza", new Pizza(FabricBlockSettings.create()));
 
     // -- Containers --

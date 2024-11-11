@@ -1,61 +1,33 @@
 {
-	"credit": "Made by ToastTextures using Blockbench",
+	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"pizza": "cook-it:block/pizza",
-		"particle": "#pizza"
+		"particle": "cook-it:block/pizza",
+		"pizza": "cook-it:block/pizza"
 	},
 	"elements": [
 		{
-			"from": [14, 0, 1],
+			"from": [1, 0, 1],
 			"to": [15, 2, 15],
 			"faces": {
-				"north": {"uv": [0, 7, 0.5, 8], "texture": "#pizza"},
-				"east": {"uv": [7, 8, 14, 9], "texture": "#pizza"},
-				"south": {"uv": [13, 10, 13.5, 11], "texture": "#pizza"},
-				"west": {"uv": [14, 8, 7, 9], "texture": "#pizza"},
-				"up": {"uv": [0.5, 7, 0, 0], "texture": "#pizza"},
-				"down": {"uv": [14, 0, 13.5, 7], "texture": "#pizza"}
+				"north": {"uv": [0, 7, 7, 8], "texture": "#pizza"},
+				"east": {"uv": [0, 12, 7, 13], "texture": "#pizza"},
+				"south": {"uv": [7, 7, 14, 8], "texture": "#pizza"},
+				"west": {"uv": [7, 9, 0, 8], "rotation": 180, "texture": "#pizza"},
+				"up": {"uv": [7, 7, 0, 0], "texture": "#pizza"},
+				"down": {"uv": [7, 0, 14, 7], "texture": "#pizza"}
 			}
 		},
 		{
-			"from": [2, 0, 14],
-			"to": [14, 2, 15],
+			"from": [14, 2, 14],
+			"to": [2, 1, 2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 16]},
 			"faces": {
-				"north": {"uv": [13.5, 7, 7.5, 8], "texture": "#pizza"},
-				"south": {"uv": [7.5, 7, 13.5, 8], "texture": "#pizza"},
-				"up": {"uv": [6.5, 0.5, 0.5, 0], "texture": "#pizza"},
-				"down": {"uv": [13.5, 0, 7.5, 0.5], "texture": "#pizza"}
-			}
-		},
-		{
-			"from": [1, 0, 1],
-			"to": [2, 2, 15],
-			"faces": {
-				"north": {"uv": [13.5, 10, 14, 11], "texture": "#pizza"},
-				"east": {"uv": [7, 8, 0, 9], "texture": "#pizza"},
-				"south": {"uv": [7, 7, 7.5, 8], "texture": "#pizza"},
-				"west": {"uv": [0, 8, 7, 9], "texture": "#pizza"},
-				"up": {"uv": [7, 7, 6.5, 0], "texture": "#pizza"},
-				"down": {"uv": [7.5, 0, 7, 7], "texture": "#pizza"}
-			}
-		},
-		{
-			"from": [2, 0, 2],
-			"to": [14, 1, 14],
-			"faces": {
-				"up": {"uv": [6.5, 6.5, 0.5, 0.5], "texture": "#pizza"},
-				"down": {"uv": [13.5, 0.5, 7.5, 6.5], "texture": "#pizza"}
-			}
-		},
-		{
-			"from": [2, 0, 1],
-			"to": [14, 2, 2],
-			"faces": {
-				"north": {"uv": [0.5, 7, 6.5, 8], "texture": "#pizza"},
-				"south": {"uv": [6.5, 7, 0.5, 8], "texture": "#pizza"},
-				"up": {"uv": [6.5, 7, 0.5, 6.5], "texture": "#pizza"},
-				"down": {"uv": [13.5, 6.5, 7.5, 7], "texture": "#pizza"}
+				"north": {"uv": [0.5, 0.5, 6.5, 0], "texture": "#pizza"},
+				"east": {"uv": [7, 6.5, 6.5, 0.5], "rotation": 270, "texture": "#pizza"},
+				"south": {"uv": [0.5, 0.5, 6.5, 0], "texture": "#pizza"},
+				"west": {"uv": [7, 6.5, 6.5, 0.5], "rotation": 270, "texture": "#pizza"},
+				"up": {"uv": [7, 14, 13, 8], "texture": "#pizza"}
 			}
 		}
 	],
@@ -102,7 +74,7 @@
 			"name": "Pizza",
 			"origin": [8, 8, 8],
 			"color": 0,
-			"children": [0, 1, 2, 3, 4]
+			"children": [0, 1]
 		}
 	]
 }
