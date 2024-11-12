@@ -5,5 +5,6 @@ public enum CookItFoodTypes {
     FRYING,
     COOKING,
     MIXING,
+    BOILING,
     DONE
 }

@@ -41,7 +41,7 @@ public class CookItBlockEntities {
         OVEN_ENTITY = registerBlockEntities("oven", OvenEntity::new, new Block[]{CookItBlocks.OVEN});
         PLATE_ENTITY = registerBlockEntities("plate", PlateEntity::new, CookItBlocks.PLATES.toArray(Block[]::new));
         FRYER_ENTITY = registerBlockEntities("fryer", FryerEntity::new, new Block[]{CookItBlocks.FRYER});
-        CUTTING_BOARD_ENTITY = registerBlockEntities("cutting_board", CuttingBoardEntity::new, new Block[]{CookItBlocks.CUTTING_BOARD});
+        CUTTING_BOARD_ENTITY = registerBlockEntities("cutting_board", CuttingBoardEntity::new, CookItBlocks.CUTTING_BOARDS.toArray(Block[]::new));
 
     }
 

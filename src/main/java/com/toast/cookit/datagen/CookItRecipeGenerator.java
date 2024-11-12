@@ -1,7 +1,9 @@
 package com.toast.cookit.datagen;
 
+import com.toast.cookit.CookIt;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Block;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -38,11 +40,22 @@ public class CookItRecipeGenerator extends FabricRecipeProvider {
         }
         for (Bowl bowl : CookItBlocks.BOWLS) {
             String color = getColor(bowl);
-            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, bowl).pattern("c c").pattern("ccc")
+            ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, bowl).pattern("ccc").pattern("ccc")
                     .input('c', Registries.BLOCK.get(new Identifier("minecraft", color + "_concrete")))
                     .criterion(FabricRecipeProvider.hasItem(bowl),
                             FabricRecipeProvider.conditionsFromItem(bowl))
                     .offerTo(exporter);
+        }
+
+        for (Block cuttingBoard : CookItBlocks.CUTTING_BOARDS) {
+            String woodType = CookIt.SUPPORTED_WOOD_TYPES.get(CookItBlocks.CUTTING_BOARDS.indexOf(cuttingBoard));
+            Block slab = Registries.BLOCK.get(new Identifier("minecraft", woodType + "_slab"));
+            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, cuttingBoard).pattern("sss")
+                    .input('s', Registries.BLOCK.get(new Identifier("minecraft", woodType + "_slab")))
+                    .criterion(FabricRecipeProvider.hasItem(slab),
+                    FabricRecipeProvider.conditionsFromItem(slab))
+                    .offerTo(exporter);
+
         }
     }
 }

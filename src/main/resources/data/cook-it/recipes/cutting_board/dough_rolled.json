@@ -7,6 +7,6 @@
     "item": "cook-it:dough_rolled"
   },
   "tool": {
-    "item": "cook-it:rolling_pin"
+    "tag": "cook-it:rolling_pins"
   }
 }

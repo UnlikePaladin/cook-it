@@ -1,13 +1,19 @@
 package com.toast.cookit.datagen;
 
+import com.toast.cookit.CookIt;
+import com.toast.cookit.block.containers.cutting_board.CuttingBoard;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.block.Block;
 import net.minecraft.data.client.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.state.property.Properties;
 import com.toast.cookit.block.containers.Bowl;
 import com.toast.cookit.block.containers.plate.Plate;
 import com.toast.cookit.registries.CookItBlocks;
+import net.minecraft.util.math.Direction;
 
+import static com.toast.cookit.CookIt.SUPPORTED_WOOD_TYPES;
 import static com.toast.cookit.datagen.CookItModels.*;
 
 public class CookItModelProvider extends FabricModelProvider {
@@ -41,7 +47,19 @@ public class CookItModelProvider extends FabricModelProvider {
             blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(bowl, BlockStateVariant.create().put(VariantSettings.MODEL, identifier)));
             blockStateModelGenerator.registerParentedItemModel(bowl, identifier);
         }
-    }
+
+        for (Block block : CookItBlocks.CUTTING_BOARDS) {
+            String woodType = CookIt.SUPPORTED_WOOD_TYPES.get(CookItBlocks.CUTTING_BOARDS.indexOf(block));
+            TextureMap textureMap = TextureMap.of(CUTTING_BOARD, setTextureOutput(block, woodType + "_cutting_board"));
+            Identifier identifier = TEMPLATE_CUTTING_BOARD.upload(setModelOutput("block/", block), textureMap, blockStateModelGenerator.modelCollector);
+            blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+                    .register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R0).put(VariantSettings.MODEL, identifier).put(VariantSettings.UVLOCK, false))
+                    .register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90).put(VariantSettings.MODEL, identifier).put(VariantSettings.UVLOCK, false))
+                    .register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180).put(VariantSettings.MODEL, identifier).put(VariantSettings.UVLOCK, false))
+                    .register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270).put(VariantSettings.MODEL, identifier).put(VariantSettings.UVLOCK, false))));
+            blockStateModelGenerator.registerParentedItemModel(block, identifier);
+            }
+        }
 
 
     @Override

@@ -24,6 +24,7 @@ public class CookItClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.MUFFIN_TIN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.FRYER, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.PIZZA, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.UNCOOKED_PIZZA, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.PIZZA_PAN, RenderLayer.getTranslucent());
 
 

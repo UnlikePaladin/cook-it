@@ -13,6 +13,7 @@ import java.util.Optional;
 public class CookItModels {
     static TextureKey PLATE = TextureKey.of("plate");
     static TextureKey BOWL = TextureKey.of("bowl");
+    static TextureKey CUTTING_BOARD = TextureKey.of("cutting_board");
 
     public static final Model TEMPLATE_PLATE_1 = newParent("plate_1", PLATE);
     public static final Model TEMPLATE_PLATE_2 = newParent("plate_2", PLATE);
@@ -23,6 +24,7 @@ public class CookItModels {
     public static final Model TEMPLATE_LARGE_PLATE_3 = newParent("large_plate_3", PLATE);
     public static final Model TEMPLATE_LARGE_PLATE_4 = newParent("large_plate_4", PLATE);
     public static final Model TEMPLATE_BOWL = newParent("bowl", BOWL);
+    public static final Model TEMPLATE_CUTTING_BOARD = newParent("cutting_board", CUTTING_BOARD);
 
     private static Model newParent(String parent, TextureKey... requiredTextureKeys) {
         return new Model(Optional.of(new Identifier(CookIt.MOD_ID, "block/" + parent)), Optional.empty(), requiredTextureKeys);
@@ -37,7 +39,8 @@ public class CookItModels {
         return identifier.withPath("block/" + path);
     }
     public static Identifier setModelOutput(String path, Block block) {
-        return new Identifier(CookIt.MOD_ID, path + Registries.BLOCK.getId(block).getPath());}
+        return new Identifier(CookIt.MOD_ID, path + Registries.BLOCK.getId(block).getPath());
+    }
 
     public static Identifier setModelOutput(String path, Block block, String suffix) {
         return new Identifier(CookIt.MOD_ID, path + Registries.BLOCK.getId(block).getPath() + suffix);

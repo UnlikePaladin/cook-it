@@ -18,13 +18,14 @@ import com.toast.cookit.item.FryerBasket;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.toast.cookit.CookIt.SUPPORTED_WOOD_TYPES;
 import static com.toast.cookit.registries.CookItBlocks.BLOCKS;
 
 public class CookItItems {
     public static final List<Item> ITEMS = new ArrayList<>();
 
     // -- Utensils --
-    public static final Item ROLLING_PIN = registerItem("rolling_pin", new Item(new FabricItemSettings()));
+
     public static final Item KITCHEN_KNIFE = registerItem("knife", new SwordItem(ToolMaterials.IRON, 1, -2, new FabricItemSettings().maxCount(1)));
     public static final Item BUTCHER_KNIFE = registerItem("butcher_knife", new SwordItem(ToolMaterials.IRON, 1, -1, new FabricItemSettings()));
     public static final Item SPATULA = registerItem("spatula", new Item(new FabricItemSettings().maxCount(1)));
@@ -64,16 +65,22 @@ public class CookItItems {
     // -- Miscellaneous --
     public static final Item FIRE_EXTINGUISHER = registerItem("fire_extinguisher", new FireExtinguisherItem(new FabricItemSettings().maxDamage(256)));
     public static final Item CHEF_HAT = registerItem("chef_hat", new Item(new FabricItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
-    //public static final Item SPRINKLES = registerItem("sprinkles", new Item(new FabricItemSettings()));
 
+    //public static final Item SPRINKLES = registerItem("sprinkles", new Item(new FabricItemSettings()));
     // public static final Item MILK = registerItem("milk", new Item(new FabricItemSettings()));
 
+    public static void registerWoodenItems() {
+        for (String woodType : SUPPORTED_WOOD_TYPES) {
+            registerItem(woodType + "_rolling_pin", new Item(new FabricItemSettings()));
+        }
+    }
     private static Item registerItem(String name, Item item) {
         CookItItems.ITEMS.add(item);
 
         return Registry.register(Registries.ITEM, new Identifier(CookIt.MOD_ID, name), item);
     }
     public static void registerItems() {
+        registerWoodenItems();
     }
      public static final ItemGroup COOK_IT_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(CHEF_HAT))

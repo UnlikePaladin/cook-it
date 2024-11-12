@@ -30,11 +30,13 @@ import com.toast.cookit.block.food_blocks.pizza.Pizza;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.toast.cookit.CookIt.SUPPORTED_WOOD_TYPES;
+
 public class CookItBlocks {
     public static final List<Block> BLOCKS = new ArrayList<>();
     public static final List<Plate> PLATES = new ArrayList<>();
     public static final List<Bowl> BOWLS = new ArrayList<>();
-
+    public static final List<Block> CUTTING_BOARDS = new ArrayList<>();
     // -- Appliances --
     public static final Block FRYER = registerBlock("fryer", new Fryer(FabricBlockSettings.create().nonOpaque()));
     public static final Block TOASTER = registerBlock("toaster", new Toaster(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)));
@@ -46,7 +48,6 @@ public class CookItBlocks {
     public static final Block UNCOOKED_PIZZA = registerBlock("uncooked_pizza", new Pizza(FabricBlockSettings.create()));
 
     // -- Containers --
-    public static final Block CUTTING_BOARD = registerBlock("cutting_board", new CuttingBoard(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS)));
     public static final Block MUFFIN_TIN = registerBlock("muffin_tin", new MuffinTin(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));;
     public static final Block BAKING_SHEET = registerBlock("baking_sheet", new BakingSheet(FabricBlockSettings.create()));
     public static final Block PIZZA_PAN = registerBlock("pizza_pan", new PizzaPan(FabricBlockSettings.create()));
@@ -60,15 +61,21 @@ public class CookItBlocks {
             Block PLATE = registerBlock(color + "_plate", new Plate(FabricBlockSettings.create().sounds(BlockSoundGroup.DECORATED_POT)));
             Block LARGE_PLATE = registerBlock(color + "_large_plate", new Plate(FabricBlockSettings.create().sounds(BlockSoundGroup.DECORATED_POT)));
             Block BOWL = registerBlock(color + "_bowl", new Bowl(FabricBlockSettings.create().sounds(BlockSoundGroup.DECORATED_POT)));
-            CookItBlocks.PLATES.add((Plate) PLATE);
-            CookItBlocks.PLATES.add((Plate) LARGE_PLATE);
-            CookItBlocks.BOWLS.add((Bowl) BOWL);
+            PLATES.add((Plate) PLATE);
+            PLATES.add((Plate) LARGE_PLATE);
+            BOWLS.add((Bowl) BOWL);
         }
     }
+    public static void registerWoodenBlocks() {
 
+        for (String woodType : SUPPORTED_WOOD_TYPES) {
+            Block CUTTING_BOARD = registerBlock(woodType + "_cutting_board", new CuttingBoard(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS)));
+            CUTTING_BOARDS.add(CUTTING_BOARD);
+        }
+    }
     public static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
-        CookItBlocks.BLOCKS.add(block);
+        BLOCKS.add(block);
         return Registry.register(Registries.BLOCK, new Identifier(CookIt.MOD_ID, name), block);
     }
 
@@ -78,6 +85,7 @@ public class CookItBlocks {
 
     public static void registerBlocks() {
         registerColoredBlocks();
+        registerWoodenBlocks();
     }
 
 

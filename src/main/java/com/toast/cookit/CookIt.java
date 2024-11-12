@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.toast.cookit.registries.*;
 
+import java.util.List;
+
 public class CookIt implements ModInitializer {
     // This logger is used to write text to the console and the log file.
     // It is considered best practice to use your mod id as the logger's name.
@@ -23,7 +25,7 @@ public class CookIt implements ModInitializer {
 
     public static final DefaultParticleType OIL_PARTICLE = FabricParticleTypes.simple();
 
-
+    public static final List<String> SUPPORTED_WOOD_TYPES = List.of(new String[]{"oak", "acacia", "dark_oak", "spruce", "jungle", "birch"});
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.
