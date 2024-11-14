@@ -11,8 +11,8 @@ import com.toast.cookit.block.ImplementedInventory;
 import com.toast.cookit.recipes.CuttingBoardRecipe;
 import com.toast.cookit.registries.CookItBlockEntities;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class CuttingBoardEntity extends CookingBlockEntity implements ImplementedInventory {
 
@@ -21,28 +21,32 @@ public class CuttingBoardEntity extends CookingBlockEntity implements Implemente
     }
 
 
-    public void processRecipe(ItemStack tool) {
-        Optional<RecipeEntry<CuttingBoardRecipe>> recipe = getCurrentRecipe();
+    public boolean processRecipe(ItemStack tool) {
+        List<RecipeEntry<CuttingBoardRecipe>> recipes = getCurrentRecipe();
 
-        if (recipe.isPresent()) {
-            for (ItemStack otherTool : recipe.get().value().getTool()) {
-                if (tool.getItem().asItem().equals(otherTool.getItem())) {
-                    Item item = recipe.get().value().getResult(null).getItem();
-                    ItemStack output = new ItemStack(item, recipe.get().value().getOutputCount());
-                    this.setStack(0, output);
-                    if (recipe.get().value().usesItem()) {
-                        tool.decrement(1);
+        if (!recipes.isEmpty()) {
+            for(RecipeEntry<CuttingBoardRecipe> recipeEntry : recipes) {
+                for (ItemStack otherTool : recipeEntry.value().getTool()) {
+                    if (tool.getItem().asItem().equals(otherTool.getItem())) {
+                        Item item = recipeEntry.value().getResult(null).getItem();
+                        ItemStack output = new ItemStack(item, recipeEntry.value().getOutputCount());
+                        this.setStack(0, output);
+                        if (recipeEntry.value().usesItem()) {
+                            tool.decrement(1);
+                        }
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
-    private Optional<RecipeEntry<CuttingBoardRecipe>> getCurrentRecipe() {
+    private List<RecipeEntry<CuttingBoardRecipe>> getCurrentRecipe() {
         SimpleInventory inv = new SimpleInventory(this.size());
         for (int i = 0; i < this.size(); i++) {
             inv.setStack(i, this.getStack(i));
         }
-        return Objects.requireNonNull(getWorld()).getRecipeManager().getFirstMatch(CuttingBoardRecipe.Type.INSTANCE, inv, getWorld());
+        return Objects.requireNonNull(getWorld()).getRecipeManager().getAllMatches(CuttingBoardRecipe.Type.INSTANCE, inv, getWorld());
     }
 }

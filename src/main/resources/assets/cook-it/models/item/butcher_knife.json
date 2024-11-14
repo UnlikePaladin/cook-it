@@ -9,12 +9,8 @@
 			"to": [13, 0.5, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-14, 0, 0]},
 			"faces": {
-				"north": {"uv": [0, 0, 6, 0], "texture": "#butcher_knife"},
-				"east": {"uv": [0, 0, 10, 0], "texture": "#butcher_knife"},
-				"south": {"uv": [0, 0, 6, 0], "texture": "#butcher_knife"},
-				"west": {"uv": [0, 0, 10, 0], "texture": "#butcher_knife"},
-				"up": {"uv": [6, 10, 0, 0], "texture": "#butcher_knife"},
-				"down": {"uv": [6, 0, 0, 10], "texture": "#butcher_knife"}
+				"up": {"uv": [10, 6, 0, 0], "rotation": 90, "texture": "#butcher_knife"},
+				"down": {"uv": [0, 6, 10, 0], "rotation": 90, "texture": "#butcher_knife"}
 			}
 		},
 		{
@@ -22,12 +18,12 @@
 			"to": [9, 1, 6],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-14, 0, 0]},
 			"faces": {
-				"north": {"uv": [8, 0, 10, 1], "texture": "#butcher_knife"},
-				"east": {"uv": [0, 11, 6, 12], "texture": "#butcher_knife"},
-				"south": {"uv": [8, 1, 10, 2], "texture": "#butcher_knife"},
-				"west": {"uv": [0, 10, 6, 11], "texture": "#butcher_knife"},
-				"up": {"uv": [8, 6, 6, 0], "texture": "#butcher_knife"},
-				"down": {"uv": [8, 6, 6, 12], "texture": "#butcher_knife"}
+				"north": {"uv": [15, 0, 16, 2], "rotation": 90, "texture": "#butcher_knife"},
+				"east": {"uv": [10, 1, 16, 2], "texture": "#butcher_knife"},
+				"south": {"uv": [10, 0, 11, 2], "rotation": 90, "texture": "#butcher_knife"},
+				"west": {"uv": [10, 0, 16, 1], "rotation": 180, "texture": "#butcher_knife"},
+				"up": {"uv": [16, 2, 10, 0], "rotation": 90, "texture": "#butcher_knife"},
+				"down": {"uv": [10, 2, 16, 0], "rotation": 90, "texture": "#butcher_knife"}
 			}
 		}
 	],

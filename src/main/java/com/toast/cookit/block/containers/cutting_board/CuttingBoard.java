@@ -1,6 +1,7 @@
 package com.toast.cookit.block.containers.cutting_board;
 
 import com.mojang.serialization.MapCodec;
+import com.toast.cookit.item.FryerBasket;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +19,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import com.toast.cookit.registries.CookItItems;
 
 public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityProvider {
 
@@ -45,25 +45,23 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
         if (blockEntity == null) {
             return ActionResult.FAIL;
         }
+        if (world.isClient) { return ActionResult.SUCCESS; }
 
         ItemStack heldItem = player.getStackInHand(hand);
+        if (heldItem.getItem() instanceof FryerBasket) { return ActionResult.FAIL; }
+
         if (blockEntity.isEmpty()) {
-            if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
-                return ActionResult.FAIL;
-            } else if (!heldItem.isEmpty()) {
+            if (!heldItem.isEmpty()) {
                 blockEntity.setStack(0, heldItem.split(1));
             } else {
                 return ActionResult.FAIL;
             }
         } else if (!heldItem.isEmpty()) {
-            if (heldItem.getItem().equals(CookItItems.FRYER_BASKET)) {
-                return ActionResult.FAIL;
+            blockEntity.processRecipe(heldItem);
             } else {
-                blockEntity.processRecipe(heldItem);
+                boolean test = blockEntity.processRecipe(heldItem);
+                if (!test) { player.getInventory().insertStack(blockEntity.getStack(0)); }
             }
-        } else {
-            player.getInventory().insertStack(blockEntity.getStack(0));
-        }
         return ActionResult.SUCCESS;
     }
 
@@ -72,8 +70,8 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
         Direction dir = state.get(FACING);
         return switch (dir) {
-            case EAST, WEST -> VoxelShapes.cuboid(0.0625f, 0f, -0.125f, 0.9375f, 0.0625f, 1.125f);
-            case NORTH, SOUTH -> VoxelShapes.cuboid(-0.125f, 0f, 0.0625f, 1.125f, 0.0625f, 0.9375f);
+            case EAST, WEST -> VoxelShapes.cuboid(0.125f, 0.0f, 0.0f, 0.875f, 0.0625f, 1.0f);
+            case NORTH, SOUTH -> VoxelShapes.cuboid(0.0f, 0.0f, 0.125f, 1.0f, 0.0625f, 0.875f);
             default -> VoxelShapes.fullCube();
         };
     }

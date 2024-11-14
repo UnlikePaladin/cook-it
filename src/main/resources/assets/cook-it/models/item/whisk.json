@@ -9,12 +9,8 @@
 			"to": [8, 4.5, 15],
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 2, 10.5]},
 			"faces": {
-				"north": {"uv": [0, 0, 5, 0], "rotation": 270, "texture": "#whisk"},
-				"east": {"uv": [0, 0, 5, 9], "rotation": 270, "texture": "#whisk"},
-				"south": {"uv": [0, 0, 5, 0], "rotation": 270, "texture": "#whisk"},
-				"west": {"uv": [5, 0, 0, 9], "rotation": 90, "texture": "#whisk"},
-				"up": {"uv": [0, 0, 0, 9], "rotation": 180, "texture": "#whisk"},
-				"down": {"uv": [0, 0, 0, 9], "texture": "#whisk"}
+				"east": {"uv": [9, 0, 0, 5], "texture": "#whisk"},
+				"west": {"uv": [0, 0, 9, 5], "texture": "#whisk"}
 			}
 		},
 		{
@@ -22,12 +18,8 @@
 			"to": [10.5, 2, 15],
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 2, 10.5]},
 			"faces": {
-				"north": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#whisk"},
-				"east": {"uv": [0, 0, 0, 9], "rotation": 270, "texture": "#whisk"},
-				"south": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#whisk"},
-				"west": {"uv": [0, 0, 0, 9], "rotation": 90, "texture": "#whisk"},
-				"up": {"uv": [0, 0, 5, 9], "rotation": 180, "texture": "#whisk"},
-				"down": {"uv": [5, 0, 0, 9], "texture": "#whisk"}
+				"up": {"uv": [0, 0, 9, 5], "rotation": 90, "texture": "#whisk"},
+				"down": {"uv": [0, 5, 9, 0], "rotation": 270, "texture": "#whisk"}
 			}
 		},
 		{
@@ -35,12 +27,12 @@
 			"to": [9, 3, 6],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-22, 1, 1]},
 			"faces": {
-				"north": {"uv": [0, 9, 2, 11], "texture": "#whisk"},
-				"east": {"uv": [5, 0, 10, 2], "texture": "#whisk"},
-				"south": {"uv": [2, 9, 4, 11], "texture": "#whisk"},
-				"west": {"uv": [5, 2, 10, 4], "texture": "#whisk"},
-				"up": {"uv": [7, 9, 5, 4], "texture": "#whisk"},
-				"down": {"uv": [9, 4, 7, 9], "texture": "#whisk"}
+				"north": {"uv": [15, 0, 16, 1], "texture": "#whisk"},
+				"east": {"uv": [11, 0, 16, 2], "texture": "#whisk"},
+				"south": {"uv": [13, 2, 15, 4], "texture": "#whisk"},
+				"west": {"uv": [11, 2, 16, 4], "texture": "#whisk"},
+				"up": {"uv": [11, 5, 9, 0], "texture": "#whisk"},
+				"down": {"uv": [11, 0, 9, 5], "texture": "#whisk"}
 			}
 		}
 	],

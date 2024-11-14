@@ -44,6 +44,7 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     }
 
     public ItemStack[] getTool() {
+        if (tool.isEmpty()) {return new ItemStack[]{ ItemStack.EMPTY}; }
         return tool.getMatchingStacks();
     }
 
@@ -84,7 +85,7 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("input").forGetter(r -> r.ingredient),
                 ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
                 Codec.INT.optionalFieldOf("count", 1).forGetter(r -> r.count),
-                Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("tool").forGetter(r -> r.tool),
+                Ingredient.ALLOW_EMPTY_CODEC.optionalFieldOf("tool", Ingredient.EMPTY).forGetter(r -> r.tool),
                 Codec.BOOL.optionalFieldOf("usesItem", false).forGetter(r -> r.usesItem)
         ).apply(in, CuttingBoardRecipe::new));
 

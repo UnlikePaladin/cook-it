@@ -32,49 +32,44 @@ public class CuttingBoardEntityRenderer implements BlockEntityRenderer<CuttingBo
 
         if (!stack.isEmpty()) {
             Direction facing = blockEntity.getCachedState().get(FACING);
-            float x, y, z;
+            float x, y;
             int dir = 0;
             switch (facing) {
                 case NORTH -> {
                     x = 0.5f;
                     y = 0.625f;
-                    z = -0.125f;
                 }
                 case SOUTH -> {
                     x = -0.5f;
                     y = -0.375f;
-                    z = -0.125f;
                     dir = 2;
                 }
                 case EAST -> {
                     x = 0.5f;
                     y = -0.375f;
-                    z = -0.125f;
                     dir = 3;
                 }
                 case WEST -> {
                     x = -0.5f;
                     y = 0.625f;
-                    z = -0.125f;
                     dir = 1;
                 }
                 default -> {
                     CookIt.LOGGER.error("Cutting board is confused");
                     x = 0.0f;
                     y = 0.0f;
-                    z = 0.0f;
                 }
             }
             if (Registries.ITEM.getId(stack.getItem()).getNamespace().equals("minecraft")) {
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90 * (dir)));
                 matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
-                matrices.translate(x, y, z);
+                matrices.translate(x, y, -0.125f);
             } else {
-                matrices.translate(0.5f, 0.5625f, 0.5f);
+                matrices.translate(0.5f, 0.4375f, 0.5f);
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90 * dir));
             }
             matrices.push();
-            matrices.scale(1.0f, 1.0f, 1.0f);
+            matrices.scale(0.75f,0.75f,0.75f);
 
             client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
             matrices.pop();

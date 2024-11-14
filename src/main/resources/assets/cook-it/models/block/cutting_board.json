@@ -2,20 +2,20 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "cook-it:block/spruce_cutting_board",
-		"cutting_board": "cook-it:block/spruce_cutting_board"
+		"cutting_board": "cook-it:block/dark_oak_cutting_board",
+		"particle": "#cutting_board"
 	},
 	"elements": [
 		{
-			"from": [-2, 0, 1],
-			"to": [18, 1, 15],
+			"from": [0, 0, 2],
+			"to": [16, 1, 14],
 			"faces": {
-				"north": {"uv": [0, 0, 0.5, 10], "rotation": 270, "texture": "#cutting_board"},
-				"east": {"uv": [0, 0, 7, 0.5], "rotation": 180, "texture": "#cutting_board", "cullface": "east"},
-				"south": {"uv": [6.5, 10, 7, 0], "rotation": 270, "texture": "#cutting_board"},
-				"west": {"uv": [0, 9.5, 7, 10], "texture": "#cutting_board", "cullface": "west"},
-				"up": {"uv": [0, 0, 7, 10], "rotation": 90, "texture": "#cutting_board"},
-				"down": {"uv": [14, 0, 7, 10], "rotation": 90, "texture": "#cutting_board", "cullface": "down"}
+				"north": {"uv": [8, 0, 16, 0.5], "texture": "#cutting_board"},
+				"east": {"uv": [8, 1, 14, 1.5], "texture": "#cutting_board", "cullface": "east"},
+				"south": {"uv": [8, 0.5, 16, 1], "texture": "#cutting_board"},
+				"west": {"uv": [8, 1.5, 14, 2], "texture": "#cutting_board", "cullface": "west"},
+				"up": {"uv": [8, 6, 0, 0], "texture": "#cutting_board"},
+				"down": {"uv": [8, 6, 0, 12], "texture": "#cutting_board", "cullface": "down"}
 			}
 		}
 	],
