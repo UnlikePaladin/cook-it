@@ -45,30 +45,30 @@ public class ChefOutfitItem extends ArmorItem {
     }
 
     @Environment(EnvType.CLIENT)
-    protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot, boolean slimArms) {
+    protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
 
         var models = MinecraftClient.getInstance().getEntityModelLoader();
 
-        if (slimArms) { return new FullArmorModel(models.getModelPart(CookItClient.CHEF_OUTFIT_SLIM), slot); }
-        else {
-            return new FullArmorModel(models.getModelPart(CookItClient.CHEF_OUTFIT_WIDE), slot);
-        }
+
+
+        return new FullArmorModel(models.getModelPart(CookItClient.CHEF_OUTFIT), slot);
+
 
 
     }
 
     @Environment(EnvType.CLIENT)
-    public BipedEntityModel<LivingEntity> getArmorModel(boolean slimArms) {
+    public BipedEntityModel<LivingEntity> getArmorModel() {
         if (model == null) {
-            model = provideArmorModelForSlot(getSlotType(), slimArms);
+            model = provideArmorModelForSlot(getSlotType());
         }
         return model;
     }
 
     @NotNull
-    public Identifier getArmorTexture(boolean hasSlimArms) {
+    public Identifier getArmorTexture() {
 
-        return new Identifier(MOD_ID, hasSlimArms ? "textures/armor/chef_outfit_slim.png" : "textures/armor/chef_outfit_wide.png");
+        return new Identifier(MOD_ID, "textures/armor/chef_outfit.png");
     }
 
     @Override

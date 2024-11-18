@@ -32,7 +32,7 @@ public class FullArmorModel extends BipedEntityModel<LivingEntity> {
                 rightLeg.visible = true;
                 leftLeg.visible = true;
             }
-            case MAINHAND, OFFHAND -> { }
+            default -> {}
         }
     }
 }

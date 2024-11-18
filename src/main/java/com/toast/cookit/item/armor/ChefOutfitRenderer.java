@@ -3,8 +3,8 @@ package com.toast.cookit.item.armor;
 import com.toast.cookit.CookItClient;
 import com.toast.cookit.compat.FiguraCompat;
 import com.toast.cookit.item.armor.ChefOutfit.ChefOutfitItem;
-import com.toast.cookit.mixin.PlayerEntityModelAccessor;
 import com.toast.cookit.registries.CookItItems;
+import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -20,9 +20,9 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
-public class ArmorRenderer {
+public class ChefOutfitRenderer {
 
-    public static final List<Item> HAZMAT_SUIT =
+    public static final List<Item> CHEF_OUTFIT =
             List.of(
                     CookItItems.CHEF_UNIFORM,
                     CookItItems.CHEF_PANTS
@@ -34,22 +34,21 @@ public class ArmorRenderer {
     }
 
     public static void register() {
-        net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer renderer = (matrices, vertexConsumers, stack, entity, slot, light, contextModel) -> {
+            ArmorRenderer renderer = (matrices, vertexConsumers, stack, entity, slot, light, contextModel) -> {
             ChefOutfitItem armor = (ChefOutfitItem) stack.getItem();
 
-            boolean shouldRender = (!CookItClient.isFiguraLoaded || FiguraCompat.renderArmorPart((PlayerEntity) entity, slot));
-            boolean hasSlimArms = false;
+            boolean shouldRender = true;
 
-            if (contextModel instanceof PlayerEntityModel<?>) { hasSlimArms = ((PlayerEntityModelAccessor)contextModel).getThinArms(); }
+            if (contextModel instanceof PlayerEntityModel<?>) { shouldRender = (!CookItClient.isFiguraLoaded || FiguraCompat.renderArmorPart((PlayerEntity) entity, slot)); }
 
-            var texture = armor.getArmorTexture(hasSlimArms);
-            var model = armor.getArmorModel(hasSlimArms);
+            var texture = armor.getArmorTexture();
+            var model = armor.getArmorModel();
             if (shouldRender) {
                 contextModel.copyBipedStateTo(model);
                 renderPart(matrices, vertexConsumers, light, stack, model, texture);
             }
         };
-        net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer.register(renderer, HAZMAT_SUIT.toArray(new Item[0]));
+        ArmorRenderer.register(renderer, CHEF_OUTFIT.toArray(new Item[0]));
     }
 
 }

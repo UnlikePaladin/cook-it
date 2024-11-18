@@ -1,7 +1,7 @@
 package com.toast.cookit;
 
-import com.toast.cookit.item.armor.ArmorRenderer;
 import com.toast.cookit.item.armor.ChefOutfit.render.ChefOutfitModel;
+import com.toast.cookit.item.armor.ChefOutfitRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,12 +18,13 @@ import net.minecraft.util.Identifier;
 import com.toast.cookit.block.containers.baking_sheet.BakingSheetItemRenderer;
 import com.toast.cookit.registries.*;
 
+
 import static com.toast.cookit.CookIt.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class CookItClient implements ClientModInitializer {
-    public static final EntityModelLayer CHEF_OUTFIT_WIDE = new EntityModelLayer(new Identifier(MOD_ID,"chef_outfit_wide"), "wide");
-    public static final EntityModelLayer CHEF_OUTFIT_SLIM = new EntityModelLayer(new Identifier(MOD_ID,"chef_outfit_slim"), "slim");
+    public static final EntityModelLayer CHEF_OUTFIT = new EntityModelLayer(new Identifier(MOD_ID,"chef_outfit"), "main");
+
     public static boolean isFiguraLoaded;
 
 
@@ -39,9 +40,8 @@ public class CookItClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.UNCOOKED_PIZZA, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.PIZZA_PAN, RenderLayer.getTranslucent());
 
-        ArmorRenderer.register();
-        EntityModelLayerRegistry.registerModelLayer(CHEF_OUTFIT_WIDE, () -> TexturedModelData.of(ChefOutfitModel.getModelData(false), 64, 64));
-        EntityModelLayerRegistry.registerModelLayer(CHEF_OUTFIT_SLIM, () -> TexturedModelData.of(ChefOutfitModel.getModelData(true), 64, 64));
+        ChefOutfitRenderer.register();
+        EntityModelLayerRegistry.registerModelLayer(CHEF_OUTFIT, () -> TexturedModelData.of(ChefOutfitModel.getModelData(), 64, 64));
 
         BuiltinItemRendererRegistry.INSTANCE.register(CookItBlocks.BAKING_SHEET.asItem(), new BakingSheetItemRenderer());
         ModelPredicateProviderRegistry.register(CookItItems.FIRE_EXTINGUISHER, new Identifier("extinguisher_fuel"), (stack, world, entity, seed) -> (float) Math.round(((float) stack.getMaxDamage() - stack.getDamage()) / 100) / 10);
