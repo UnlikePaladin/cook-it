@@ -24,6 +24,7 @@ import static com.toast.cookit.registries.CookItBlocks.BLOCKS;
 
 public class CookItItems {
     public static final List<Item> ITEMS = new ArrayList<>();
+    public static final List<Item> ROLLING_PINS = new ArrayList<>();
 
     // -- Utensils --
 
@@ -77,7 +78,8 @@ public class CookItItems {
 
     public static void registerWoodenItems() {
         for (String woodType : SUPPORTED_WOOD_TYPES) {
-            registerItem(woodType + "_rolling_pin", new Item(new FabricItemSettings()));
+            Item ROLLING_PIN = registerItem(woodType + "_rolling_pin", new Item(new FabricItemSettings()));
+            ROLLING_PINS.add(ROLLING_PIN);
         }
     }
     private static Item registerItem(String name, Item item) {

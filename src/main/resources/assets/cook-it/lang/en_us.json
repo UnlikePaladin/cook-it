@@ -6,6 +6,7 @@
   "item.cook-it.spatula": "Spatula",
   "item.cook-it.whisk": "Whisk",
   "item.cook-it.fryer_basket": "Fryer Basket",
+  "item.cook-it.donut_cutter": "Donut Cutter",
   "item.cook-it.fire_extinguisher": "Fire Extinguisher",
 
   "item.cook-it.pizza_slice": "Pizza Slice",
@@ -17,8 +18,10 @@
   "item.cook-it.dough": "Dough",
   "item.cook-it.dough_rolled": "Rolled Dough",
 
+  "item.cook-it.raw_donut": "Raw Donut",
   "item.cook-it.plain_donut": "Donut",
   "item.cook-it.chocolate_glazed_donut": "Chocolate Glazed Donut",
+  "item.cook-it.chocolate_glazed_donut_with_sprinkles": "Chocolate Glazed Donut with Sprinkles",
   "item.cook-it.chocolate_glazed_donut_frosted": "Chocolate Glazed n' Frosted Donut",
   "item.cook-it.vanilla_glazed_donut": "Vanilla Glazed Donut",
   "item.cook-it.vanilla_glazed_donut_frosted": "Vanilla Glazed n' Frosted Donut",
@@ -33,7 +36,16 @@
   "item.cook-it.cinnamon_roll": "Cinnamon Roll",
   "item.cook-it.cinnamon_roll_glazed": "Glazed Cinnamon Roll",
 
-  "block.cook-it.cutting_board": "Cutting Board",
+  "item.cook-it.chef_uniform": "Chef Uniform",
+  "item.cook-it.chef_pants": "Chef Pants",
+
+  "item.cook-it.acacia_rolling_pin": "Acacia Rolling Pin",
+  "item.cook-it.birch_rolling_pin": "Birch Rolling Pin",
+  "item.cook-it.dark_oak_rolling_pin": "Dark Oak Rolling Pin",
+  "item.cook-it.jungle_rolling_pin": "Jungle Rolling Pin",
+  "item.cook-it.oak_rolling_pin": "Oak Rolling Pin",
+  "item.cook-it.spruce_rolling_pin": "Spruce Rolling Pin",
+
   "block.cook-it.muffin_tin": "Muffin Tin",
   "block.cook-it.baking_sheet": "Baking Sheet",
   "block.cook-it.fryer": "Fryer",
@@ -43,8 +55,7 @@
   "block.cook-it.pizza": "Pizza",
   "block.cook-it.uncooked_pizza": "Uncooked Pizza",
   "block.cook-it.pizza_pan": "Pizza Pan",
-
-
+  "block.cook-it.mixing_bowl": "Mixing Bowl",
 
   "block.cook-it.red_plate": "Red Plate",
   "block.cook-it.red_large_plate": "Red Large Plate",
@@ -94,6 +105,14 @@
   "block.cook-it.light_gray_bowl": "Light Gray Bowl",
   "block.cook-it.gray_bowl": "Gray Bowl",
   "block.cook-it.white_bowl": "White Bowl",
+
+  "block.cook-it.acacia_cutting_board": "Acacia Cutting Board",
+  "block.cook-it.birch_cutting_board": "Birch Cutting Board",
+  "block.cook-it.dark_oak_cutting_board": "Dark Oak Cutting Board",
+  "block.cook-it.jungle_cutting_board": "Jungle Cutting Board",
+  "block.cook-it.oak_cutting_board": "Oak Cutting Board",
+  "block.cook-it.spruce_cutting_board": "Spruce Cutting Board",
+
 
   "itemGroup.cook-it.items": "Cook It!",
   "subtitles.cook-it.microwave_hum": "Microwave Hums",
