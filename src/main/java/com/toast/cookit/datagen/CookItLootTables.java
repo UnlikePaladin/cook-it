@@ -17,6 +17,7 @@ public class CookItLootTables extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         blocks.remove(CookItBlocks.BAKING_SHEET);
+        blocks.remove(CookItBlocks.PIZZA_PAN);
         for(Block block : blocks) {
             addDrop(block, drops(block));
         }
