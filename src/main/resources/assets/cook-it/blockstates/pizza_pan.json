@@ -5,15 +5,7 @@
   ],
 
   "variants": {
-    "state=0": {
-      "model": "cook-it:block/pizza_pan_empty"
-    },
-    "state=1": {
-      "model": "cook-it:block/pizza_pan_uncooked"
-    },
-    "state=2": {
-      "model": "cook-it:block/pizza_pan"
-    }
-
+    "":
+    {"model": "cook-it:block/pizza_pan_empty"}
   }
 }

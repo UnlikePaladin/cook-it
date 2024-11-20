@@ -1,7 +1,7 @@
 {
   "type": "cook-it:cutting_board",
   "input": {
-    "item": "cook-it:dough_rolled"
+    "item": "cook-it:dough_sliced"
   },
   "output": {
     "item": "cook-it:dough"
@@ -9,5 +9,6 @@
   "tool": {
     "item": "minecraft:air"
   },
-  "usesItem": false
+  "usesItem": false,
+  "resetable": true
 }

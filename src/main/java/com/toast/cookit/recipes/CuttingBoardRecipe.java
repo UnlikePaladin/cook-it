@@ -18,13 +18,15 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     private final int count;
     private final Ingredient tool;
     private final boolean usesItem;
+    private final boolean resetable;
 
-    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, Ingredient tool, boolean usesItem) {
+    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, Ingredient tool, boolean usesItem, boolean  resetable) {
         this.output = itemStack;
         this.ingredient = ingredient;
         this.count = count;
         this.tool = tool;
         this.usesItem = usesItem;
+        this.resetable = resetable;
     }
 
     @Override
@@ -47,6 +49,7 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
         if (tool.isEmpty()) {return new ItemStack[]{ ItemStack.EMPTY}; }
         return tool.getMatchingStacks();
     }
+    public boolean isResetable() { return resetable; }
 
     public boolean usesItem() { return usesItem; }
 
@@ -86,7 +89,8 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
                 ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
                 Codec.INT.optionalFieldOf("count", 1).forGetter(r -> r.count),
                 Ingredient.ALLOW_EMPTY_CODEC.optionalFieldOf("tool", Ingredient.EMPTY).forGetter(r -> r.tool),
-                Codec.BOOL.optionalFieldOf("usesItem", false).forGetter(r -> r.usesItem)
+                Codec.BOOL.optionalFieldOf("usesItem", false).forGetter(r -> r.usesItem),
+                Codec.BOOL.optionalFieldOf("resetable", false).forGetter(r -> r.resetable)
         ).apply(in, CuttingBoardRecipe::new));
 
         @Override
@@ -102,7 +106,8 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
             Ingredient tool = Ingredient.fromPacket(buf);
             int count = buf.readInt();
             boolean usesItem = buf.readBoolean();
-            return new CuttingBoardRecipe(ingredient, output, count, tool, usesItem);
+            boolean resetable = buf.readBoolean();
+            return new CuttingBoardRecipe(ingredient, output, count, tool, usesItem, resetable);
         }
 
         @Override
@@ -112,6 +117,7 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
             buf.readInt();
             recipe.tool.write(buf);
             buf.writeBoolean(recipe.usesItem());
+            buf.writeBoolean(recipe.isResetable());
         }
     }
 }

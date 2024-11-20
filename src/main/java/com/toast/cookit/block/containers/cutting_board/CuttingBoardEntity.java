@@ -1,5 +1,6 @@
 package com.toast.cookit.block.containers.cutting_board;
 
+import com.toast.cookit.CookIt;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -21,13 +22,21 @@ public class CuttingBoardEntity extends CookingBlockEntity implements Implemente
     }
 
 
-    public boolean processRecipe(ItemStack tool) {
+    public boolean processRecipe(ItemStack tool, boolean tryReset) {
         List<RecipeEntry<CuttingBoardRecipe>> recipes = getCurrentRecipe();
-
+        CookIt.LOGGER.warn(recipes.toString());
         if (!recipes.isEmpty()) {
             for(RecipeEntry<CuttingBoardRecipe> recipeEntry : recipes) {
+
+                if (recipeEntry.value().isResetable() && tryReset && tool.isEmpty()) {
+                    Item item = recipeEntry.value().getResult(null).getItem();
+                    ItemStack output = new ItemStack(item, recipeEntry.value().getOutputCount());
+                    this.setStack(0, output);
+                    return true;
+                }
                 for (ItemStack otherTool : recipeEntry.value().getTool()) {
-                    if (tool.getItem().asItem().equals(otherTool.getItem())) {
+                    if (tool.getItem().asItem().equals(otherTool.getItem()) && !recipeEntry.value().isResetable()) {
+
                         Item item = recipeEntry.value().getResult(null).getItem();
                         ItemStack output = new ItemStack(item, recipeEntry.value().getOutputCount());
                         this.setStack(0, output);

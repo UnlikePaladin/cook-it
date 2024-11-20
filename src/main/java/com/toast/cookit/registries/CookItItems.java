@@ -38,6 +38,7 @@ public class CookItItems {
     // -- Ingredients --
     public static final Item DOUGH = registerItem("dough", new Item(new FabricItemSettings()));
     public static final Item DOUGH_ROLLED = registerItem("dough_rolled", new Item(new FabricItemSettings()));
+    public static final Item DOUGH_SLICED = registerItem("dough_sliced", new Item(new FabricItemSettings()));
     public static final Item UNCOOKED_FRENCH_FRIES = registerItem("uncooked_french_fries", new Fries(new FabricItemSettings(), CookItFoodTypes.FRYING));
 
     // -- Food --

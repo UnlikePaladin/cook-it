@@ -1,0 +1,6 @@
+{
+  "parent": "cook-it:block/cutting_board",
+  "textures": {
+    "cutting_board": "cook-it:block/oak_cutting_board"
+  }
+}

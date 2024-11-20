@@ -57,10 +57,10 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
                 return ActionResult.FAIL;
             }
         } else if (!heldItem.isEmpty()) {
-            blockEntity.processRecipe(heldItem);
-            } else {
-                boolean test = blockEntity.processRecipe(heldItem);
-                if (!test) { player.getInventory().insertStack(blockEntity.getStack(0)); }
+            blockEntity.processRecipe(heldItem, false);
+        } else {
+            boolean test = blockEntity.processRecipe(heldItem, player.isSneaking());
+            if (!test) { player.getInventory().insertStack(blockEntity.getStack(0)); }
             }
         return ActionResult.SUCCESS;
     }

@@ -1,5 +1,6 @@
 package com.toast.cookit.block.containers.cutting_board;
 
+import com.toast.cookit.registries.CookItItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -68,11 +69,29 @@ public class CuttingBoardEntityRenderer implements BlockEntityRenderer<CuttingBo
                 matrices.translate(0.5f, 0.4375f, 0.5f);
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90 * dir));
             }
-            matrices.push();
-            matrices.scale(0.75f,0.75f,0.75f);
+            if (stack.isOf(CookItItems.RAW_DONUT)) {
+                for (int i = 0; i < stack.getCount(); i++) {
+                    matrices.push();
+                    matrices.scale(0.5f, 0.5f, 0.5f);
+                    matrices.translate(0.375f - 0.675f * (i % 2), -0.25f, 0.375 - 0.675f * (double) (i / 2));
+                    client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
+                    matrices.pop();
+                }
+            } else if (stack.isOf(CookItItems.RAW_CROISSANT)) {
+                for (int i = 0; i < stack.getCount(); i++) {
+                    matrices.push();
+                    matrices.scale(0.5f, 0.5f, 0.5f);
+                    matrices.translate(-i/2.5f + 0.5625f, -0.25f, (i%2)/ 3.0f - 0.125f);
+                    client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
+                    matrices.pop();
+                }
+            } else {
+                matrices.push();
+                matrices.scale(0.75f, 0.75f, 0.75f);
 
-            client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
-            matrices.pop();
+                client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
+                matrices.pop();
+            }
         }
     }
 }

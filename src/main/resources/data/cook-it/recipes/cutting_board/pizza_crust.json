@@ -1,0 +1,12 @@
+{
+  "type": "cook-it:cutting_board",
+  "input": {
+    "item": "cook-it:dough"
+  },
+  "output": {
+    "item": "cook-it:pizza_crust"
+  },
+  "tool": {
+    "item": "minecraft:air"
+  }
+}

@@ -1,5 +1,7 @@
 package com.toast.cookit.registries;
 
+import com.toast.cookit.block.containers.pizza_pan.PizzaPanEntity;
+import com.toast.cookit.block.containers.pizza_pan.PizzaPanEntityRenderer;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
@@ -33,6 +35,7 @@ public class CookItBlockEntities {
     public static BlockEntityType<PlateEntity> PLATE_ENTITY;
     public static BlockEntityType<FryerEntity> FRYER_ENTITY;
     public static BlockEntityType<CuttingBoardEntity> CUTTING_BOARD_ENTITY;
+    public static BlockEntityType<PizzaPanEntity> PIZZA_PAN_ENTITY;
 
     public static void registerEntities() {
         BAKING_SHEET_ENTITY = registerBlockEntities("baking_sheet", BakingSheetEntity::new, new Block[]{CookItBlocks.BAKING_SHEET});
@@ -42,7 +45,7 @@ public class CookItBlockEntities {
         PLATE_ENTITY = registerBlockEntities("plate", PlateEntity::new, CookItBlocks.PLATES.toArray(Block[]::new));
         FRYER_ENTITY = registerBlockEntities("fryer", FryerEntity::new, new Block[]{CookItBlocks.FRYER});
         CUTTING_BOARD_ENTITY = registerBlockEntities("cutting_board", CuttingBoardEntity::new, CookItBlocks.CUTTING_BOARDS.toArray(Block[]::new));
-
+        PIZZA_PAN_ENTITY = registerBlockEntities("pizza_pan", PizzaPanEntity::new, new Block[]{CookItBlocks.PIZZA_PAN});
     }
 
     public static void registerRenderers() {
@@ -53,7 +56,7 @@ public class CookItBlockEntities {
         BlockEntityRendererFactories.register(PLATE_ENTITY, PlateEntityRenderer::new);
         BlockEntityRendererFactories.register(FRYER_ENTITY, FryerEntityRenderer::new);
         BlockEntityRendererFactories.register(CUTTING_BOARD_ENTITY, CuttingBoardEntityRenderer::new);
-
+        BlockEntityRendererFactories.register(PIZZA_PAN_ENTITY, PizzaPanEntityRenderer::new);
     }
 
     public static <T extends BlockEntity> BlockEntityType<T> registerBlockEntities(String name, FabricBlockEntityTypeBuilder.Factory<T> factory, Block[] block) {

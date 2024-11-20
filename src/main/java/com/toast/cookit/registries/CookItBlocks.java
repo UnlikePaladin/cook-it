@@ -21,7 +21,7 @@ import com.toast.cookit.block.appliances.microwave.Microwave;
 import com.toast.cookit.block.appliances.oven.Oven;
 import com.toast.cookit.block.containers.Bowl;
 import com.toast.cookit.block.containers.cutting_board.CuttingBoard;
-import com.toast.cookit.block.containers.PizzaPan;
+import com.toast.cookit.block.containers.pizza_pan.PizzaPan;
 import com.toast.cookit.block.containers.baking_sheet.BakingSheet;
 import com.toast.cookit.block.containers.muffin_tin.MuffinTin;
 import com.toast.cookit.block.containers.plate.Plate;
@@ -46,11 +46,12 @@ public class CookItBlocks {
     // -- BakableFoodFood Blocks --
     public static final Block PIZZA = registerBlock("pizza", new CookedPizza(FabricBlockSettings.create()));
     public static final Block UNCOOKED_PIZZA = registerBlock("uncooked_pizza", new Pizza(FabricBlockSettings.create()));
+    public static final Block PIZZA_CRUST = registerBlock("pizza_crust", new Pizza(FabricBlockSettings.create()));
 
     // -- Containers --
-    public static final Block MUFFIN_TIN = registerBlock("muffin_tin", new MuffinTin(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));;
+    public static final Block MUFFIN_TIN = registerBlock("muffin_tin", new MuffinTin(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
     public static final Block BAKING_SHEET = registerBlock("baking_sheet", new BakingSheet(FabricBlockSettings.create()));
-    public static final Block PIZZA_PAN = registerBlock("pizza_pan", new PizzaPan(FabricBlockSettings.create()));
+    public static final Block PIZZA_PAN = registerBlock("pizza_pan", new PizzaPan(FabricBlockSettings.create().nonOpaque()));
     public static final Block MIXING_BOWL = registerBlock("mixing_bowl", new MixingBowl(FabricBlockSettings.create()));
     // -- Miscellaneous --
     public static final Block BENCH = registerBlock("bench", new Bench(FabricBlockSettings.create()));
