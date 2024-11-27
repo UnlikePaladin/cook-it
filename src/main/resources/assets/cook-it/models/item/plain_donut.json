@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"donut": "cook-it:item/plain_donut"
+		"donut": "cook-it:item/plain_donut",
+		"particle": "#donut"
 	},
 	"elements": [
 		{

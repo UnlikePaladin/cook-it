@@ -1,13 +1,14 @@
 {
   "type": "cook-it:cutting_board",
   "input": {
-    "item": "cook-it:dough"
+    "item": "cook-it:raw_donut"
   },
   "output": {
-    "item": "cook-it:pizza_crust"
+    "item": "cook-it:raw_cinnamon_roll"
   },
+  "count": 4,
   "tool": {
     "item": "minecraft:air"
   },
-  "clicks": 3
+  "clicks": 4
 }

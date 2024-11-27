@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -55,46 +56,36 @@ public class Oven extends BlockWithEntity implements BlockEntityProvider {
 
         if (world.isClient || blockEntity == null) {
             return ActionResult.SUCCESS;
+        }
+
+        boolean open = state.get(OPEN);
+
+        if (!open) {
+            // Open the oven if it's closed and the player is not holding anything
+            if (player.getStackInHand(hand).isEmpty()) { openOven(world, pos, state, true); }
         } else {
-            boolean open = state.get(OPEN);
+            ItemStack heldItem = player.getStackInHand(hand);
 
-            if (!open) {
-                // Open the oven if it's closed and the player is not holding anything
-                if (player.getStackInHand(hand).isEmpty()) {
-                    world.setBlockState(pos, state.with(OPEN, true));
-                    world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.BLOCKS);
-                }
-            } else {
-                ItemStack heldItem = player.getStackInHand(hand).copyWithCount(1);
+            if (heldItem.isEmpty()) {
+                if (state.get(DONE)) {
 
-                if (heldItem.isEmpty()) {
-                    // If the oven is open and the player is not holding anything, take items out of the oven
-                    // Close the oven if it's not marked as "done"
-                    if (!state.get(DONE)) {
-                        world.setBlockState(pos, state.with(OPEN, false));
-                        world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS);
-                        return ActionResult.SUCCESS;
-                    }
                     for (int i = blockEntity.getItems().size() - 1; i >= 0; i--) {
                         if (!blockEntity.getStack(i).isEmpty()) {
-                            // Give the player the stack from the inventory
-                            player.getInventory().offerOrDrop(blockEntity.getStack(i));
-                            // Remove the stack from the inventory
-                            blockEntity.setStack(i, ItemStack.EMPTY);
-                            break;
-                        } else {
-                            world.setBlockState(pos, state.with(OPEN, false));
-                            world.playSound(null, pos, SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundCategory.BLOCKS);
+                            player.getInventory().insertStack(blockEntity.getStack(i));
+                            return ActionResult.SUCCESS;
                         }
                     }
+
                 } else {
-                    // If the oven is open and the player is holding something and try to put the held item into the oven
-                    for (int i = 0; i < blockEntity.getItems().size(); i++) {
-                        if (blockEntity.getStack(i).isEmpty()) {
-                            blockEntity.setStack(i, heldItem.copyWithCount(1));
-                            player.getStackInHand(hand).decrement(1);
-                            break;
-                        }
+                    openOven(world, pos, state, false);
+                    return ActionResult.SUCCESS;
+                }
+            } else {
+                // If the oven is open and the player is holding something, try to put the held item into the oven
+                for (int i = 0; i < blockEntity.getItems().size(); i++) {
+                    if (blockEntity.getStack(i).isEmpty()) {
+                        blockEntity.setStack(i, heldItem.split(1));
+                        return ActionResult.SUCCESS;
                     }
                 }
             }
@@ -104,6 +95,12 @@ public class Oven extends BlockWithEntity implements BlockEntityProvider {
     }
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+    }
+
+    public void openOven(World world, BlockPos pos, BlockState state, boolean open) {
+        SoundEvent sound = open ? SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN : SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE;
+        world.playSound(null, pos, sound, SoundCategory.BLOCKS);
+        world.setBlockState(pos, state.with(OPEN, open));
     }
 
     @Nullable

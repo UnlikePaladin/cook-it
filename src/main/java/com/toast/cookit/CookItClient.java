@@ -1,5 +1,6 @@
 package com.toast.cookit;
 
+import com.toast.cookit.block.containers.pizza_pan.PizzaPanItemRenderer;
 import com.toast.cookit.item.armor.ChefOutfit.render.ChefOutfitModel;
 import com.toast.cookit.item.armor.ChefOutfitRenderer;
 import net.fabricmc.api.ClientModInitializer;
@@ -43,6 +44,7 @@ public class CookItClient implements ClientModInitializer {
         ChefOutfitRenderer.register();
         EntityModelLayerRegistry.registerModelLayer(CHEF_OUTFIT, () -> TexturedModelData.of(ChefOutfitModel.getModelData(), 64, 64));
 
+        BuiltinItemRendererRegistry.INSTANCE.register(CookItBlocks.PIZZA_PAN.asItem(), new PizzaPanItemRenderer());
         BuiltinItemRendererRegistry.INSTANCE.register(CookItBlocks.BAKING_SHEET.asItem(), new BakingSheetItemRenderer());
         ModelPredicateProviderRegistry.register(CookItItems.FIRE_EXTINGUISHER, new Identifier("extinguisher_fuel"), (stack, world, entity, seed) -> (float) Math.round(((float) stack.getMaxDamage() - stack.getDamage()) / 100) / 10);
         ParticleFactoryRegistry.getInstance().register(CookIt.OIL_PARTICLE, OilParticle.Factory::new);

@@ -1,13 +1,13 @@
 {
   "type": "cook-it:cutting_board",
   "input": {
-    "item": "cook-it:plain_donut"
+    "item": "cook-it:sweet_berry_donut"
   },
   "output": {
-    "item": "cook-it:chocolate_donut"
+    "item": "cook-it:sweet_berry_donut_sprinkles"
   },
   "tool": {
-    "item": "minecraft:cocoa_beans"
+    "tag": "c:dyes"
   },
   "usesItem": true
 }

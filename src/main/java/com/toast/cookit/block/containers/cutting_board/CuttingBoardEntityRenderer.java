@@ -69,7 +69,7 @@ public class CuttingBoardEntityRenderer implements BlockEntityRenderer<CuttingBo
                 matrices.translate(0.5f, 0.4375f, 0.5f);
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90 * dir));
             }
-            if (stack.isOf(CookItItems.RAW_DONUT)) {
+            if (stack.isOf(CookItItems.RAW_DONUT) || stack.isOf(CookItItems.RAW_CINNAMON_ROLL)) {
                 for (int i = 0; i < stack.getCount(); i++) {
                     matrices.push();
                     matrices.scale(0.5f, 0.5f, 0.5f);
@@ -88,7 +88,6 @@ public class CuttingBoardEntityRenderer implements BlockEntityRenderer<CuttingBo
             } else {
                 matrices.push();
                 matrices.scale(0.75f, 0.75f, 0.75f);
-
                 client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
                 matrices.pop();
             }

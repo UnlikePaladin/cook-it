@@ -1,5 +1,6 @@
 package com.toast.cookit.block.containers.plate;
 
+import com.toast.cookit.registries.CookItItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -24,7 +25,11 @@ public class PlateEntityRenderer<T extends PlateEntity> implements BlockEntityRe
         if (!stack.isEmpty()) {
             matrices.push();
             matrices.scale(0.5625f, 0.5625f, 0.5625f);
-            matrices.translate(0.875f, 0.6125f, 0.875f);
+            if (stack.isOf(CookItItems.PIZZA_SLICE)) {
+                matrices.translate(1.11f, 0.6125f, 0.675f);
+            } else {
+                matrices.translate(0.875f, 0.6125f, 0.875f);
+            }
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
             client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
             matrices.pop();

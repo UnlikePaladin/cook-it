@@ -1,13 +1,13 @@
 {
   "type": "cook-it:cutting_board",
   "input": {
-    "item": "cook-it:plain_donut"
+    "item": "cook-it:cinnamon_roll"
   },
   "output": {
-    "item": "cook-it:chocolate_donut"
+    "item": "cook-it:cinnamon_roll_glazed"
   },
   "tool": {
-    "item": "minecraft:cocoa_beans"
+    "item": "minecraft:sugar"
   },
   "usesItem": true
 }

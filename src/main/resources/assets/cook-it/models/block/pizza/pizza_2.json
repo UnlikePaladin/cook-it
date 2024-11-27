@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "cook-it:block/pizza",
-		"pizza": "cook-it:block/pizza"
+		"pizza": "cook-it:block/pizza",
+		"particle": "#pizza"
 	},
 	"elements": [
 		{
@@ -19,34 +19,34 @@
 			"from": [1, 0, 1],
 			"to": [2, 2, 8],
 			"faces": {
-				"north": {"uv": [6.5, 7, 7, 8], "texture": "#pizza"},
+				"north": {"uv": [6.5, 7, 7, 8], "texture": "#pizza", "cullface": "north"},
 				"east": {"uv": [3.5, 10, 7, 11], "texture": "#pizza"},
 				"south": {"uv": [6.5, 15, 7, 16], "texture": "#pizza"},
-				"west": {"uv": [0, 8, 3.5, 9], "texture": "#pizza"},
+				"west": {"uv": [0, 8, 3.5, 9], "texture": "#pizza", "cullface": "west"},
 				"up": {"uv": [7, 7, 6.5, 3.5], "texture": "#pizza"},
-				"down": {"uv": [7.5, 3.5, 7, 7], "texture": "#pizza"}
+				"down": {"uv": [7.5, 3.5, 7, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
 			"from": [14, 0, 1],
 			"to": [15, 2, 8],
 			"faces": {
-				"north": {"uv": [0, 7, 0.5, 8], "texture": "#pizza"},
-				"east": {"uv": [3.5, 12, 7, 13], "texture": "#pizza"},
+				"north": {"uv": [0, 7, 0.5, 8], "texture": "#pizza", "cullface": "north"},
+				"east": {"uv": [3.5, 12, 7, 13], "texture": "#pizza", "cullface": "east"},
 				"south": {"uv": [6, 14, 6.5, 15], "texture": "#pizza"},
 				"west": {"uv": [0, 10, 3.5, 11], "texture": "#pizza"},
 				"up": {"uv": [0.5, 7, 0, 3.5], "texture": "#pizza"},
-				"down": {"uv": [14, 3.5, 13.5, 7], "texture": "#pizza"}
+				"down": {"uv": [14, 3.5, 13.5, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		},
 		{
 			"from": [2, 0, 1],
 			"to": [14, 2, 2],
 			"faces": {
-				"north": {"uv": [0.5, 7, 6.5, 8], "texture": "#pizza"},
-				"south": {"uv": [0.5, 9, 6.5, 10], "texture": "#pizza"},
+				"north": {"uv": [0.5, 7, 6.5, 8], "texture": "#pizza", "cullface": "north"},
+				"south": {"uv": [6.5, 7, 0.5, 8], "texture": "#pizza"},
 				"up": {"uv": [6.5, 7, 0.5, 6.5], "texture": "#pizza"},
-				"down": {"uv": [13.5, 6.5, 8, 7], "texture": "#pizza"}
+				"down": {"uv": [13.5, 6.5, 8, 7], "texture": "#pizza", "cullface": "down"}
 			}
 		}
 	],

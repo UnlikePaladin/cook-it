@@ -37,7 +37,6 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
         builder.add(Properties.HORIZONTAL_FACING);
 
     }
-
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
@@ -59,12 +58,22 @@ public class CuttingBoard extends HorizontalFacingBlock implements BlockEntityPr
         } else if (!heldItem.isEmpty()) {
             blockEntity.processRecipe(heldItem, false);
         } else {
-            boolean test = blockEntity.processRecipe(heldItem, player.isSneaking());
-            if (!test) { player.getInventory().insertStack(blockEntity.getStack(0)); }
-            }
+            blockEntity.processRecipe(heldItem, player.isSneaking());
+        }
         return ActionResult.SUCCESS;
     }
 
+    @Override
+    public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+        super.onBlockBreakStart(state, world, pos, player);
+        CuttingBoardEntity blockEntity = (CuttingBoardEntity) world.getBlockEntity(pos);
+
+        if (blockEntity != null && !blockEntity.isEmpty()) {
+            player.getInventory().insertStack(blockEntity.getStack(0));
+            blockEntity.setClicks(0);
+        }
+
+    }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {

@@ -50,11 +50,7 @@ public class PizzaPan extends BlockWithEntity implements BlockEntityProvider {
         ItemStack heldItem = player.getStackInHand(hand);
         boolean hasPizza = !blockEntity.isEmpty();
         if (heldItem.getItem() instanceof BlockItem blockItem) {
-            CookIt.LOGGER.warn("HERE2");
-            CookIt.LOGGER.warn(String.valueOf(blockEntity.getItems()));
-            CookIt.LOGGER.warn(String.valueOf(hasPizza));
             if (blockItem.getBlock() instanceof Pizza && !hasPizza) {
-                CookIt.LOGGER.warn("HERE");
                 blockEntity.setStack(0, heldItem.split(1));
             }
         } else if (heldItem.isEmpty() && hasPizza) {

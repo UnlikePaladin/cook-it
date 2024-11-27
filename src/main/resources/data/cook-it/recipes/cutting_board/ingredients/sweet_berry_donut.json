@@ -4,10 +4,10 @@
     "item": "cook-it:plain_donut"
   },
   "output": {
-    "item": "cook-it:chocolate_donut"
+    "item": "cook-it:sweet_berry_donut"
   },
   "tool": {
-    "item": "minecraft:cocoa_beans"
+    "item": "minecraft:sweet_berries"
   },
   "usesItem": true
 }

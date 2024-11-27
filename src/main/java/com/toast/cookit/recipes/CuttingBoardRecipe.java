@@ -19,14 +19,16 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     private final Ingredient tool;
     private final boolean usesItem;
     private final boolean resetable;
+    private final int clicks;
 
-    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, Ingredient tool, boolean usesItem, boolean  resetable) {
+    public CuttingBoardRecipe(Ingredient ingredient, ItemStack itemStack, int count, Ingredient tool, int clicks, boolean usesItem, boolean  resetable) {
         this.output = itemStack;
         this.ingredient = ingredient;
         this.count = count;
         this.tool = tool;
         this.usesItem = usesItem;
         this.resetable = resetable;
+        this.clicks = clicks;
     }
 
     @Override
@@ -52,6 +54,8 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
     public boolean isResetable() { return resetable; }
 
     public boolean usesItem() { return usesItem; }
+
+    public int getClicks() { return clicks; }
 
     public int getOutputCount() {
         return count;
@@ -89,8 +93,11 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
                 ItemStack.RECIPE_RESULT_CODEC.fieldOf("output").forGetter(r -> r.output),
                 Codec.INT.optionalFieldOf("count", 1).forGetter(r -> r.count),
                 Ingredient.ALLOW_EMPTY_CODEC.optionalFieldOf("tool", Ingredient.EMPTY).forGetter(r -> r.tool),
+                Codec.INT.optionalFieldOf("clicks", 1).forGetter(r -> r.clicks),
                 Codec.BOOL.optionalFieldOf("usesItem", false).forGetter(r -> r.usesItem),
                 Codec.BOOL.optionalFieldOf("resetable", false).forGetter(r -> r.resetable)
+
+
         ).apply(in, CuttingBoardRecipe::new));
 
         @Override
@@ -105,16 +112,18 @@ public class CuttingBoardRecipe implements Recipe<SimpleInventory> {
             ItemStack output = buf.readItemStack();
             Ingredient tool = Ingredient.fromPacket(buf);
             int count = buf.readInt();
+            int clicks = buf.readInt();
             boolean usesItem = buf.readBoolean();
             boolean resetable = buf.readBoolean();
-            return new CuttingBoardRecipe(ingredient, output, count, tool, usesItem, resetable);
+            return new CuttingBoardRecipe(ingredient, output, count, tool, clicks, usesItem, resetable);
         }
 
         @Override
         public void write(PacketByteBuf buf, CuttingBoardRecipe recipe) {
             recipe.ingredient.write(buf);
             buf.writeItemStack(recipe.getResult(null));
-            buf.readInt();
+            buf.writeInt(recipe.count);
+            buf.writeInt(recipe.clicks);
             recipe.tool.write(buf);
             buf.writeBoolean(recipe.usesItem());
             buf.writeBoolean(recipe.isResetable());

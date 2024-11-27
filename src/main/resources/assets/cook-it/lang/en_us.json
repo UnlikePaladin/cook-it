@@ -17,15 +17,18 @@
   "item.cook-it.french_fries": "French Fries",
   "item.cook-it.dough": "Dough",
   "item.cook-it.dough_rolled": "Rolled Dough",
+  "item.cook-it.dough_sliced": "Sliced Dough",
 
   "item.cook-it.raw_donut": "Raw Donut",
   "item.cook-it.plain_donut": "Donut",
-  "item.cook-it.chocolate_glazed_donut": "Chocolate Glazed Donut",
-  "item.cook-it.chocolate_glazed_donut_with_sprinkles": "Chocolate Glazed Donut with Sprinkles",
-  "item.cook-it.chocolate_glazed_donut_frosted": "Chocolate Glazed n' Frosted Donut",
-  "item.cook-it.vanilla_glazed_donut": "Vanilla Glazed Donut",
-  "item.cook-it.vanilla_glazed_donut_frosted": "Vanilla Glazed n' Frosted Donut",
-  "item.cook-it.pink_glazed_donut": "Pink Glazed Donut",
+  "item.cook-it.chocolate_donut": "Chocolate Glazed Donut",
+  "item.cook-it.chocolate_donut_sprinkles": "Chocolate Glazed Donut",
+  "item.cook-it.chocolate_donut_striped": "Chocolate Glazed Donut",
+  "item.cook-it.vanilla_donut": "Vanilla Glazed Donut",
+  "item.cook-it.vanilla_donut_sprinkles": "Vanilla Glazed Donut",
+  "item.cook-it.vanilla_donut_striped": "Vanilla Glazed Donut",
+  "item.cook-it.sweet_berry_donut": "Sweet Berry Glazed Donut",
+  "item.cook-it.sweet_berry_donut_sprinkles": "Sweet Berry Glazed Donut",
   "item.cook-it.peanut_donut": "Chocolate Glazed Donut with Peanuts",
 
   "item.cook-it.plain_muffin": "Muffin",
@@ -33,6 +36,7 @@
   "item.cook-it.chocolate_chip_muffin": "Chocolate Chip Muffin",
   "item.cook-it.chocolate_muffin": " Chocolate Muffin",
 
+  "item.cook-it.raw_cinnamon_roll": "Raw Cinnamon Roll",
   "item.cook-it.cinnamon_roll": "Cinnamon Roll",
   "item.cook-it.cinnamon_roll_glazed": "Glazed Cinnamon Roll",
 

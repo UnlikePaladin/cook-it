@@ -1,6 +1,5 @@
 package com.toast.cookit.block.appliances.oven;
 
-import com.toast.cookit.registries.CookItBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -10,9 +9,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 
@@ -38,20 +34,20 @@ public class OvenEntityRenderer implements BlockEntityRenderer<OvenEntity> {
                     matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
                 }
 
-                if (stack.getItem().equals(CookItBlocks.PIZZA_PAN.asItem())) {
-                    NbtCompound nbt = stack.getSubNbt("BlockEntityTag");
-                    if (nbt == null || !nbt.contains("Items")) return;
-
-                    NbtList itemsTag = nbt.getList("Items", NbtElement.COMPOUND_TYPE);
-                    NbtCompound itemTag = itemsTag.getCompound(0);
-
-                    ItemStack pizza = ItemStack.fromNbt(itemTag);
-                    if (pizza.isEmpty()) { return; }
-                    matrices.push();
-                    matrices.translate(0.0f,0.0625f, 0.0f);
-                    client.getItemRenderer().renderItem(pizza, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
-                    matrices.pop();
-                }
+//                if (stack.getItem().equals(CookItBlocks.PIZZA_PAN.asItem())) {
+//                    NbtCompound nbt = stack.getSubNbt("BlockEntityTag");
+//                    if (nbt == null || !nbt.contains("Items")) return;
+//
+//                    NbtList itemsTag = nbt.getList("Items", NbtElement.COMPOUND_TYPE);
+//                    NbtCompound itemTag = itemsTag.getCompound(0);
+//
+//                    ItemStack pizza = ItemStack.fromNbt(itemTag);
+//                    if (pizza.isEmpty()) { return; }
+//                    matrices.push();
+//                    matrices.translate(0.0f,0.0625f, 0.0f);
+//                    client.getItemRenderer().renderItem(pizza, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
+//                    matrices.pop();
+//                }
                 client.getItemRenderer().renderItem(stack, ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
                 matrices.pop();
             }

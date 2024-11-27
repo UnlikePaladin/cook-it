@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"2": "cook-it:item/dough_rolled"
+		"2": "cook-it:item/dough_rolled",
+		"particle": "#2"
 	},
 	"elements": [
 		{

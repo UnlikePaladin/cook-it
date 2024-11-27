@@ -54,7 +54,7 @@ public class FryerBasket extends Item {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         ItemStack basket = context.getStack();
-        CookIt.LOGGER.debug(String.valueOf(context.getStack()));
+
         BlockPos hitPos = context.getBlockPos();
         BlockEntity block = context.getWorld().getBlockEntity(hitPos);
         if (block instanceof PlateEntity && context.getWorld().getBlockState(hitPos).get(PLATES_AMOUNT) == 1 || block instanceof CuttingBoardEntity) {

@@ -16,10 +16,12 @@ public class PizzaPanEntityRenderer implements BlockEntityRenderer<PizzaPanEntit
     public PizzaPanEntityRenderer(BlockEntityRendererFactory.Context ctx) {
     }
     @Override
+    public int getRenderDistance() {
+        return 16;
+    }
+    @Override
     public void render(PizzaPanEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-
         final MinecraftClient client = MinecraftClient.getInstance();
-
         ItemStack stack = blockEntity.getStack(0);
         if (!stack.isEmpty()) {
             matrices.push();

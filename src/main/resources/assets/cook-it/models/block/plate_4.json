@@ -1,7 +1,8 @@
 {
 	"credit": "Made by ToastTextures using Blockbench",
 	"textures": {
-		"plate": "cook-it:block/colored/plate/white_plate"
+		"plate": "cook-it:block/colored/plate/white_plate",
+		"particle": "#plate"
 	},
 	"elements": [
 		{

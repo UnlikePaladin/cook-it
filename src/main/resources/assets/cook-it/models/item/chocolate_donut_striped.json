@@ -1,7 +1,7 @@
 {
 	"parent": "cook-it:item/plain_donut",
 	"textures": {
-		"donut": "cook-it:item/chocolate_donut_frosted"
+		"donut": "cook-it:item/chocolate_donut_striped"
 	}
 
 }

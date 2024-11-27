@@ -1,0 +1,58 @@
+{
+	"credit": "Made by ToastTextures using Blockbench",
+	"textures": {
+		"cinnamon_roll": "cook-it:item/raw_cinnamon_roll",
+		"particle": "#cinnamon_roll"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 2, 12],
+			"faces": {
+				"north": {"uv": [8, 8, 16, 10], "texture": "#cinnamon_roll"},
+				"east": {"uv": [8, 10, 16, 12], "texture": "#cinnamon_roll"},
+				"south": {"uv": [0, 8, 8, 10], "texture": "#cinnamon_roll"},
+				"west": {"uv": [0, 10, 8, 12], "texture": "#cinnamon_roll"},
+				"up": {"uv": [0, 0, 8, 8], "rotation": 180, "texture": "#cinnamon_roll"},
+				"down": {"uv": [16, 0, 8, 8], "texture": "#cinnamon_roll"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 135, 0],
+			"translation": [0, 2, 2],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 135, 0],
+			"translation": [0, 2, 2],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 135, 0],
+			"translation": [0, 5, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 135, 0],
+			"translation": [0, 5, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"translation": [0, 14.25, 0]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -6.75]
+		}
+	}
+}

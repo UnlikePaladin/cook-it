@@ -19,6 +19,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static com.toast.cookit.block.appliances.oven.Oven.DONE;
+import static com.toast.cookit.block.appliances.oven.Oven.OPEN;
 
 public class OvenEntity extends CookingBlockEntity implements ImplementedInventory {
 
@@ -52,10 +53,13 @@ public class OvenEntity extends CookingBlockEntity implements ImplementedInvento
         if (world.isClient()) {
             return;
         }
-
+        world.setBlockState(pos, state.with(DONE, !this.getItems().isEmpty() && this.done));
+        if (this.isEmpty()) { this.done = false; return;}
+        if (state.get(OPEN)) { return; }
 
         for (int i = 0; i < this.size(); i++) {
             ItemStack item = this.getStack(i);
+            if(item.isEmpty()) { break; }
 
             Optional<RecipeEntry<OvenRecipe>> recipe = getCurrentRecipe(item);
             if (recipe.isPresent()) {
@@ -64,14 +68,15 @@ public class OvenEntity extends CookingBlockEntity implements ImplementedInvento
                     this.done = false;
                 } else {
                     craftRecipe(i);
-                    world.setBlockState(pos, state.with(DONE, true));
                     this.done = true;
+                    world.setBlockState(pos, state.with(DONE, true));
+
 
                     this.progress[i] = 0;
                 }
-            }
+            } else { this.done = true; break; }
         }
-        world.setBlockState(pos, state.with(DONE, !this.getItems().isEmpty() && this.done));
+
     }
 
     private void craftRecipe(int index) {

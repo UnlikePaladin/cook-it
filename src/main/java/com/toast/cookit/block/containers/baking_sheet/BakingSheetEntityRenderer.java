@@ -17,6 +17,11 @@ public class BakingSheetEntityRenderer implements BlockEntityRenderer<BakingShee
     }
 
     @Override
+    public int getRenderDistance() {
+        return 32;
+    }
+
+    @Override
     public void render(BakingSheetEntity blockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         final MinecraftClient client = MinecraftClient.getInstance();
 

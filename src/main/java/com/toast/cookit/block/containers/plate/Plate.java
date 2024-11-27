@@ -43,7 +43,13 @@ public class Plate extends Block implements BlockEntityProvider {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
         int plateAmount = state.get(PLATES_AMOUNT);
-        return VoxelShapes.cuboid(0.25f, 0f, 0.25f, 0.75f, 0.0625f * plateAmount, 0.75f);
+        if (isLargePlate((Plate) state.getBlock())) {
+            return VoxelShapes.cuboid(0.125f, 0f, 0.125f, 0.875f, 0.0625f * plateAmount, 0.875f);
+        } else {
+            return VoxelShapes.cuboid(0.25f, 0f, 0.25f, 0.75f, 0.0625f * plateAmount, 0.75f);
+        }
+
+
     }
 
     @Override

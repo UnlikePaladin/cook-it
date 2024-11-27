@@ -1,0 +1,11 @@
+{
+	"comment": [
+		"Seriously, what does the pink frosting taste like because it certainly isn't strawberry...?",
+		"Update: the secret ingredient was sweet berries"
+	],
+	"parent": "cook-it:item/plain_donut",
+	"textures": {
+		"donut": "cook-it:item/sweet_berry_donut"
+	}
+
+}

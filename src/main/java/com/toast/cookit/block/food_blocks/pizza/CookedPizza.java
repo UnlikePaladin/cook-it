@@ -64,6 +64,7 @@ public class CookedPizza extends Pizza{
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        super.onUse(state, world, pos, player, hand, hit);
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         int pizzaAmount = state.get(PIZZA_AMOUNT);
         ItemStack heldItem = player.getStackInHand(hand);

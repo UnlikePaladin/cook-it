@@ -1,10 +1,10 @@
 {
   "type": "cook-it:cutting_board",
   "input": {
-    "item": "cook-it:chocolate_glazed_donut"
+    "item": "cook-it:chocolate_donut"
   },
   "output": {
-    "item": "cook-it:chocolate_glazed_donut_with_sprinkles"
+    "item": "cook-it:chocolate_donut_sprinkles"
   },
   "tool": {
     "tag": "c:dyes"
