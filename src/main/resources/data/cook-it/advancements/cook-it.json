@@ -3,12 +3,11 @@
     "icon": {
       "item": "cook-it:chef_hat"
     },
-    "title": "Cook it!",
-    "description": "Why befriend it, when you can eat it?",
+    "title": "Chef Status",
+    "description": "Make an entire chef outfit",
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
-    "background": "cook-it:textures/gui/bg.png"
+    "announce_to_chat": false
   },
   "criteria": {
     "requirement": {
@@ -17,7 +16,17 @@
         "items": [
           {
             "items": [
-              "cook-it:microwave"
+              "cook-it:chef_hat"
+            ]
+          },
+          {
+            "items": [
+              "cook-it:chef_uniform"
+            ]
+          },
+          {
+            "items": [
+              "cook-it:chef_pants"
             ]
           }
         ]

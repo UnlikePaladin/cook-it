@@ -1,5 +1,6 @@
 package com.toast.cookit.block.containers.baking_sheet;
 
+import com.toast.cookit.registries.CookItItems;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -30,9 +31,14 @@ public class BakingSheetItemRenderer implements BuiltinItemRendererRegistry.Dyna
             if (!itemStack.isEmpty()) {
                 matrices.push();
 
-                matrices.scale(0.5625f,0.5625f,0.5625f);
-                matrices.translate((double) (i % 2) / 2.325 + 0.6875f, 0.5625, (double) (i % 8) / 6 + 0.325f);
+                if (itemStack.isOf(CookItItems.RAW_CINNAMON_ROLL) || itemStack.isOf(CookItItems.CINNAMON_ROLL)) {
 
+                    matrices.scale(0.3125f,0.1f,0.3125f);
+                    matrices.translate((double) (i % 2) / 1.25f + 1.25f, 0.5625f, (double) (i % 8) / 3.25f + 0.525f);//(double) (i % 8) / 3.375f + 0.525f);
+                } else {
+                    matrices.scale(0.5625f,0.5625f,0.5625f);
+                    matrices.translate((double) (i % 2) / 2.375 + 0.6875f, 0.5625f, (double) (i % 8) / 6 + 0.3125f);
+                }
                 MinecraftClient.getInstance().getItemRenderer().renderItem(new ItemStack(itemStack.getItem()), ModelTransformationMode.NONE, light, overlay, matrices, vertexConsumers, MinecraftClient.getInstance().world, 0);
                 matrices.pop();
             }

@@ -1,5 +1,6 @@
 package com.toast.cookit.block.appliances.oven;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
@@ -68,6 +69,7 @@ public class OvenEntity extends CookingBlockEntity implements ImplementedInvento
                     this.done = false;
                 } else {
                     craftRecipe(i);
+                    world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
                     this.done = true;
                     world.setBlockState(pos, state.with(DONE, true));
 

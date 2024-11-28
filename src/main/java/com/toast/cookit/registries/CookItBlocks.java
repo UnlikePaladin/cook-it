@@ -37,31 +37,35 @@ public class CookItBlocks {
     public static final List<Plate> PLATES = new ArrayList<>();
     public static final List<Bowl> BOWLS = new ArrayList<>();
     public static final List<Block> CUTTING_BOARDS = new ArrayList<>();
+    public static final List<Block> APPLIANCES = new ArrayList<>();
+    public static final List<Block> CONTAINERS = new ArrayList<>();
+
     // -- Appliances --
-    public static final Block FRYER = registerBlock("fryer", new Fryer(FabricBlockSettings.create().nonOpaque()));
+    public static final Block FRYER = registerBlock("fryer", new Fryer(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
     public static final Block TOASTER = registerBlock("toaster", new Toaster(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)));
     public static final Block OVEN = registerBlock("oven", new Oven(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
     public static final Block MICROWAVE = registerBlock("microwave", new Microwave(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 
-    // -- BakableFoodFood Blocks --
+    // -- Food Blocks --
     public static final Block PIZZA = registerBlock("pizza", new CookedPizza(FabricBlockSettings.create()));
     public static final Block UNCOOKED_PIZZA = registerBlock("uncooked_pizza", new Pizza(FabricBlockSettings.create()));
     public static final Block PIZZA_CRUST = registerBlock("pizza_crust", new Pizza(FabricBlockSettings.create()));
 
     // -- Containers --
     public static final Block MUFFIN_TIN = registerBlock("muffin_tin", new MuffinTin(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
-    public static final Block BAKING_SHEET = registerBlock("baking_sheet", new BakingSheet(FabricBlockSettings.create()));
-    public static final Block PIZZA_PAN = registerBlock("pizza_pan", new PizzaPan(FabricBlockSettings.create().nonOpaque()));
-    public static final Block MIXING_BOWL = registerBlock("mixing_bowl", new MixingBowl(FabricBlockSettings.create()));
+    public static final Block BAKING_SHEET = registerBlock("baking_sheet", new BakingSheet(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK)));
+    public static final Block PIZZA_PAN = registerBlock("pizza_pan", new PizzaPan(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
+    public static final Block MIXING_BOWL = registerBlock("mixing_bowl", new MixingBowl(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK)));
+
     // -- Miscellaneous --
     public static final Block BENCH = registerBlock("bench", new Bench(FabricBlockSettings.create()));
 
 
     public static void registerColoredBlocks() {
         for (DyeColor color : DyeColor.values()) {
-            Block PLATE = registerBlock(color + "_plate", new Plate(FabricBlockSettings.create().sounds(BlockSoundGroup.DECORATED_POT)));
-            Block LARGE_PLATE = registerBlock(color + "_large_plate", new Plate(FabricBlockSettings.create().sounds(BlockSoundGroup.DECORATED_POT)));
-            Block BOWL = registerBlock(color + "_bowl", new Bowl(FabricBlockSettings.create().sounds(BlockSoundGroup.DECORATED_POT)));
+            Block PLATE = registerBlock(color + "_plate", new Plate(FabricBlockSettings.create().strength(0.4f).sounds(BlockSoundGroup.DECORATED_POT)));
+            Block LARGE_PLATE = registerBlock(color + "_large_plate", new Plate(FabricBlockSettings.create().strength(0.4f).sounds(BlockSoundGroup.DECORATED_POT)));
+            Block BOWL = registerBlock(color + "_bowl", new Bowl(FabricBlockSettings.create().strength(0.4f).sounds(BlockSoundGroup.DECORATED_POT)));
             PLATES.add((Plate) PLATE);
             PLATES.add((Plate) LARGE_PLATE);
             BOWLS.add((Bowl) BOWL);
@@ -87,6 +91,14 @@ public class CookItBlocks {
     public static void registerBlocks() {
         registerColoredBlocks();
         registerWoodenBlocks();
+        APPLIANCES.add(FRYER);
+        APPLIANCES.add(TOASTER);
+        APPLIANCES.add(OVEN);
+        APPLIANCES.add(MICROWAVE);
+        CONTAINERS.add(MUFFIN_TIN);
+        CONTAINERS.add(BAKING_SHEET);
+        CONTAINERS.add(MIXING_BOWL);
+        CONTAINERS.add(PIZZA_PAN);
     }
 
 
