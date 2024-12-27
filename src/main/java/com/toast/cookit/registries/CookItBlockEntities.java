@@ -1,5 +1,7 @@
 package com.toast.cookit.registries;
 
+import com.toast.cookit.block.containers.mixing_bowl.MixingBowlEntity;
+import com.toast.cookit.block.containers.mixing_bowl.MixingBowlEntityRenderer;
 import com.toast.cookit.block.containers.pizza_pan.PizzaPanEntity;
 import com.toast.cookit.block.containers.pizza_pan.PizzaPanEntityRenderer;
 import com.toast.cookit.block.food_blocks.pizza.PizzaEntity;
@@ -40,6 +42,8 @@ public class CookItBlockEntities {
     public static BlockEntityType<CuttingBoardEntity> CUTTING_BOARD_ENTITY;
     public static BlockEntityType<PizzaPanEntity> PIZZA_PAN_ENTITY;
     public static BlockEntityType<PizzaEntity> PIZZA_ENTITY;
+    public static BlockEntityType<MixingBowlEntity> MIXING_BOWL_ENTITY;
+
     public static void registerEntities() {
         BAKING_SHEET_ENTITY = registerBlockEntities("baking_sheet", BakingSheetEntity::new, new Block[]{CookItBlocks.BAKING_SHEET});
         MUFFIN_TIN_ENTITY =registerBlockEntities("muffin_tin", MuffinTinEntity::new, new Block[]{CookItBlocks.MUFFIN_TIN});
@@ -49,7 +53,8 @@ public class CookItBlockEntities {
         FRYER_ENTITY = registerBlockEntities("fryer", FryerEntity::new, new Block[]{CookItBlocks.FRYER});
         CUTTING_BOARD_ENTITY = registerBlockEntities("cutting_board", CuttingBoardEntity::new, CookItBlocks.CUTTING_BOARDS.toArray(Block[]::new));
         PIZZA_PAN_ENTITY = registerBlockEntities("pizza_pan", PizzaPanEntity::new, new Block[]{CookItBlocks.PIZZA_PAN});
-        PIZZA_ENTITY = registerBlockEntities("pizza", PizzaEntity::new, new Block[]{CookItBlocks.UNCOOKED_PIZZA, CookItBlocks.PIZZA});
+        PIZZA_ENTITY = registerBlockEntities("pizza", PizzaEntity::new, new Block[]{CookItBlocks.PIZZA_CRUST, CookItBlocks.UNCOOKED_PIZZA, CookItBlocks.PIZZA});
+        MIXING_BOWL_ENTITY = registerBlockEntities("mixing_bowl", MixingBowlEntity::new, new Block[]{CookItBlocks.MIXING_BOWL});
     }
 
     public static void registerRenderers() {
@@ -62,6 +67,7 @@ public class CookItBlockEntities {
         BlockEntityRendererFactories.register(CUTTING_BOARD_ENTITY, CuttingBoardEntityRenderer::new);
         BlockEntityRendererFactories.register(PIZZA_PAN_ENTITY, PizzaPanEntityRenderer::new);
         BlockEntityRendererFactories.register(PIZZA_ENTITY, PizzaEntityRenderer::new);
+        BlockEntityRendererFactories.register(MIXING_BOWL_ENTITY, MixingBowlEntityRenderer::new);
     }
 
     public static <T extends BlockEntity> BlockEntityType<T> registerBlockEntities(String name, FabricBlockEntityTypeBuilder.Factory<T> factory, Block[] block) {

@@ -2,10 +2,11 @@ package com.toast.cookit.block.food_blocks.pizza;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.StringIdentifiable;
 
-public enum PizzaToppings {
+public enum PizzaToppings implements StringIdentifiable {
     PORKCHOP(Items.PORKCHOP, "porkchop"),
-    BEEF(Items.COOKED_BEEF, "beef"),
+    BEEF(Items.BEEF, "beef"),
     KELP(Items.KELP, "kelp");
 
     private final Item item;
@@ -20,6 +21,20 @@ public enum PizzaToppings {
     }
 
     public String getName() {
+        return this.name;
+    }
+
+    public static String fromItem(Item item) {
+        for (PizzaToppings topping : values()) {
+            if (topping.getItem().equals(item)) {
+                return topping.name;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String asString() {
         return this.name;
     }
 }

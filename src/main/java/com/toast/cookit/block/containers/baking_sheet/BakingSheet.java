@@ -49,8 +49,9 @@ public class BakingSheet extends Block implements BlockEntityProvider {
                 for (int i = 0; i < blockEntity.getItems().size(); i++) {
                     if (blockEntity.getStack(i).isEmpty() && item.getItem() instanceof CookItFood && ((CookItFood)item.getItem()).getFoodType().equals(CookItFoodTypes.BAKING)) {
                         // Put the stack the player is holding into the inventory
-                        item.decrement(1);
                         blockEntity.setStack(i, new ItemStack(item.getItem(), 1));
+                        item.decrement(1);
+
                         break;
                     }
                 }

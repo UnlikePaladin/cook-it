@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -68,14 +69,18 @@ public class CookedPizza extends Pizza{
         world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         int pizzaAmount = state.get(PIZZA_AMOUNT);
         ItemStack heldItem = player.getStackInHand(hand);
-
-        if (world.isClient) {
+        PizzaEntity entity = (PizzaEntity) world.getBlockEntity(pos);
+        if (entity == null || world.isClient) {
             return ActionResult.SUCCESS;
         } else {
 
             if (world.getBlockState(pos).getBlock() == CookItBlocks.PIZZA && heldItem.isEmpty()) {
 
-                player.getInventory().offerOrDrop(new ItemStack(CookItItems.PIZZA_SLICE));
+                NbtList toppings = entity.getToppings();
+
+                ItemStack itemStack = new ItemStack(CookItItems.PIZZA_SLICE, 1);
+                if (!toppings.isEmpty()) { itemStack.getOrCreateNbt().put("toppings", toppings); }
+                player.getInventory().offerOrDrop(itemStack);
                 world.playSound(null, pos, SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.BLOCKS);
                 if (pizzaAmount > 1) {
                     world.setBlockState(pos, state.with(PIZZA_AMOUNT, pizzaAmount - 1));

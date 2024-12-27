@@ -17,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class Pizza extends BlockWithEntity implements BlockEntityProvider {
 
+
     protected static final VoxelShape FULL = VoxelShapes.cuboid(0.0625f, 0.0f, 0.0625f, 0.9375f, 0.125f, 0.9375f);;
 
     public Pizza(Settings settings) {
@@ -39,19 +40,5 @@ public class Pizza extends BlockWithEntity implements BlockEntityProvider {
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new PizzaEntity(pos, state);
-    }
-
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
-        world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
-
-        ItemStack heldItem = player.getStackInHand(hand);
-
-        if (world.isClient) {
-            return ActionResult.SUCCESS;
-        } else {
-
-        }
-        return ActionResult.PASS;
     }
 }

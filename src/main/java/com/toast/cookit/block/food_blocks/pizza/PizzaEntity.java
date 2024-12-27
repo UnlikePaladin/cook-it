@@ -17,13 +17,12 @@ public class PizzaEntity extends BlockEntity{
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-
-        this.toppings = nbt.getList("pizza.toppings", 8);
+        this.toppings = nbt.getList("toppings", 8);
     }
 
     @Override
     public void writeNbt(NbtCompound nbt) {
-        nbt.put("pizza.toppings", toppings);
+        nbt.put("toppings", toppings);
         super.writeNbt(nbt);
     }
 

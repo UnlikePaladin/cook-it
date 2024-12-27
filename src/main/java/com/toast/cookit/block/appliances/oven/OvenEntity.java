@@ -94,7 +94,11 @@ public class OvenEntity extends CookingBlockEntity implements ImplementedInvento
                 Optional<RecipeEntry<OvenRecipe>> recipe = getCurrentRecipe(containerItems.get(i));
                 if (recipe.isPresent()) {
                     if (!containerItems.get(i).isEmpty() && recipe.get().value().getMaxProgress() <= this.progress[index]) {
-                        recipe.get().value().getResult(null).writeNbt(nbtCompound);
+                        ItemStack output = recipe.get().value().getResult(null);
+                        if (!containerItems.get(i).getNbt().isEmpty()) {
+                            output.setNbt(containerItems.get(i).getNbt());
+                        }
+                            output.writeNbt(nbtCompound);
                     }
                 } else {
                     containerItems.get(i).writeNbt(nbtCompound);

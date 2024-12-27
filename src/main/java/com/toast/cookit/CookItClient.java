@@ -40,6 +40,7 @@ public class CookItClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.PIZZA, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.UNCOOKED_PIZZA, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.PIZZA_PAN, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(CookItBlocks.PIZZA_CRUST, RenderLayer.getTranslucent());
 
         ChefOutfitRenderer.register();
         EntityModelLayerRegistry.registerModelLayer(CHEF_OUTFIT, () -> TexturedModelData.of(ChefOutfitModel.getModelData(), 64, 64));
