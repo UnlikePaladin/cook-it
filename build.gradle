@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.9-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -62,6 +62,7 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_17
 	targetCompatibility = JavaVersion.VERSION_17
 }
+
 loom {
 	accessWidenerPath = file("src/main/resources/cook-it.accesswidener")
 	// ... (Whatever exists here)
@@ -81,19 +82,40 @@ loom {
 
 }
 
+tasks.named("runDatagen") {
+	outputs.dir("src/main/generated")
+}
+
 jar {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from("src/main/resources")
+	from("src/main/generated")
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 	
-	dependsOn runDatagen
+	dependsOn(runDatagen)
 	from("src/main/generated") {
 		exclude ".cache"
 	}
 }
 
 clean.delete("src/main/generated")
+
+sourcesJar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from("src/main/resources")
+	from("src/main/generated")
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}"}
+	}
+
+	mustRunAfter(runDatagen)
+	from("src/main/generated") {
+		exclude(".cache")
+	}
+}
+
 
 // configure the maven publication
 publishing {
