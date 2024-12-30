@@ -95,6 +95,13 @@ jar {
 
 clean.delete("src/main/generated")
 
+tasks.named("sourcesJar") {
+	dependsOn(runDatagen)
+	from("src/main/generated") {
+		exclude(".cache")
+	}
+}
+
 // configure the maven publication
 publishing {
 	publications {
