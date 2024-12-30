@@ -95,7 +95,7 @@ jar {
 
 clean.delete("src/main/generated")
 
-tasks.named("sourcesJar") {
+sourcesJar {
 	dependsOn(runDatagen)
 	from("src/main/generated") {
 		exclude(".cache")
