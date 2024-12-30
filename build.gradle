@@ -88,6 +88,8 @@ tasks.named("runDatagen") {
 
 jar {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from("src/main/resources")
+	from("src/main/generated")
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
@@ -101,10 +103,17 @@ jar {
 clean.delete("src/main/generated")
 
 sourcesJar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from("src/main/resources")
+	from("src/main/generated")
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}"}
+	}
+
+	mustRunAfter(runDatagen)
 	from("src/main/generated") {
 		exclude(".cache")
 	}
-	mustRunAfter(runDatagen)
 }
 
 
