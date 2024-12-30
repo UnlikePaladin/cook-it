@@ -25,7 +25,7 @@ public class CookIt implements ModInitializer {
 
     public static final DefaultParticleType OIL_PARTICLE = FabricParticleTypes.simple();
 
-    public static final List<String> SUPPORTED_WOOD_TYPES = List.of(new String[]{"oak", "acacia", "dark_oak", "spruce", "jungle", "birch"});
+    public static final List<String> SUPPORTED_WOOD_TYPES = List.of(new String[]{"oak", "acacia", "cherry", "crimson", "dark_oak", "spruce", "jungle", "birch", "mangrove", "warped"});
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.
